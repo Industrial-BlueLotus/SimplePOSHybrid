@@ -1,32 +1,31 @@
 ﻿@layout LoginLayout
 @page "/"
+@using SimplePOSHybrid.Data
+@inject LoginMethods Lgn
 
 
 
 
 <MudGrid>
-    <MudItem xs="12" Class="d-flex align-center justify-center ">
-        <MudImage Src="./Img/logo.jpeg"  Width="200" Height="200" Alt="logo" Elevation="25" Class="rounded-lg ma-4" Style="box-shadow:none"    />
+    <MudItem xs="12" Class="d-flex align-center justify-center mr-2 ml-2 mt-2">
+        <MudImage Src="./Img/logo.jpeg"  Width="150" Height="150" Alt="logo" Elevation="25" Class="rounded-lg" Style="box-shadow:none"    />
     </MudItem>
-    <MudItem xs="12" Class="d-flex align-center justify-center">
-        <MudTextField @bind-Value="Username" Label="User Name" Variant="Variant.Outlined" Class="ma-20" ></MudTextField>
+    <MudItem xs="12" Class="d-flex align-center justify-center pl-16 pr-16 mr-16 ml-16 ">
+        <MudTextField @bind-Value="Username" Label="User Name" Variant="Variant.Outlined" Margin="Margin.Dense"></MudTextField>
     </MudItem>
-    <MudItem xs="12" Class="d-flex align-center justify-center ">
+    <MudItem xs="12" Class="d-flex align-center justify-center pl-16 pr-16 mr-16 ml-16 ">
         <MudTextField @bind-Value="Password" Label="Password" Variant="Variant.Outlined" 
             InputType="@PasswordInput" Adornment="Adornment.End" AdornmentIcon="@PasswordInputIcon"
-            OnAdornmentClick="ButtonTestclick" AdornmentAriaLabel="Show Password" />
+                      OnAdornmentClick="ButtonTestclick" AdornmentAriaLabel="Show Password" Margin="Margin.Dense" />
     </MudItem>
-    <MudItem xs="12" Class="d-flex align-center justify-center ">
-        <MudTextField @bind-Value="Environmentname" Label="Environment Name" Variant="Variant.Outlined" ></MudTextField>
+    <MudItem xs="12" Class="d-flex align-center justify-center pl-16 pr-16 mr-16 ml-16  ">
+        <MudTextField @bind-Value="Environmentname" Label="Environment Name" Variant="Variant.Outlined" Margin="Margin.Dense" ></MudTextField>
     </MudItem>
-    <MudItem xs="12" Class="d-flex align-center justify-center ">
-
+    <MudItem xs="12" Class="d-flex align-center justify-center pl-16 pr-16 mr-16 ml-16 ">
+        <MudButton Variant="Variant.Filled" OnClick="LgnBtnClick" Style="background-color:#02198B;color:white;width:120px;height:45px;font-size:larger;border-radius:10px">Login</MudButton>
     </MudItem>
-    <MudItem xs="12" Class="d-flex align-center justify-center ">
-        <MudButton Variant="Variant.Filled" Style="background-color:#02198B;color:white">Login</MudButton>
-    </MudItem>
-    <MudItem xs="12" Class="d-flex align-center justify-center ">
-        <MudImage Src="./Img/banner.jpeg" Width="200" Height="80" Alt="logo" Elevation="25" Class="rounded-lg ma-4" Style="box-shadow:none" />
+    <MudItem xs="12" Class="d-flex align-center justify-center pl-16 pr-16 mr-16 ml-16 ">
+        <MudImage Src="./Img/banner.jpeg" Width="200" Height="50" Alt="logo" Elevation="25" Class="rounded-lg ma-4" Style="box-shadow:none" />
     </MudItem>
 </MudGrid>
 
@@ -45,6 +44,11 @@
     InputType PasswordInput = InputType.Password;
     string PasswordInputIcon = Icons.Material.Filled.VisibilityOff;
 
+    void LgnBtnClick()
+    {
+        Lgn.LoginResponse();
+    }
+
     void ButtonTestclick()
     {
         @if (isShow)
@@ -60,4 +64,6 @@
             PasswordInput = InputType.Text;
         }
     }
+
+
 }
