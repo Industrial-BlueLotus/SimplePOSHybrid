@@ -50,7 +50,7 @@
     {
 
         var response1 = await ILoginService.Authenticate(loginModel);
-
+        
         if (!string.IsNullOrWhiteSpace(response1))
         {
             Navigation.NavigateTo("home");
