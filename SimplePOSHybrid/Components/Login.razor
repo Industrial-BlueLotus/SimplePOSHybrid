@@ -1,6 +1,7 @@
 ﻿@layout LoginLayout
 @page "/"
 @using SimplePOSHybrid.Data
+@using SimplePOSHybrid.Models
 @inject LoginMethods ILoginService
 @inject NavigationManager Navigation
 
@@ -39,22 +40,33 @@
 
     public string Environmentname { get; set; }
 
-
+    LoginObj loginModel = new();
 
     bool isShow;
     InputType PasswordInput = InputType.Password;
     string PasswordInputIcon = Icons.Material.Filled.VisibilityOff;
 
-    public async Task LgnBtnClick()
+    public async void LgnBtnClick()
     {
-        
-        //if(await ILoginService.Authenticate(Username, Password))
+
+        var response1 = await ILoginService.Authenticate(loginModel);
+
+        if (!string.IsNullOrWhiteSpace(response1))
+        {
+            Navigation.NavigateTo("home");
+        }
+        else
+        {
+            await App.Current.MainPage.DisplayAlert("Oops","Invalid username or Password","Cancel");
+        }
+
+        //if(await ILoginService.Authenticate(LoginObj))
         //{
         //    Navigation.NavigateTo("home");
         //}
         //else
         //{
-        // Show an error message
+        // //Show an error message
         //}
 
     }
