@@ -12,7 +12,7 @@ namespace SimplePOSHybrid.Data
 {
     public class LoginMethods
     {
-        GlobalUsings link = new();
+        readonly GlobalUsings link = new();
 
         public async Task<string> Authenticate(LoginObj logobj)
         {
