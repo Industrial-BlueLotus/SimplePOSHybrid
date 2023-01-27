@@ -1,23 +1,18 @@
-﻿
-using Microsoft.AspNetCore.Components;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices.ComTypes;
-using System.Text;
-using System.Threading.Tasks;
-//using NavigationManager Navigation
+﻿using Microsoft.AspNetCore.Components;
 
 namespace SimplePOSHybrid.Data
 {
     public class LoginMethods
     {
+        [Inject]
+        public NavigationManager NavigationManager { get; set; }
+
 
         public void LoginResponse()
         {
 
+            NavigationManager.NavigateTo("/home");
 
-            //Navigation.NavigateTo("/home");
         }
     }
 }
