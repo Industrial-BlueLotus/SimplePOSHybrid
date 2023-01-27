@@ -1,7 +1,7 @@
 ﻿@layout LoginLayout
 @page "/"
 @using SimplePOSHybrid.Data
-@inject LoginMethods Lgn
+@inject LoginMethods ILoginService
 
 
 
@@ -46,7 +46,7 @@
 
     public void LgnBtnClick()
     {
-        Lgn.LoginResponse();
+        ILoginService.LoginResponse();
     }
 
     void ButtonTestclick()
