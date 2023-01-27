@@ -2,6 +2,7 @@
 @page "/"
 @using SimplePOSHybrid.Data
 @inject LoginMethods ILoginService
+@inject NavigationManager Navigation
 
 
 
@@ -44,9 +45,18 @@
     InputType PasswordInput = InputType.Password;
     string PasswordInputIcon = Icons.Material.Filled.VisibilityOff;
 
-    public void LgnBtnClick()
+    public async Task LgnBtnClick()
     {
-        ILoginService.LoginResponse();
+        
+        //if(await ILoginService.Authenticate(Username, Password))
+        //{
+        //    Navigation.NavigateTo("home");
+        //}
+        //else
+        //{
+        // Show an error message
+        //}
+
     }
 
     void ButtonTestclick()
