@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using MudBlazor.Services;
 using SimplePOSHybrid.Data;
+using SimplePOSHybrid.Models.PartnerMenu;
 
 namespace SimplePOSHybrid;
 
@@ -19,6 +20,8 @@ public static class MauiProgram
         builder.Services.AddMauiBlazorWebView();
         builder.Services.AddMudServices();
         builder.Services.AddSingleton<LoginMethods>();
+        builder.Services.AddSingleton<ItemList>();
+        builder.Services.AddSingleton<DashboardView>();
 
 #if DEBUG
         builder.Services.AddBlazorWebViewDeveloperTools();

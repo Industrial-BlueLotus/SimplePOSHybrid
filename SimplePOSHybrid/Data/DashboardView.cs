@@ -1,11 +1,21 @@
-﻿using RestSharp;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using Newtonsoft.Json;
+using RestSharp;
 using SimplePOSHybrid.Models.PartnerMenu;
+using System.Collections.ObjectModel;
 using System.Net;
 
 namespace SimplePOSHybrid.Data
 {
-    public partial class DashboardView
+    public partial class DashboardView : ObservableObject
     {
+
+        [ObservableProperty]
+        ObservableCollection<ItemList> _LItems;
+
+        private string apitoken = "5b9f7f95a73c1b8270ef7cbe664324aac2e9f981f906ad366c64f2b107c90be7";
+
+
         public DashboardView() { }
 
         public async void LoadResponse()
@@ -40,6 +50,7 @@ namespace SimplePOSHybrid.Data
 
                 request.AddHeader("Accept", "application/json");
                 request.AddHeader("Content-Type", "application/json");
+                request.AddHeader("TImeStamp", "125635753");
 
                 RestResponse response = await client.PostAsync(request);
 
@@ -47,6 +58,10 @@ namespace SimplePOSHybrid.Data
                 {
                     var responseContent = response.Content.ToString();
                     Console.WriteLine(responseContent);
+
+                    List<ItemList> array = JsonConvert.DeserializeObject<List<ItemList>>(responseContent);
+
+                    LItems = new ObservableCollection<ItemList>(array);
 
                 }
                 else if (response.StatusCode == HttpStatusCode.InternalServerError)
