@@ -11,7 +11,7 @@ namespace SimplePOSHybrid.Data
     {
 
         [ObservableProperty]
-        ObservableCollection<ItemList> _LItems;
+        ObservableCollection<Rootobject> _LItems;
 
         private readonly string apitoken = "5b9f7f95a73c1b8270ef7cbe664324aac2e9f981f906ad366c64f2b107c90be7";
 
@@ -23,7 +23,7 @@ namespace SimplePOSHybrid.Data
             GlobalUsings link = new();
             var client = new RestClient();
 
-            
+
 
             try
             {
@@ -48,9 +48,9 @@ namespace SimplePOSHybrid.Data
                 co.CompanyId = 51;
 
                 reqmodel.company = co;
-                     
 
-                
+
+
 
                 var request = new RestRequest(link.apilinkpub + "api/PartnerMenu/GetPartnerItemListToUpload").AddJsonBody(reqmodel);
                 request.Method = Method.Post;
@@ -65,12 +65,14 @@ namespace SimplePOSHybrid.Data
                 if (response.StatusCode == HttpStatusCode.OK)
                 {
                     var responseContent = response.Content.ToString();
-                    
+
                     Console.WriteLine(responseContent);
 
-                    List<ItemList> array = JsonConvert.DeserializeObject<List<ItemList>>(responseContent);
-
-                    LItems = new ObservableCollection<ItemList>(array);
+                    Rootobject array = JsonConvert.DeserializeObject<Rootobject>(responseContent);
+                    //Console.WriteLine(array);
+                    Console.WriteLine(array.ResponseData.MenuItemList[0].CategoryCode);
+                    //LItems = new ObservableCollection<Rootobject>((IEnumerable<Rootobject>)array);
+                    //Console.WriteLine(LItems);
 
                 }
                 else if (response.StatusCode == HttpStatusCode.InternalServerError)

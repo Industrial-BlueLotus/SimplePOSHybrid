@@ -4,7 +4,17 @@ namespace SimplePOSHybrid.Models.PartnerMenu
 {
 
 
-    public class ItemList
+    public class Rootobject
+    {
+        public int ResponseType { get; set; }
+        public int TotalRecordCount { get; set; }
+        public object[] ErrorMessages { get; set; }
+        public object[] Messages { get; set; }
+        public Responsedata ResponseData { get; set; }
+        public bool incomplete_results { get; set; }
+    }
+
+    public class Responsedata
     {
         public Menuitemlist[] MenuItemList { get; set; }
     }
@@ -161,6 +171,7 @@ namespace SimplePOSHybrid.Models.PartnerMenu
         public object OwningCompany { get; set; }
         public bool IsRecordLocked { get; set; }
     }
+
 
 
 }
