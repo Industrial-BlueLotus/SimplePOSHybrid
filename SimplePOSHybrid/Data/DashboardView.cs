@@ -13,6 +13,12 @@ namespace SimplePOSHybrid.Data
         [ObservableProperty]
         ObservableCollection<Rootobject> _LItems;
 
+        [ObservableProperty]
+        public string tab1;
+
+        [ObservableProperty]
+        public Rootobject array;
+
         private readonly string apitoken = "5b9f7f95a73c1b8270ef7cbe664324aac2e9f981f906ad366c64f2b107c90be7";
 
 
@@ -68,8 +74,10 @@ namespace SimplePOSHybrid.Data
 
                     Console.WriteLine(responseContent);
 
-                    Rootobject array = JsonConvert.DeserializeObject<Rootobject>(responseContent);
+                    array = JsonConvert.DeserializeObject<Rootobject>(responseContent);
                     //Console.WriteLine(array);
+                    tab1 = array.ResponseData.MenuItemList[0].CategoryCode.ToString();
+                    Console.WriteLine(tab1);
                     Console.WriteLine(array.ResponseData.MenuItemList[0].CategoryCode);
                     //LItems = new ObservableCollection<Rootobject>((IEnumerable<Rootobject>)array);
                     //Console.WriteLine(LItems);
