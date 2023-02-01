@@ -82,15 +82,46 @@
 
                 continue;
             }
+        }
+
+        int j = 0;
 
 
-
-            for (i = 0; i < n; i++)
+        for (int i = 0; i < n; i++)
+        {
+            if (cate[i] != null)
             {
-                
+
+                j++;
+
             }
-            Console.WriteLine(cate);
-        return cate;
+            else
+            {
+                continue;
+            }
+        }
+
+
+        string[] arr = new string[j];
+        int m = 0;
+        for (int i = 0; i < n; i++)
+        {
+            if (cate[i] != null)
+            {
+                if(m < j)
+                {
+                    arr[m] = cate[i];
+                    m++;
+                }
+
+            }
+            else
+            {
+                continue;
+            }
+        }
+        Console.WriteLine(arr);
+        return arr;
     }
 
 }
