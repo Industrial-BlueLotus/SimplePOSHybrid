@@ -57,9 +57,40 @@
         DashboardView dashboard = new DashboardView();
         test = await dashboard.LoadResponse();
         Console.WriteLine(test);
-        
+        insertCat(test);
     }
 
 
+    public string[] insertCat(Rootobject te)
+    {
+        int index = 0;
+        int n = te.ResponseData.MenuItemList.Length;
+        string[] cate = new string[n];
+
+
+        for (int i = 0; i < n; i++)
+        {
+
+            index = Array.IndexOf(cate,te.ResponseData.MenuItemList[i].CategoryCode);
+            if (index.Equals(-1))
+            {
+                cate[i] = te.ResponseData.MenuItemList[i].CategoryCode;
+                Console.WriteLine(cate[i]);
+            }
+            else
+            {
+
+                continue;
+            }
+
+
+
+            for (i = 0; i < n; i++)
+            {
+                
+            }
+            Console.WriteLine(cate);
+        return cate;
+    }
 
 }
