@@ -1,7 +1,7 @@
 ﻿@page "/"
 @layout MainLayout
 @using SimplePOSHybrid.Data
-
+@using SimplePOSHybrid.Models.PartnerMenu
 
 
 <MudGrid Justify="Justify.Center"  >
@@ -17,7 +17,7 @@
         <MudItem xs="7">
             <MudTabs Elevation="1" Rounded="true" PanelClass="pa-6" Color="@Color.Primary">
 
-                @*@foreach (var item in array)
+               @* @foreach (var item in arr)
                 {
                     
                 }*@
@@ -50,10 +50,16 @@
 
 @code{
 
-    public void Load()
+
+    public Rootobject test;
+    public async void Load()
     {
         DashboardView dashboard = new DashboardView();
-        dashboard.LoadResponse();
+        test = await dashboard.LoadResponse();
+        Console.WriteLine(test);
+        
     }
+
+
 
 }

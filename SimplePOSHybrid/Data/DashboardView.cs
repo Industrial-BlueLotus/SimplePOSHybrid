@@ -16,15 +16,15 @@ namespace SimplePOSHybrid.Data
         [ObservableProperty]
         public string tab1;
 
-        [ObservableProperty]
-        public Rootobject array;
+
+
 
         private readonly string apitoken = "5b9f7f95a73c1b8270ef7cbe664324aac2e9f981f906ad366c64f2b107c90be7";
 
-
+        string responseContent = string.Empty;
         public DashboardView() { }
 
-        public async void LoadResponse()
+        public async Task<Rootobject> LoadResponse()
         {
             GlobalUsings link = new();
             var client = new RestClient();
@@ -74,29 +74,32 @@ namespace SimplePOSHybrid.Data
 
                     Console.WriteLine(responseContent);
 
-                    array = JsonConvert.DeserializeObject<Rootobject>(responseContent);
-                    //Console.WriteLine(array);
+                    Rootobject array = JsonConvert.DeserializeObject<Rootobject>(responseContent);
+                    Console.WriteLine(array);
                     tab1 = array.ResponseData.MenuItemList[0].CategoryCode.ToString();
                     Console.WriteLine(tab1);
                     Console.WriteLine(array.ResponseData.MenuItemList[0].CategoryCode);
+                    return array;
                     //LItems = new ObservableCollection<Rootobject>((IEnumerable<Rootobject>)array);
                     //Console.WriteLine(LItems);
 
                 }
-                else if (response.StatusCode == HttpStatusCode.InternalServerError)
-                {
-                    Console.WriteLine(response.StatusCode);
-                }
+
                 else
                 {
                     Console.WriteLine(response.StatusCode);
+                    return new Rootobject();
                 }
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.ToString());
+                return new Rootobject();
+
             }
 
         }
+
+
     }
 }
