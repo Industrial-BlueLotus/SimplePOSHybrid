@@ -36,7 +36,7 @@
 
 
 @code {
-    
+
 
 
     public string Environmentname { get; set; }
@@ -47,6 +47,7 @@
     InputType PasswordInput = InputType.Password;
     string PasswordInputIcon = Icons.Material.Filled.VisibilityOff;
 
+   
     public async void LgnBtnClick()
     {
 
@@ -55,6 +56,7 @@
         if (!string.IsNullOrWhiteSpace(response1))
         {
             Navigation.NavigateTo("home");
+
         }
         else
         {

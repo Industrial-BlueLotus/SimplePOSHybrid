@@ -18,26 +18,14 @@
             <MudTabs Elevation="1" Rounded="true" PanelClass="pa-6" Color="@Color.Primary">
 
                 
-               @* @foreach (var item in arr)
+                @foreach (string item in tabscat)
                 {
-                    
+                    <MudTabPanel Text=@item ToolTip="ToolTip One">
+                        <MudText>Item One</MudText>
+                     </MudTabPanel>
+                    Console.WriteLine(item);
                 }
-*@
-                <MudTabPanel Text="Item one" ToolTip="ToolTip One">
-                    <MudText>Item One</MudText>
-                </MudTabPanel>
-                <MudTabPanel Text="Item Two" ToolTip="ToolTip Two">
-                    <MudText>Item Two</MudText>
-                </MudTabPanel>
-                <MudTabPanel Text="Item Three" ToolTip="ToolTip Three">
-                    <MudText>Item Three</MudText>
-                </MudTabPanel>
-                <MudTabPanel Text="Item Four" ToolTip="ToolTip Two">
-                    <MudText>Item Four</MudText>
-                </MudTabPanel>
-                <MudTabPanel Text="Item Five" ToolTip="ToolTip Three">
-                    <MudText>Item Five</MudText>
-                </MudTabPanel>
+
             </MudTabs>
         </MudItem>
         <MudItem xs="5">
@@ -51,79 +39,31 @@
 
 @code{
 
-    
+    public string[] tabscat = new string[] { };
+
+    List<string> list = new List<string>();
+
+
 
     public Rootobject test;
     public async void Load()
     {
         DashboardView dashboard = new DashboardView();
         test = await dashboard.LoadResponse();
-        Console.WriteLine(test);
-        insertCat(test);
+        tabscat = DashboardView.insertCat(test);
+        Console.WriteLine(tabscat);
+        StateHasChanged();
     }
 
-
-    public string[] insertCat(Rootobject te)
+    protected override void OnInitialized()
     {
-        int index = 0;
-        int n = te.ResponseData.MenuItemList.Length;
-        string[] cate = new string[n];
-
-
-        for (int i = 0; i < n; i++)
-        {
-
-            index = Array.IndexOf(cate,te.ResponseData.MenuItemList[i].CategoryCode);
-            if (index.Equals(-1))
-            {
-                cate[i] = te.ResponseData.MenuItemList[i].CategoryCode;
-                Console.WriteLine(cate[i]);
-            }
-            else
-            {
-
-                continue;
-            }
-        }
-
-        int j = 0;
-
-
-        for (int i = 0; i < n; i++)
-        {
-            if (cate[i] != null)
-            {
-
-                j++;
-
-            }
-            else
-            {
-                continue;
-            }
-        }
-
-
-        string[] arr = new string[j];
-        int m = 0;
-        for (int i = 0; i < n; i++)
-        {
-            if (cate[i] != null)
-            {
-                if(m < j)
-                {
-                    arr[m] = cate[i];
-                    m++;
-                }
-
-            }
-            else
-            {
-                continue;
-            }
-        }
-        Console.WriteLine(arr);
-        return arr;
+        Load();
     }
+
+
+ 
+
+    
+    
 
 }

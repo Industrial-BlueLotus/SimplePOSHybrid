@@ -33,25 +33,28 @@ namespace SimplePOSHybrid.Data
 
             try
             {
-                GetPartnerItemListToUploadReqModel reqmodel = new();
+                GetPartnerItemListToUploadReqModel reqmodel = new()
+                {
+                    RequestId = "7ee53650-37b8-464c-90e9-85d89f8ab12a",
+                    IntegrationId = "7ee53650-37b8-464c-90e9-85d89f8ab12a",
+                    Apikey = "5b9f7f95a73c1b8270ef7cbe664324aac2e9f981f906ad366c64f2b107c90be7"
+                };
 
-                reqmodel.RequestId = "7ee53650-37b8-464c-90e9-85d89f8ab12a";
-                reqmodel.IntegrationId = "7ee53650-37b8-464c-90e9-85d89f8ab12a";
-                reqmodel.Apikey = "5b9f7f95a73c1b8270ef7cbe664324aac2e9f981f906ad366c64f2b107c90be7";
-
-                UID te = new();
-
-                te.UserKey = 301848;
-                te.CompanyKey = 51;
-                te.LocationKey = 80916;
-                te.EnvironmentName = "Live";
-                te.IsUrbanPiper = false;
+                UID te = new()
+                {
+                    UserKey = 301848,
+                    CompanyKey = 51,
+                    LocationKey = 80916,
+                    EnvironmentName = "Live",
+                    IsUrbanPiper = false
+                };
 
                 reqmodel.UID = te;
 
-                Company co = new();
-
-                co.CompanyId = 51;
+                Company co = new()
+                {
+                    CompanyId = 51
+                };
 
                 reqmodel.company = co;
 
@@ -75,10 +78,7 @@ namespace SimplePOSHybrid.Data
                     Console.WriteLine(responseContent);
 
                     Rootobject array = JsonConvert.DeserializeObject<Rootobject>(responseContent);
-                    Console.WriteLine(array);
-                    tab1 = array.ResponseData.MenuItemList[0].CategoryCode.ToString();
-                    Console.WriteLine(tab1);
-                    Console.WriteLine(array.ResponseData.MenuItemList[0].CategoryCode);
+
                     return array;
                     //LItems = new ObservableCollection<Rootobject>((IEnumerable<Rootobject>)array);
                     //Console.WriteLine(LItems);
@@ -99,6 +99,71 @@ namespace SimplePOSHybrid.Data
             }
 
         }
+
+
+        public static string[] insertCat(Rootobject te)
+        {
+            int n = te.ResponseData.MenuItemList.Length;
+            string[] cate = new string[n];
+
+
+            for (int i = 0; i < n; i++)
+            {
+
+                int index = Array.IndexOf(cate, te.ResponseData.MenuItemList[i].CategoryCode);
+                if (index.Equals(-1))
+                {
+                    cate[i] = te.ResponseData.MenuItemList[i].CategoryCode;
+                    Console.WriteLine(cate[i]);
+                }
+                else
+                {
+
+                    continue;
+                }
+            }
+
+            int j = 0;
+
+
+            for (int i = 0; i < n; i++)
+            {
+                if (cate[i] != null)
+                {
+
+                    j++;
+
+                }
+                else
+                {
+                    continue;
+                }
+            }
+
+
+            string[] arr = new string[j];
+            int m = 0;
+            for (int i = 0; i < n; i++)
+            {
+                if (cate[i] != null)
+                {
+                    if (m < j)
+                    {
+                        arr[m] = cate[i];
+                        m++;
+                    }
+
+                }
+                else
+                {
+                    continue;
+                }
+            }
+            Console.WriteLine(arr);
+            return arr;
+        }
+
+        
 
 
     }
