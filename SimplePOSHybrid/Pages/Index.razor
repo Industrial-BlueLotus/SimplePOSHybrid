@@ -10,7 +10,7 @@
         <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" Class="ma-2" />
         <MudText Class="ma-4" Style="font-weight:800;font-size:large">BLX Super Mart</MudText>
             <MudSpacer />
-        <MudIconButton Icon="@Icons.Material.Filled.Logout" Color="Color.Inherit" />
+        <MudIconButton Icon="@Icons.Material.Filled.Logout" Color="Color.Inherit" Href="/"/>
         </MudAppBar>
    
     <MudGrid >
@@ -20,7 +20,7 @@
                 
                 @foreach (string item in tabscat)
                 {
-                    <MudTabPanel Text=@item ToolTip="ToolTip One">
+                    <MudTabPanel Text=@item ToolTip="Choose a Category">
                         <MudText>Item One</MudText>
                      </MudTabPanel>
                     Console.WriteLine(item);
@@ -41,23 +41,23 @@
 
     public string[] tabscat = new string[] { };
 
-    List<string> list = new List<string>();
-
-
 
     public Rootobject test;
     public async void Load()
     {
         DashboardView dashboard = new DashboardView();
         test = await dashboard.LoadResponse();
-        tabscat = DashboardView.insertCat(test);
+        tabscat = DashboardView.InsertCat(test);
         Console.WriteLine(tabscat);
         StateHasChanged();
+        dashboard.GetItems();
     }
 
     protected override void OnInitialized()
     {
         Load();
+        //DashboardView dashboard = new DashboardView();
+        //dashboard.GetItems();
     }
 
 
