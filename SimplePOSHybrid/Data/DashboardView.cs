@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using RestSharp;
 using SimplePOSHybrid.Models.PartnerMenu;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Net;
 using static MudBlazor.CategoryTypes;
@@ -124,7 +125,12 @@ namespace SimplePOSHybrid.Data
         {
             int n = te.ResponseData.MenuItemList.Length;
             string[] cate = new string[n];
+            string catename = "test";
+            List<Menuitemlist> lst = new List<Menuitemlist>();
 
+            te.ResponseData.MenuItemList.GroupBy(x => x.CategoryCode);
+
+            lst = te.ResponseData.MenuItemList.Where(x => x.CategoryCode == catename).ToList();
 
             for (int i = 0; i < n; i++)
             {
@@ -205,9 +211,9 @@ namespace SimplePOSHybrid.Data
 
                     Rootobject array = JsonConvert.DeserializeObject<Rootobject>(responseContent);
                     var a = array.ResponseData.MenuItemList;
-                    Console.WriteLine(a);
-                    //List l = a.MenuItemList.ToList();
-                    //List<Rootobject> array1 = JsonConvert.DeserializeObject<List<Rootobject>>(a);
+                    //Console.WriteLine(a);
+                    //List l = a.ToList();
+                    ////List<Menuitemlist> array1 = JsonConvert.DeserializeObject<List<Menuitemlist>>(a);
 
                     //LItems = new ObservableCollection<Rootobject>(array1);
                     //Console.WriteLine(LItems);
