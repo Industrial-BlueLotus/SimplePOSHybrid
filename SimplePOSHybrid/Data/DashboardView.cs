@@ -14,7 +14,7 @@ namespace SimplePOSHybrid.Data
     {
 
         [ObservableProperty]
-        ObservableCollection<Rootobject> _LItems;
+        ObservableCollection<ItemModel> _LItems;
 
         [ObservableProperty]
         public string tab1;
@@ -72,12 +72,13 @@ namespace SimplePOSHybrid.Data
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex.ToString());
                 return new RestRequest();
             }
 
         }
         //Configuration
-        public async Task<Rootobject> LoadResponse()
+        public async Task<ItemModel> LoadResponse()
         {
 
             var client = new RestClient();
@@ -94,9 +95,7 @@ namespace SimplePOSHybrid.Data
 
                     Console.WriteLine(responseContent);
 
-                    Rootobject array = JsonConvert.DeserializeObject<Rootobject>(responseContent);
-                    //Responsedata a = array.ResponseData;
-                    //List l = a.MenuItemList.ToList();
+                    ItemModel array = JsonConvert.DeserializeObject<ItemModel>(responseContent);
                     return array;
 
                 }
@@ -104,82 +103,90 @@ namespace SimplePOSHybrid.Data
                 else
                 {
                     Console.WriteLine(response.StatusCode);
-                    return new Rootobject();
+                    return new ItemModel();
                 }
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.ToString());
-                return new Rootobject();
+                return new ItemModel();
 
             }
 
+        }
+
+        //display items
+        public static List<Menuitemlist> DisplayItem(ItemModel te)
+        {
+            //int n = te.ResponseData.MenuItemList.Length;
+            //string[] cate = new string[n];
+            string catename = "test";
+            List<Menuitemlist> lst = new();
+            lst = te.ResponseData.MenuItemList.Where(x => x.CategoryCode == catename).ToList();
+            return lst;
+            //for (int i = 0; i < n; i++)
+            //{
+
+            //    int index = Array.IndexOf(cate, te.ResponseData.MenuItemList[i].CategoryCode);
+            //    if (index.Equals(-1))
+            //    {
+            //        cate[i] = te.ResponseData.MenuItemList[i].CategoryCode;
+            //        Console.WriteLine(cate[i]);
+            //    }
+            //    else
+            //    {
+
+            //        continue;
+            //    }
+            //}
+
+            //int j = 0;
+
+            //for (int i = 0; i < n; i++)
+            //{
+            //    if (cate[i] != null)
+            //    {
+
+            //        j++;
+
+            //    }
+            //    else
+            //    {
+            //        continue;
+            //    }
+            //}
+
+            //string[] arr = new string[j];
+            //int m = 0;
+            //for (int i = 0; i < n; i++)
+            //{
+            //    if (cate[i] != null)
+            //    {
+            //        if (m < j)
+            //        {
+            //            arr[m] = cate[i];
+            //            m++;
+            //        }
+
+            //    }
+            //    else
+            //    {
+            //        continue;
+            //    }
+            //}
+            //Console.WriteLine(arr);
+            //return arr;
         }
 
         //Filtering the categories
-        public static string[] InsertCat(Rootobject te)
-        {
-            int n = te.ResponseData.MenuItemList.Length;
-            string[] cate = new string[n];
-            string catename = "test";
-            List<Menuitemlist> lst = new List<Menuitemlist>();
-            lst = te.ResponseData.MenuItemList.Where(x => x.CategoryCode == catename).ToList();
+        //public static List<Menuitemlist> DisplayCat(ItemModel te)
+        //{
+        //    List<Menuitemlist> catlst = new();
 
-            for (int i = 0; i < n; i++)
-            {
+        //    catlst = te.ResponseData.MenuItemList.GroupBy(x => x.CategoryCode);
 
-                int index = Array.IndexOf(cate, te.ResponseData.MenuItemList[i].CategoryCode);
-                if (index.Equals(-1))
-                {
-                    cate[i] = te.ResponseData.MenuItemList[i].CategoryCode;
-                    Console.WriteLine(cate[i]);
-                }
-                else
-                {
-
-                    continue;
-                }
-            }
-
-            int j = 0;
-
-
-            for (int i = 0; i < n; i++)
-            {
-                if (cate[i] != null)
-                {
-
-                    j++;
-
-                }
-                else
-                {
-                    continue;
-                }
-            }
-
-
-            string[] arr = new string[j];
-            int m = 0;
-            for (int i = 0; i < n; i++)
-            {
-                if (cate[i] != null)
-                {
-                    if (m < j)
-                    {
-                        arr[m] = cate[i];
-                        m++;
-                    }
-
-                }
-                else
-                {
-                    continue;
-                }
-            }
-            Console.WriteLine(arr);
-            return arr;
-        }
+        //    return catlst;
+        //}
 
         //getting all the items to each categories.
         public async void GetItems()
@@ -201,7 +208,7 @@ namespace SimplePOSHybrid.Data
 
 
 
-                    Rootobject array = JsonConvert.DeserializeObject<Rootobject>(responseContent);
+                    ItemModel array = JsonConvert.DeserializeObject<ItemModel>(responseContent);
                     var a = array.ResponseData.MenuItemList;
                     //Console.WriteLine(a);
                     //List l = a.ToList();

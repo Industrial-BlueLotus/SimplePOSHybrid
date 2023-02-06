@@ -17,14 +17,14 @@
         <MudItem xs="7">
             <MudTabs Elevation="1" Rounded="true" PanelClass="pa-6" Color="@Color.Primary">
 
-                
+                @*
                 @foreach (string item in tabscat)
                 {
                     <MudTabPanel Text=@item ToolTip="Choose a Category">
                         <MudText>Item One</MudText>
                      </MudTabPanel>
                     Console.WriteLine(item);
-                }
+                }*@
 
             </MudTabs>
         </MudItem>
@@ -39,18 +39,19 @@
 
 @code{
 
-    public string[] tabscat = new string[] { };
+    public List<Menuitemlist> tabscat = new List<Menuitemlist> { };
+    public List<Menuitemlist> tabscatitm = new List<Menuitemlist> { };
 
-
-    public Rootobject test;
+    public ItemModel test;
     public async void Load()
     {
         DashboardView dashboard = new DashboardView();
         test = await dashboard.LoadResponse();
-        tabscat = DashboardView.InsertCat(test);
+        tabscatitm = DashboardView.DisplayItem(test);
+        //tabscat = DashboardView.DisplayCat(test);
         Console.WriteLine(tabscat);
         StateHasChanged();
-        dashboard.GetItems();
+        
     }
 
     protected override void OnInitialized()

@@ -1,10 +1,6 @@
-﻿
-
-namespace SimplePOSHybrid.Models.PartnerMenu
+﻿namespace SimplePOSHybrid.Models.PartnerMenu
 {
-
-
-    public class Rootobject
+    public class ItemModel
     {
         public int ResponseType { get; set; }
         public int TotalRecordCount { get; set; }
@@ -171,7 +167,4 @@ namespace SimplePOSHybrid.Models.PartnerMenu
         public object OwningCompany { get; set; }
         public bool IsRecordLocked { get; set; }
     }
-
-
-
 }

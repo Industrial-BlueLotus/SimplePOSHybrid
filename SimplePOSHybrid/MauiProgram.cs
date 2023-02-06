@@ -20,7 +20,7 @@ public static class MauiProgram
         builder.Services.AddMauiBlazorWebView();
         builder.Services.AddMudServices();
         builder.Services.AddSingleton<LoginMethods>();
-        builder.Services.AddSingleton<Rootobject>();
+        builder.Services.AddSingleton<ItemModel>();
         builder.Services.AddSingleton<DashboardView>();
 
 #if DEBUG
