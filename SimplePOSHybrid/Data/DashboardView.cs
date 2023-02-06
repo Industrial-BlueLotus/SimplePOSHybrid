@@ -31,8 +31,6 @@ namespace SimplePOSHybrid.Data
         public RestRequest Res()
         {
             GlobalUsings link = new();
-            var client = new RestClient();
-
             try
             {
 
@@ -100,8 +98,6 @@ namespace SimplePOSHybrid.Data
                     //Responsedata a = array.ResponseData;
                     //List l = a.MenuItemList.ToList();
                     return array;
-                    //LItems = new ObservableCollection<Rootobject>((IEnumerable<Rootobject>)array);
-                    //Console.WriteLine(LItems);
 
                 }
 
@@ -127,9 +123,6 @@ namespace SimplePOSHybrid.Data
             string[] cate = new string[n];
             string catename = "test";
             List<Menuitemlist> lst = new List<Menuitemlist>();
-
-            te.ResponseData.MenuItemList.GroupBy(x => x.CategoryCode);
-
             lst = te.ResponseData.MenuItemList.Where(x => x.CategoryCode == catename).ToList();
 
             for (int i = 0; i < n; i++)
@@ -187,7 +180,6 @@ namespace SimplePOSHybrid.Data
             Console.WriteLine(arr);
             return arr;
         }
-
 
         //getting all the items to each categories.
         public async void GetItems()
