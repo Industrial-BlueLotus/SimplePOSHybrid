@@ -120,7 +120,7 @@ namespace SimplePOSHybrid.Data
         {
             //int n = te.ResponseData.MenuItemList.Length;
             //string[] cate = new string[n];
-            string catename = "test";
+            string catename = "chicken 23";
             List<Menuitemlist> lst = new();
             lst = te.ResponseData.MenuItemList.Where(x => x.CategoryCode == catename).ToList();
             return lst;
@@ -179,14 +179,14 @@ namespace SimplePOSHybrid.Data
         }
 
         //Filtering the categories
-        //public static List<Menuitemlist> DisplayCat(ItemModel te)
-        //{
-        //    List<Menuitemlist> catlst = new();
+        public static List<string> DisplayCat(ItemModel te)
+        {
+            List<string> catlst = new();
 
-        //    catlst = te.ResponseData.MenuItemList.GroupBy(x => x.CategoryCode);
+            catlst = te.ResponseData.MenuItemList.GroupBy(x => x.CategoryCode).Select(g => g.Key).ToList();
 
-        //    return catlst;
-        //}
+            return catlst;
+        }
 
         //getting all the items to each categories.
         public async void GetItems()

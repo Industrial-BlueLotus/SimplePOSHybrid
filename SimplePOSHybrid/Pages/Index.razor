@@ -17,14 +17,34 @@
         <MudItem xs="7">
             <MudTabs Elevation="1" Rounded="true" PanelClass="pa-6" Color="@Color.Primary">
 
-                @*
-                @foreach (string item in tabscat)
+                
+                @foreach (string category in tabscat)
                 {
-                    <MudTabPanel Text=@item ToolTip="Choose a Category">
-                        <MudText>Item One</MudText>
-                     </MudTabPanel>
-                    Console.WriteLine(item);
-                }*@
+                <MudTabPanel Text=@category ToolTip="Choose a Category">
+                        <MudGrid>
+                            <MudItem>
+                                @foreach (var item in tabscatitm)
+                                {
+                                    <MudCard Class="mb-8">
+                                        <MudCardMedia Image=@item.ItemImage Height="200" />
+                                        <MudCardContent>
+                                            <MudText Typo="Typo.h6">@item.ItemName</MudText>
+                                            <MudText Typo="Typo.body2">Old paint found on a stone house door.</MudText>
+
+                                        </MudCardContent>
+                                        <MudCardActions>
+                                            <MudButton Variant="Variant.Filled" Color="Color.Primary">Add</MudButton>
+
+                                        </MudCardActions>
+
+                                    </MudCard>
+                                }
+                            </MudItem>
+                        </MudGrid>
+                       
+                    </MudTabPanel>
+                    
+                }
 
             </MudTabs>
         </MudItem>
@@ -39,7 +59,7 @@
 
 @code{
 
-    public List<Menuitemlist> tabscat = new List<Menuitemlist> { };
+    public List<string> tabscat = new List<string> { };
     public List<Menuitemlist> tabscatitm = new List<Menuitemlist> { };
 
     public ItemModel test;
@@ -47,9 +67,10 @@
     {
         DashboardView dashboard = new DashboardView();
         test = await dashboard.LoadResponse();
+        
+        tabscat = DashboardView.DisplayCat(test);
         tabscatitm = DashboardView.DisplayItem(test);
-        //tabscat = DashboardView.DisplayCat(test);
-        Console.WriteLine(tabscat);
+        Console.WriteLine(tabscatitm);
         StateHasChanged();
         
     }
