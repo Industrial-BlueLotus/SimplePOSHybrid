@@ -6,22 +6,22 @@
 
 <MudGrid Justify="Justify.Center"  >
 
-    <MudAppBar Style="background-color:white;color:#053B71" Fixed="false" Dense="false" DisableGutters="false" Class="mt-2">
+    <MudAppBar Style="background-color:#053B71;color:white" Fixed="false" Dense="false" DisableGutters="false" Class="mt-2">
         <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" Class="ma-2" />
         <MudText Class="ma-4" Style="font-weight:800;font-size:large">BLX Super Mart</MudText>
             <MudSpacer />
-        <MudIconButton Icon="@Icons.Material.Filled.Logout"  Href="/" />
+        <MudIconButton Icon="@Icons.Material.Filled.Logout" Style="color:white" Href="/" />
         </MudAppBar>
    
     <MudGrid >
         <MudItem xs="7" >
             <MudTabs Elevation="2" Rounded="true" PanelClass="pa-6" PrevIcon="@Icons.Material.Filled.SkipPrevious" NextIcon="@Icons.Material.Filled.SkipNext"
-                SliderColor="Color.Tertiary" ScrollIconColor="Color.Dark">
+                      AlwaysShowScrollButtons="true" Color="@Color.Primary">
 
                 
                 @foreach (string category in tabscat)
                 {
-                    <MudTabPanel Text=@category ToolTip="Choose a Category" OnClick="() => LoadItems(category)" Style="background-color:#053B71;color:white" >
+                    <MudTabPanel Text=@category ToolTip="Choose a Category" OnClick="() => LoadItems(category)"  >
                         <MudGrid>
                             
                                 @foreach (var item in tabscatitm)
@@ -54,13 +54,21 @@
         <MudItem xs="5">
             <MudGrid>
                 <MudItem xs="3"></MudItem>
-                <MudItem xs="6">
-                    <MudSelect Dense="true" Margin="Margin.Dense" T="string" Label="Order Type" Variant="Variant.Outlined" Class="ma-5">
+                <MudItem xs="5">
+                    <MudSelect Dense="true" Margin="Margin.Dense" T="string" Label="Order Type" Variant="Variant.Outlined" Class="mb-2 mt-2">
                         <MudSelectItem Value="@("Credit")" />
                         <MudSelectItem Value="@("Debit")" />
                     </MudSelect>
                 </MudItem>
-                <MudItem xs="3"></MudItem>
+                <MudItem xs="2">
+                    <MudIconButton Icon="@Icons.Material.Filled.PersonAddAlt1" aria-label="add user"></MudIconButton>
+                </MudItem>
+                @*<MudItem xs="1">
+                        
+                 </MudItem>*@
+                <MudItem xs="2">
+                    <MudIconButton Class="d-flex align-left justify-left" Icon="@Icons.Material.Filled.KeyboardArrowDown" aria-label="users"></MudIconButton>
+                </MudItem>
             </MudGrid>
             
         </MudItem>
