@@ -6,7 +6,7 @@
 
 <MudGrid Justify="Justify.Center"  >
 
-    <MudAppBar Style="background-color:#060696" Fixed="false" Dense="false" DisableGutters="false" Class="mt-2">
+    <MudAppBar Style="background-color:#060696" Fixed="false" Dense="false" DisableGutters="false" Class="mt-2" >
         <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" Class="ma-2" />
         <MudText Class="ma-4" Style="font-weight:800;font-size:large">BLX Super Mart</MudText>
             <MudSpacer />
@@ -15,26 +15,26 @@
    
     <MudGrid >
         <MudItem xs="7">
-            <MudTabs Elevation="1" Rounded="true" PanelClass="pa-6" Color="@Color.Primary">
+            <MudTabs Elevation="1" Rounded="true" PanelClass="pa-6" Color="@Color.Primary" >
 
                 
                 @foreach (string category in tabscat)
                 {
-                <MudTabPanel Text=@category ToolTip="Choose a Category">
+                    <MudTabPanel Text=@category ToolTip="Choose a Category" OnClick="() => LoadItems(category)">
                         <MudGrid>
                             
                                 @foreach (var item in tabscatitm)
                                 {
-                                    <MudItem xs="4">
-                                        <MudCard Class="mb-8">
-                                            <MudCardMedia Image=@item.ItemImage Height="200" />
-                                            <MudCardContent>
+                                    <MudItem xs="4" >
+                                        <MudCard Class="mb-8" Style="border-radius:10px">
+                                            <MudCardMedia Image=@item.ItemImage Height="100" />
+                                            <MudCardContent >
                                                 <MudText Typo="Typo.h6">@item.ItemName</MudText>
-                                                <MudText Typo="Typo.body2">Old paint found on a stone house door.</MudText>
+                                                <MudText Typo="Typo.body2">@item.ItemShortName</MudText>
 
                                             </MudCardContent>
-                                             <MudCardActions>
-                                                <MudButton Variant="Variant.Filled" Color="Color.Primary">Add</MudButton>
+                                        <MudCardActions Class="d-flex align-center justify-center">
+                                            <MudButton Variant="Variant.Filled" Style="background-color:#02198B;color:white" >Add</MudButton>
 
                                             </MudCardActions>
 
@@ -63,7 +63,7 @@
 
     public List<string> tabscat = new List<string> { };
     public List<Menuitemlist> tabscatitm = new List<Menuitemlist> { };
-
+    public string cate = "chicken 23";
     public ItemModel test;
     public async void Load()
     {
@@ -71,7 +71,7 @@
         test = await dashboard.LoadResponse();
         
         tabscat = DashboardView.DisplayCat(test);
-        tabscatitm = DashboardView.DisplayItem(test);
+        tabscatitm = DashboardView.DisplayItem(test,cate);
         Console.WriteLine(tabscatitm);
         StateHasChanged();
         
@@ -80,10 +80,16 @@
     protected override void OnInitialized()
     {
         Load();
-        //DashboardView dashboard = new DashboardView();
-        //dashboard.GetItems();
+        
     }
 
+    public void LoadItems(string cate)
+    {
+                   
+        tabscatitm = DashboardView.DisplayItem(test,cate);
+        StateHasChanged();
+
+    }
 
  
 

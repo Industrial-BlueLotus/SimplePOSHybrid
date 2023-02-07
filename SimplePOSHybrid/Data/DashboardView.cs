@@ -113,11 +113,12 @@ namespace SimplePOSHybrid.Data
         }
 
         //display items
-        public static List<Menuitemlist> DisplayItem(ItemModel te)
+        public static List<Menuitemlist> DisplayItem(ItemModel te, string category)
         {
+
             //int n = te.ResponseData.MenuItemList.Length;
             //string[] cate = new string[n];
-            string catename = "chicken 23";
+            string catename = category;
             List<Menuitemlist> lst = new();
             lst = te.ResponseData.MenuItemList.Where(x => x.CategoryCode == catename).ToList();
             return lst;
@@ -184,52 +185,6 @@ namespace SimplePOSHybrid.Data
 
             return catlst;
         }
-
-        //getting all the items to each categories.
-        public async void GetItems()
-        {
-
-            var client = new RestClient();
-
-
-            try
-            {
-
-                RestResponse response = await client.PostAsync(Res());
-
-                if (response.StatusCode == HttpStatusCode.OK)
-                {
-                    var responseContent = response.Content.ToString();
-
-                    Console.WriteLine(responseContent);
-
-
-
-                    ItemModel array = JsonConvert.DeserializeObject<ItemModel>(responseContent);
-                    var a = array.ResponseData.MenuItemList;
-                    //Console.WriteLine(a);
-                    //List l = a.ToList();
-                    ////List<Menuitemlist> array1 = JsonConvert.DeserializeObject<List<Menuitemlist>>(a);
-
-                    //LItems = new ObservableCollection<Rootobject>(array1);
-                    //Console.WriteLine(LItems);
-                }
-
-                else
-                {
-                    Console.WriteLine(response.StatusCode);
-
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.ToString());
-
-
-            }
-
-        }
-
 
     }
 }
