@@ -22,24 +22,26 @@
                 {
                 <MudTabPanel Text=@category ToolTip="Choose a Category">
                         <MudGrid>
-                            <MudItem>
+                            
                                 @foreach (var item in tabscatitm)
                                 {
-                                    <MudCard Class="mb-8">
-                                        <MudCardMedia Image=@item.ItemImage Height="200" />
-                                        <MudCardContent>
-                                            <MudText Typo="Typo.h6">@item.ItemName</MudText>
-                                            <MudText Typo="Typo.body2">Old paint found on a stone house door.</MudText>
+                                    <MudItem xs="4">
+                                        <MudCard Class="mb-8">
+                                            <MudCardMedia Image=@item.ItemImage Height="200" />
+                                            <MudCardContent>
+                                                <MudText Typo="Typo.h6">@item.ItemName</MudText>
+                                                <MudText Typo="Typo.body2">Old paint found on a stone house door.</MudText>
 
-                                        </MudCardContent>
-                                        <MudCardActions>
-                                            <MudButton Variant="Variant.Filled" Color="Color.Primary">Add</MudButton>
+                                            </MudCardContent>
+                                             <MudCardActions>
+                                                <MudButton Variant="Variant.Filled" Color="Color.Primary">Add</MudButton>
 
-                                        </MudCardActions>
+                                            </MudCardActions>
 
-                                    </MudCard>
+                                        </MudCard>
+                                    </MudItem>
                                 }
-                            </MudItem>
+                            
                         </MudGrid>
                        
                     </MudTabPanel>
