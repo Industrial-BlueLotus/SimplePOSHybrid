@@ -19,9 +19,6 @@ namespace SimplePOSHybrid.Data
         [ObservableProperty]
         public string tab1;
 
-
-
-
         private readonly string apitoken = "5b9f7f95a73c1b8270ef7cbe664324aac2e9f981f906ad366c64f2b107c90be7";
 
 
