@@ -6,27 +6,28 @@
 
 <MudGrid Justify="Justify.Center"  >
 
-    <MudAppBar Style="background-color:#060696" Fixed="false" Dense="false" DisableGutters="false" Class="mt-2" >
+    <MudAppBar Style="background-color:white;color:#053B71" Fixed="false" Dense="false" DisableGutters="false" Class="mt-2">
         <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" Class="ma-2" />
         <MudText Class="ma-4" Style="font-weight:800;font-size:large">BLX Super Mart</MudText>
             <MudSpacer />
-        <MudIconButton Icon="@Icons.Material.Filled.Logout" Color="Color.Inherit" Href="/"/>
+        <MudIconButton Icon="@Icons.Material.Filled.Logout"  Href="/" />
         </MudAppBar>
    
     <MudGrid >
-        <MudItem xs="7">
-            <MudTabs Elevation="1" Rounded="true" PanelClass="pa-6" Color="@Color.Primary" >
+        <MudItem xs="7" >
+            <MudTabs Elevation="2" Rounded="true" PanelClass="pa-6" PrevIcon="@Icons.Material.Filled.SkipPrevious" NextIcon="@Icons.Material.Filled.SkipNext"
+                SliderColor="Color.Tertiary" ScrollIconColor="Color.Dark">
 
                 
                 @foreach (string category in tabscat)
                 {
-                    <MudTabPanel Text=@category ToolTip="Choose a Category" OnClick="() => LoadItems(category)">
+                    <MudTabPanel Text=@category ToolTip="Choose a Category" OnClick="() => LoadItems(category)" Style="background-color:#053B71;color:white" >
                         <MudGrid>
                             
                                 @foreach (var item in tabscatitm)
                                 {
                                     <MudItem xs="4" >
-                                        <MudCard Class="mb-8" Style="border-radius:10px">
+                                        <MudCard Class="mb-8" Style="border-radius:10px;box-shadow:inset">
                                             <MudCardMedia Image=@item.ItemImage Height="100" />
                                             <MudCardContent >
                                                 <MudText Typo="Typo.h6">@item.ItemName</MudText>
@@ -34,7 +35,7 @@
 
                                             </MudCardContent>
                                         <MudCardActions Class="d-flex align-center justify-center">
-                                            <MudButton Variant="Variant.Filled" Style="background-color:#02198B;color:white" >Add</MudButton>
+                                            <MudButton Variant="Variant.Filled" Style="background-color:#053B71;color:white">Add</MudButton>
 
                                             </MudCardActions>
 
@@ -51,7 +52,17 @@
             </MudTabs>
         </MudItem>
         <MudItem xs="5">
-            <MudButton Variant="Variant.Filled" OnClick="Load">Default</MudButton>
+            <MudGrid>
+                <MudItem xs="3"></MudItem>
+                <MudItem xs="6">
+                    <MudSelect Dense="true" Margin="Margin.Dense" T="string" Label="Order Type" Variant="Variant.Outlined" Class="ma-5">
+                        <MudSelectItem Value="@("Credit")" />
+                        <MudSelectItem Value="@("Debit")" />
+                    </MudSelect>
+                </MudItem>
+                <MudItem xs="3"></MudItem>
+            </MudGrid>
+            
         </MudItem>
     </MudGrid>
    
