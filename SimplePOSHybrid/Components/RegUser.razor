@@ -1,16 +1,37 @@
 ﻿<MudDialog>
     <DialogContent>
-        <MudTextField T="string" Label="Name"></MudTextField>
-        <MudSelect T="string" Label="Favorite Coffee" AnchorOrigin="Origin.BottomCenter">
-            <MudSelectItem Value="@("Cappuccino")" />
-            <MudSelectItem Value="@("Cafe Latte")" />
-            <MudSelectItem Value="@("Espresso")" />
-            <MudSelectItem Value="@("Irish Coffee")" />
-        </MudSelect>
+        <MudGrid>
+            <MudItem xs="6">
+                <MudTextField T="string" Label="No" ></MudTextField>
+            </MudItem>
+            <MudItem xs="6">
+                <MudTextField T="string" Label="Customer Name"></MudTextField>
+            </MudItem>
+            <MudItem xs="6">
+                <MudTextField T="string" Label="Contact Number"></MudTextField>
+            </MudItem>
+            <MudItem xs="6">
+                <MudTextField T="string" Label="Email Address"></MudTextField>
+            </MudItem>
+            <MudItem xs="6">
+                <MudTextField T="string" Label="Door No"></MudTextField>
+            </MudItem>
+            <MudItem xs="6">
+                <MudTextField T="string" Label="Address Line1"></MudTextField>
+            </MudItem>
+            <MudItem xs="6">
+                <MudTextField T="string" Label="City"></MudTextField>
+            </MudItem>
+            <MudItem xs="6">
+                <MudTextField T="string" Label="Postal Code"></MudTextField>
+            </MudItem>
+        </MudGrid>
+        
     </DialogContent>
     <DialogActions>
-        <MudButton OnClick="Cancel">Cancel</MudButton>
-        <MudButton Color="Color.Primary" OnClick="Submit">Ok</MudButton>
+        <MudButton Style="background-color:#053B71;color:white" Variant="Variant.Filled" OnClick="Submit">Add Customer</MudButton>
+        <MudButton Style="color:#053B71;border-color:#053B71" OnClick="Cancel" Variant="Variant.Outlined">Clear</MudButton>
+        
     </DialogActions>
 </MudDialog>
 @code {

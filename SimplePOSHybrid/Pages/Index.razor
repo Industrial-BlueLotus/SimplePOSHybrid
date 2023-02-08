@@ -1,8 +1,9 @@
-﻿@page "/home"
+﻿@page "/"
 @layout MainLayout
 @using SimplePOSHybrid.Data
 @using SimplePOSHybrid.Models.PartnerMenu
 @using SimplePOSHybrid.Components
+
 
 @inject IDialogService DialogService
 
@@ -20,7 +21,7 @@
         <MudItem xs="7" >
             <MudTabs Elevation="2" Rounded="true" PanelClass="pa-6" PrevIcon="@Icons.Material.Filled.SkipPrevious" NextIcon="@Icons.Material.Filled.SkipNext"
                       AlwaysShowScrollButtons="true" Color="@Color.Primary">
-
+            
                 
                 @foreach (string category in tabscat)
                 {
@@ -30,26 +31,25 @@
                                 @foreach (var item in tabscatitm)
                                 {
                                     <MudItem xs="4" >
-                                        <MudCard Class="mb-8" Style="border-radius:10px;box-shadow:inset">
-                                            <MudCardMedia Image=@item.ItemImage Height="100" />
+                                    @*<MudImage></MudImage>*@
+                                    <MudCard Class="mb-8" Style="border-radius:10px;box-shadow:inset" @onclick="ItemClick">
+                                            
                                             <MudCardContent >
-                                                <MudText Typo="Typo.h6">@item.ItemName</MudText>
+                                                <MudCardMedia Image=@item.ItemImageUrl Height="180" />
+                                                <div style="background-color:darkgray;position:center;color:black;width:fit-content;height:contain;display:flex;top:initial;flex-direction:column;justify-content:center;align-items:center">
+                                                    <MudText Typo="Typo.h6">@item.ItemName</MudText>
                                                 <MudText Typo="Typo.body2">@item.ItemShortName</MudText>
+                                                </div>
                                             </MudCardContent>
-                                        <MudCardActions Class="d-flex align-center justify-center">
-                                            <MudButton Variant="Variant.Filled" Style="background-color:#053B71;color:white">Add</MudButton>
-                                            </MudCardActions>
-
+                                            
+                                               
+                                                
                                         </MudCard>
                                     </MudItem>
-                                }
-                            
-                        </MudGrid>
-                       
-                    </MudTabPanel>
-                    
+                                }                            
+                        </MudGrid>   
+                    </MudTabPanel>    
                 }
-
             </MudTabs>
         </MudItem>
         <MudItem xs="5">
@@ -67,6 +67,35 @@
                 <MudItem xs="2" Class="mt-2 pr-5">
                     <MudIconButton Icon="@Icons.Material.Filled.KeyboardArrowDown" OnClick="OpenExtUsers" aria-label="users"></MudIconButton>
                 </MudItem>
+                <MudItem xs="12">
+                    <MudDataGrid Items="@Elements">
+                        <Columns>
+                            @*<Column T="Element" Field="Number" Title="Nr" />
+                            <Column T="Element" Field="Sign" />
+                            <Column T="Element" Field="Name" />
+                            <Column T="Element" Field="Position" />
+                            <Column T="Element" Field="Molar" Title="Molar mass" />*@
+                        </Columns>
+                    </MudDataGrid>
+                    @*<MudGrid>
+                        <MudItem xs="3" Style="background-color:darkgrey;color:black" Class="d-flex align-center justify-center">
+                            <MudText>Item</MudText>
+                        </MudItem>
+                        <MudItem xs="3" Style="background-color:darkgrey;color:black" Class="d-flex align-center justify-center">
+                            <MudText>Quantity</MudText>
+                        </MudItem>
+                        <MudItem xs="3" Style="background-color:darkgrey;color:black" Class="d-flex align-center justify-center">
+                            <MudText>Unit Price</MudText>
+                        </MudItem>
+                        <MudItem xs="3" Style="background-color:darkgrey;color:black" Class="d-flex align-center justify-center">
+                            <MudText>Total Price</MudText>
+                        </MudItem>
+                        @foreach(var det in orderdetails)
+                        {
+                            
+                        }
+                    </MudGrid>*@
+                </MudItem>
             </MudGrid>
             
         </MudItem>
@@ -80,29 +109,31 @@
 
     public List<string> tabscat = new List<string> { };
     public List<Menuitemlist> tabscatitm = new List<Menuitemlist> { };
+    public List<string> orderdetails = new List<string> { };
+    private IEnumerable<Element> Elements = new List<Element>();
     public string cate = "chicken 23";
     public ItemModel test;
     public async void Load()
     {
         DashboardView dashboard = new DashboardView();
         test = await dashboard.LoadResponse();
-        
+
         tabscat = DashboardView.DisplayCat(test);
         tabscatitm = DashboardView.DisplayItem(test,cate);
         Console.WriteLine(tabscatitm);
         StateHasChanged();
-        
+
     }
 
     protected override void OnInitialized()
     {
         Load();
-        
+
     }
 
     public void LoadItems(string cate)
     {
-                   
+
         tabscatitm = DashboardView.DisplayItem(test,cate);
         StateHasChanged();
 
@@ -110,16 +141,20 @@
 
     private void OpenExtUsers()
     {
-        DialogService.Show<Dialog>("Choose User");
+        DialogService.Show<Dialog>("Choose Customer");
     }
 
     private void OpenRegUser()
     {
         DialogOptions closeOnEscapeKey = new DialogOptions() { CloseOnEscapeKey = true };
 
-        DialogService.Show<RegUser>("Simple Dialog", closeOnEscapeKey);
+        DialogService.Show<RegUser>("Add Customer", closeOnEscapeKey);
     }
-    
-    
+
+    public void ItemClick()
+    {
+        
+    }
+
 
 }
