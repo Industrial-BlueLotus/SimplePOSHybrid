@@ -23,6 +23,7 @@ public static class MauiProgram
         builder.Services.AddSingleton<ItemModel>();
         builder.Services.AddSingleton<DashboardView>();
 
+
 #if DEBUG
         builder.Services.AddBlazorWebViewDeveloperTools();
         builder.Logging.AddDebug();

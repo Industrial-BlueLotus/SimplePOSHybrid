@@ -3,6 +3,8 @@
 @using SimplePOSHybrid.Data
 @using SimplePOSHybrid.Models.PartnerMenu
 
+@inject IDialogService DialogService
+
 
 <MudGrid Justify="Justify.Center"  >
 
@@ -52,22 +54,19 @@
             </MudTabs>
         </MudItem>
         <MudItem xs="5">
-            <MudGrid>
-                <MudItem xs="3"></MudItem>
-                <MudItem xs="5">
+            <MudGrid >
+                <MudItem xs="2"></MudItem>
+                <MudItem xs="6" Class="mt-2">
                     <MudSelect Dense="true" Margin="Margin.Dense" T="string" Label="Order Type" Variant="Variant.Outlined" Class="mb-2 mt-2">
                         <MudSelectItem Value="@("Credit")" />
                         <MudSelectItem Value="@("Debit")" />
                     </MudSelect>
                 </MudItem>
-                <MudItem xs="2">
-                    <MudIconButton Icon="@Icons.Material.Filled.PersonAddAlt1" aria-label="add user"></MudIconButton>
+                <MudItem xs="1" Class="mt-2">
+                    <MudIconButton Icon="@Icons.Material.Filled.PersonAddAlt1" OnClick="OpenRegUser" aria-label="add user"></MudIconButton>
                 </MudItem>
-                @*<MudItem xs="1">
-                        
-                 </MudItem>*@
-                <MudItem xs="2">
-                    <MudIconButton Class="d-flex align-left justify-left" Icon="@Icons.Material.Filled.KeyboardArrowDown" aria-label="users"></MudIconButton>
+                <MudItem xs="2" Class="mt-2 pr-5">
+                    <MudIconButton Icon="@Icons.Material.Filled.KeyboardArrowDown" OnClick="OpenExtUsers" aria-label="users"></MudIconButton>
                 </MudItem>
             </MudGrid>
             
@@ -110,8 +109,17 @@
 
     }
 
- 
+    private void OpenExtUsers()
+    {
+        DialogService.Show<Dialog>("Choose User");
+    }
 
+    private void OpenRegUser()
+    {
+        DialogOptions closeOnEscapeKey = new DialogOptions() { CloseOnEscapeKey = true };
+
+        DialogService.Show<RegUser>("Simple Dialog", closeOnEscapeKey);
+    }
     
     
 
