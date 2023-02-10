@@ -8,13 +8,13 @@
 @inject IDialogService DialogService
 
 
-<MudGrid  >
+<MudGrid Justify="Justify.Center"  >
 
     <MudAppBar Style="background-color:#053B71;color:white;width:contain" Fixed="false" Dense="false" DisableGutters="false" Class="mt-2">
         <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" Class="ml-2" />
         <MudText Class="ml-4" Style="font-weight:800;font-size:large">BLX Super Mart</MudText>
             <MudSpacer />
-        <MudIconButton Icon="@Icons.Material.Filled.Logout" Style="color:white;background-color:aqua" Href="/" Class="m-2" />
+        <MudIconButton Icon="@Icons.Material.Filled.Logout" Style="color:white;background-color:aqua" Href="/" Class="ml-2" />
         </MudAppBar>
    
     <MudGrid >
@@ -25,7 +25,7 @@
                 
                 @foreach (string category in tabscat)
                 {
-                    <MudTabPanel Text=@category ToolTip="Choose a Category" OnClick="() => LoadItems(category)" Class="pl-0"  >
+                    <MudTabPanel Text=@category ToolTip="Choose a Category" OnClick="() => LoadItems(category)"  >
                         <MudGrid>
                             
                                 @foreach (var item in tabscatitm)
