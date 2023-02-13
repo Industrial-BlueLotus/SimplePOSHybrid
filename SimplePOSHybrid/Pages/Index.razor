@@ -10,20 +10,20 @@
 <MudLayout>
 <MudGrid Justify="Justify.Center"  >
         <MudMainContent Style="width:100%;padding-top:unset">
-            <MudContainer>
-    <MudAppBar Style="background-color:#053B71;color:white;width:100%;" Fixed="false" Dense="false" DisableGutters="false" Class="mt-2">
+            <MudContainer Class="pa-0">
+    <MudAppBar Style="background-color:#053B71;color:white;width:100%;padding:unset;margin:unset" Fixed="false" Dense="false" DisableGutters="false" Class="mt-3 pa-0">
         <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" Class="ml-2" />
         <MudText Class="ml-4" Style="font-weight:800;font-size:large">BLX Super Mart</MudText>
             <MudSpacer />
-        <MudIconButton Icon="@Icons.Material.Filled.Logout" Style="color:white" Href="/" Class="ml-2" />
+        <MudIconButton Icon="@Icons.Material.Filled.Logout" Style="color:white" Href="/"  />
         </MudAppBar>
    
         <MudGrid >
-                    <MudItem xs="5" Style="padding-left:unset;padding-right:inherit">
+                    <MudItem xs="5"  Class="mt-3 pa-0">
                         <MudGrid>
                             <MudItem xs="2"></MudItem>
                             <MudItem xs="6" Class="mt-2">
-                                <MudSelect Dense="true" Margin="Margin.Dense" T="string" Label="Order Type" Variant="Variant.Outlined" Class="mt-2">
+                                <MudSelect Dense="true" Margin="Margin.Dense" T="string" Label="Order Type" Variant="Variant.Outlined">
                                     <MudSelectItem Value="@("Credit")" />
                                     <MudSelectItem Value="@("Debit")" />
                                 </MudSelect>
@@ -67,14 +67,14 @@
                         </MudGrid>
 
                     </MudItem>
-          <MudItem xs="7" Style="padding-left:unset;padding-right:unset">
+          <MudItem xs="7" Class="mt-3 pa-0">
             <MudTabs Elevation="2" Rounded="true" PanelClass="pa-6" PrevIcon="@Icons.Material.Filled.SkipPrevious" NextIcon="@Icons.Material.Filled.SkipNext"
-                     AlwaysShowScrollButtons="true" Color="@Color.Primary" Style="border:thin;border-color:darkgray;border-radius:10px">
+                     AlwaysShowScrollButtons="true" Color="@Color.Primary" Style="border:thin;border-color:darkgray;border-radius:10px" Class="pa-0">
             
                 
                 @foreach (string category in tabscat)
                 {
-                                <MudTabPanel Text=@category ToolTip="Choose a Category" OnClick="() => LoadItems(category)">
+                        <MudTabPanel Text=@category ToolTip="Choose a Category" OnClick="() => LoadItems(category)" >
                         <MudGrid>
                             
                                 @foreach (var item in tabscatitm)
