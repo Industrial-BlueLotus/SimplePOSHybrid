@@ -14,7 +14,7 @@
         <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" Class="ml-2" />
         <MudText Class="ml-4" Style="font-weight:800;font-size:large">BLX Super Mart</MudText>
             <MudSpacer />
-        <MudIconButton Icon="@Icons.Material.Filled.Logout" Style="color:white;background-color:aqua" Href="/" Class="ml-2" />
+        <MudIconButton Icon="@Icons.Material.Filled.Logout" Style="color:white" Href="/" Class="ml-2" />
         </MudAppBar>
    
     <MudGrid >
@@ -30,13 +30,17 @@
                             
                                 @foreach (var item in tabscatitm)
                                 {
-                                    <MudItem xs="2" >
+                                    <MudItem xs="4" >
 
-                                        <MudImage Src=@item.ItemImageUrl Height="80" Width="80" @onclick="ItemClick" Class="rounded-lg"Style="border:thin;border-color:darkgray;border-radius:10px"/>
+                                   
+                                            <CustomImage Src=@item.ItemImageUrl Name=@item.ItemName ShortName=@item.ItemShortName />
+                                      
+
+                                        @*<MudImage Src=@item.ItemImageUrl Height="80" Width="80" @onclick="ItemClick" Class="rounded-lg"Style="border:thin;border-color:darkgray;border-radius:10px"/>
                                     <div style="background-color:#E3E2E2;color:black;width:80px;border-radius:5px;position:relative;z-index: 8">
                                          <MudText Typo="Typo.body2" Style="font-weight:bold;width: 80px;white-space: nowrap; overflow: hidden;text-overflow: ellipsis" Align="Align.Center">@item.ItemName</MudText>
                                          <MudText Typo="Typo.caption" Style="width: 80px;white-space: nowrap; overflow: hidden;text-overflow: ellipsis" Class="d-flex align-center justify-center">@item.ItemShortName</MudText>
-                                        </div>
+                                        </div>*@
                                       
                                        @* <MudCard Class="mb-8" Style="border-radius:10px;box-shadow:inset" @onclick="ItemClick">
                                             
