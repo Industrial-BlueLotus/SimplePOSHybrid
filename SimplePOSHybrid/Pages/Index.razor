@@ -7,33 +7,82 @@
 
 @inject IDialogService DialogService
 
-
+<MudLayout>
 <MudGrid Justify="Justify.Center"  >
-
-    <MudAppBar Style="background-color:#053B71;color:white;width:contain" Fixed="false" Dense="false" DisableGutters="false" Class="mt-2">
+        <MudMainContent Style="width:100%;padding-top:unset">
+            <MudContainer>
+    <MudAppBar Style="background-color:#053B71;color:white;width:100%;" Fixed="false" Dense="false" DisableGutters="false" Class="mt-2">
         <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" Class="ml-2" />
         <MudText Class="ml-4" Style="font-weight:800;font-size:large">BLX Super Mart</MudText>
             <MudSpacer />
         <MudIconButton Icon="@Icons.Material.Filled.Logout" Style="color:white" Href="/" Class="ml-2" />
         </MudAppBar>
    
-    <MudGrid >
-        <MudItem xs="7" Style="background-color:yellow">
+        <MudGrid >
+                    <MudItem xs="5" Style="padding-left:unset;padding-right:inherit">
+                        <MudGrid>
+                            <MudItem xs="2"></MudItem>
+                            <MudItem xs="6" Class="mt-2">
+                                <MudSelect Dense="true" Margin="Margin.Dense" T="string" Label="Order Type" Variant="Variant.Outlined" Class="mt-2">
+                                    <MudSelectItem Value="@("Credit")" />
+                                    <MudSelectItem Value="@("Debit")" />
+                                </MudSelect>
+                            </MudItem>
+                            <MudItem xs="1" Class="mt-2">
+                                <MudIconButton Icon="@Icons.Material.Filled.PersonAddAlt1" OnClick="OpenRegUser" aria-label="add user"></MudIconButton>
+                            </MudItem>
+                            <MudItem xs="2" Class="mt-2">
+                                <MudIconButton Icon="@Icons.Material.Filled.KeyboardArrowDown" OnClick="OpenExtUsers" aria-label="users"></MudIconButton>
+                            </MudItem>
+                            <MudItem xs="12">
+
+                                <MudGrid>
+                                    @*<MudDataGrid Items="@Elements">
+                                    <Columns>
+                                    @*<Column T="Element" Field="Number" Title="Nr" />
+                                    <Column T="Element" Field="Sign" />
+                                    <Column T="Element" Field="Name" />
+                                    <Column T="Element" Field="Position" />
+                                    <Column T="Element" Field="Molar" Title="Molar mass" />
+                                    </Columns>
+                                    </MudDataGrid>*@
+                                    @*  <MudItem xs="3" Style="background-color:darkgrey;color:black" Class="d-flex align-center justify-center">
+                                    <MudText>Item</MudText>
+                                    </MudItem>
+                                    <MudItem xs="3" Style="background-color:darkgrey;color:black" Class="d-flex align-center justify-center">
+                                    <MudText>Quantity</MudText>
+                                    </MudItem>
+                                    <MudItem xs="3" Style="background-color:darkgrey;color:black" Class="d-flex align-center justify-center">
+                                    <MudText>Unit Price</MudText>
+                                    </MudItem>
+                                    <MudItem xs="3" Style="background-color:darkgrey;color:black" Class="d-flex align-center justify-center">
+                                    <MudText>Total</MudText>
+                                    </MudItem>*@
+                                    @foreach (var det in orderdetails)
+                                    {
+
+                                    }
+                                </MudGrid>
+                            </MudItem>
+                        </MudGrid>
+
+                    </MudItem>
+          <MudItem xs="7" Style="padding-left:unset;padding-right:unset">
             <MudTabs Elevation="2" Rounded="true" PanelClass="pa-6" PrevIcon="@Icons.Material.Filled.SkipPrevious" NextIcon="@Icons.Material.Filled.SkipNext"
                      AlwaysShowScrollButtons="true" Color="@Color.Primary" Style="border:thin;border-color:darkgray;border-radius:10px">
             
                 
                 @foreach (string category in tabscat)
                 {
-                    <MudTabPanel Text=@category ToolTip="Choose a Category" OnClick="() => LoadItems(category)"  >
+                                <MudTabPanel Text=@category ToolTip="Choose a Category" OnClick="() => LoadItems(category)">
                         <MudGrid>
                             
                                 @foreach (var item in tabscatitm)
                                 {
                                     <MudItem xs="3" >
 
-                                   
-                                            <CustomImage Src=@item.ItemImageUrl Name=@item.ItemName ShortName=@item.ItemShortName />
+
+                                                <CustomImage Src=@item.ItemImageUrl Name=@item.ItemName ShortName=@item.ItemShortName OnClick="@(() => this.Click(item))" />
                                       
 
                                         @*<MudImage Src=@item.ItemImageUrl Height="80" Width="80" @onclick="ItemClick" Class="rounded-lg"Style="border:thin;border-color:darkgray;border-radius:10px"/>
@@ -59,58 +108,13 @@
                 }
             </MudTabs>
         </MudItem>
-        <MudItem xs="5" Style="background-color:red">
-            <MudGrid >
-                <MudItem xs="2"></MudItem>
-                <MudItem xs="6" Class="mt-2">
-                    <MudSelect Dense="true" Margin="Margin.Dense" T="string" Label="Order Type" Variant="Variant.Outlined" Class="mt-2">
-                        <MudSelectItem Value="@("Credit")" />
-                        <MudSelectItem Value="@("Debit")" />
-                    </MudSelect>
-                </MudItem>
-                <MudItem xs="1" Class="mt-2">
-                    <MudIconButton Icon="@Icons.Material.Filled.PersonAddAlt1" OnClick="OpenRegUser" aria-label="add user"></MudIconButton>
-                </MudItem>
-                <MudItem xs="2" Class="mt-2">
-                    <MudIconButton Icon="@Icons.Material.Filled.KeyboardArrowDown" OnClick="OpenExtUsers" aria-label="users"></MudIconButton>
-                </MudItem>
-                <MudItem xs="12">
-                    
-                    <MudGrid >
-                        @*<MudDataGrid Items="@Elements">
-                        <Columns>
-                        @*<Column T="Element" Field="Number" Title="Nr" />
-                        <Column T="Element" Field="Sign" />
-                        <Column T="Element" Field="Name" />
-                        <Column T="Element" Field="Position" />
-                        <Column T="Element" Field="Molar" Title="Molar mass" />
-                        </Columns>
-                        </MudDataGrid>*@
-                      @*  <MudItem xs="3" Style="background-color:darkgrey;color:black" Class="d-flex align-center justify-center">
-                            <MudText>Item</MudText>
-                        </MudItem>
-                        <MudItem xs="3" Style="background-color:darkgrey;color:black" Class="d-flex align-center justify-center">
-                            <MudText>Quantity</MudText>
-                        </MudItem>
-                        <MudItem xs="3" Style="background-color:darkgrey;color:black" Class="d-flex align-center justify-center">
-                            <MudText>Unit Price</MudText>
-                        </MudItem>
-                        <MudItem xs="3" Style="background-color:darkgrey;color:black" Class="d-flex align-center justify-center">
-                            <MudText>Total</MudText>
-                        </MudItem>*@
-                        @foreach(var det in orderdetails)
-                        {
-                            
-                        }
-                    </MudGrid>
-                </MudItem>
-            </MudGrid>
-            
-        </MudItem>
+       
     </MudGrid>
-   
+    </MudContainer>
+   </MudMainContent>
     
 </MudGrid>
+</MudLayout>
 
 
 @code{
@@ -159,9 +163,9 @@
         DialogService.Show<RegUser>("Add Customer", closeOnEscapeKey);
     }
 
-    public void ItemClick()
+    private void Click(Menuitemlist item)
     {
-        
+        Console.WriteLine("");
     }
 
 

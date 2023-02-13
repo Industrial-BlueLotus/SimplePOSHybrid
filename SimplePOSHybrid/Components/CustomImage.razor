@@ -1,4 +1,4 @@
-﻿<div style="position: relative">
+﻿<div style="position: relative; cursor: pointer" @onclick="@this.Clicked">
 
   @* the image *@
     <MudImage Src="@this.Src" Alt="@this.Alt" Height="120" Width="130" Class="rounded-lg" Style="border:thin;border-color:darkgray;border-radius:10px" />
@@ -35,4 +35,12 @@
 
   [Parameter]
   public string ShortName { get; set; } = default!;
+
+    [Parameter]
+    public EventCallback OnClick { get; set; }
+
+    private async Task Clicked()
+    {
+        await this.OnClick.InvokeAsync();
+    }
 }
