@@ -13,9 +13,9 @@
         <MudIconButton Icon="@Icons.Material.Filled.Logout" Style="color:white" Href="/" />
     </MudAppBar>
         <MudMainContent Class="pa-0">
-            <MudContainer Class="pl-0">
+            <MudContainer >
                     <MudGrid Class="pt-3">
-                        <MudItem xs="5"  Class="pa-0"  >
+                        <MudItem xs="5"    >
                             <MudGrid>
                                 <MudItem xs="2"></MudItem>
                                 <MudItem xs="6" Class="mt-2">
@@ -31,21 +31,16 @@
                                     <MudIconButton Icon="@Icons.Material.Filled.KeyboardArrowDown" OnClick="OpenExtUsers" aria-label="users"></MudIconButton>
                                 </MudItem>
                                 <MudItem xs="12">
-                                    <MudGrid>
+                                    
                                         <MudDataGrid Items="@Elements">
-                                            <Columns>
-                                                <Column T="Menuitemlist" Field="ItemName" Title="Nr" />
-                                                
-                                               <Column T="Menuitemlist" Title="Qty" />
-                                        <Column T="Menuitemlist" Field="ItemShortName" />
+                                            <Columns Style="width:10px">
+                                    <Column T="Menuitemlist" Field="ItemName" Title="Name" Style="width:10%" />
+                                    <Column T="Menuitemlist" Title="Qty" />
+                                                <Column T="Menuitemlist" Field="OptionalSalesPrice" Title="Price" />
+                                                <Column T="Menuitemlist" Title="Total" Context="" />
                                             </Columns>
                                         </MudDataGrid>
-                                   @*
-                                        @foreach (var det in orderitems)
-                                        {
-
-                                        }*@
-                                    </MudGrid>
+                                    
                                 </MudItem>
                             </MudGrid>
 
