@@ -32,11 +32,19 @@
                                 </MudItem>
                                 <MudItem xs="12">
                                     <MudGrid>
-                                   
-                                        @foreach (var det in orderdetails)
+                                        <MudDataGrid Items="@Elements">
+                                            <Columns>
+                                                <Column T="Menuitemlist" Field="ItemName" Title="Nr" />
+                                                
+                                               <Column T="Menuitemlist" Title="Qty" />
+                                        <Column T="Menuitemlist" Field="ItemShortName" />
+                                            </Columns>
+                                        </MudDataGrid>
+                                   @*
+                                        @foreach (var det in orderitems)
                                         {
 
-                                        }
+                                        }*@
                                     </MudGrid>
                                 </MudItem>
                             </MudGrid>
@@ -83,11 +91,18 @@
 @code{
 
     public List<string> tabscat = new List<string> { };
+
     public List<Menuitemlist> tabscatitm = new List<Menuitemlist> { };
-    public List<string> orderdetails = new List<string> { };
-    private IEnumerable<Element> Elements = new List<Element>();
+
+    private List<Menuitemlist> orderitems = new List<Menuitemlist> { };
+
+    private IEnumerable<Menuitemlist> Elements = new List<Menuitemlist>();
+
     public string cate = "chicken 23";
+
     public ItemModel test;
+
+
     public async void Load()
     {
         DashboardView dashboard = new DashboardView();
@@ -128,8 +143,13 @@
 
     private void Click(Menuitemlist item)
     {
-        Console.WriteLine("");
+        orderitems.Add(item);
+        Elements = orderitems.AsEnumerable();
+        Console.WriteLine(Elements);
+        StateHasChanged();
     }
+
+    
 
 
 }
