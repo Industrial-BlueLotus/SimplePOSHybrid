@@ -50,6 +50,10 @@
     </ItemGroup>
 
     <ItemGroup>
+      <None Remove="Resources\Images\no.jpg" />
+    </ItemGroup>
+
+    <ItemGroup>
         <PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
         <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.2" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.2">
@@ -66,6 +70,7 @@
       <MauiImage Include="wwwroot\Img\banner.jpeg" />
       <MauiImage Include="wwwroot\Img\icon_user.png" />
       <MauiImage Include="wwwroot\Img\logo.jpeg" />
+      <MauiImage Include="wwwroot\Img\no.jpg" />
     </ItemGroup>
 
     <ItemGroup>
