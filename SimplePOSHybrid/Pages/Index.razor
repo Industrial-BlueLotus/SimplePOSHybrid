@@ -31,17 +31,19 @@
                                     <MudIconButton Icon="@Icons.Material.Filled.KeyboardArrowDown" OnClick="OpenExtUsers" aria-label="users"></MudIconButton>
                                 </MudItem>
                                 <MudItem xs="12">
-                                    
-                                        <MudDataGrid Items="@Elements">
-                                            <Columns Style="width:10px">
-                                    <Column T="Menuitemlist" Field="ItemName" Title="Name" Style="width:10%" />
-                                    <Column T="Menuitemlist" Title="Qty" />
-                                                <Column T="Menuitemlist" Field="OptionalSalesPrice" Title="Price" />
-                                                <Column T="Menuitemlist" Title="Total" Context="" />
-                                            </Columns>
-                                        </MudDataGrid>
+                                    <div id="unique_id_scroll_section" class="ma-0" style="height:250px;overflow: auto">
+
+                                    <MudDataGrid Items="@Elements" Hover="true"  Striped="true" >
+                                                    <Columns>
+                                                        <Column T="Menuitemlist" Field="ItemName" Title="Name" CellStyle="width:10px" Style="width:10px" />
+                                        <Column T="Menuitemlist" Title="Qty" Style="width:10px" />
+                                        <Column T="Menuitemlist" Field="OptionalSalesPrice" Title="Price" Style="width:10px" />
+                                        <Column T="Menuitemlist" Title="Total" Style="width:10px" />
+                                                    </Columns>
+                                     </MudDataGrid></div>
                                     
                                 </MudItem>
+                      
                             </MudGrid>
 
                         </MudItem>
@@ -49,11 +51,12 @@
                             <MudTabs Elevation="2" Rounded="true" PanelClass="pa-6" PrevIcon="@Icons.Material.Filled.SkipPrevious" NextIcon="@Icons.Material.Filled.SkipNext"
                                 AlwaysShowScrollButtons="true" Color="@Color.Primary" Style="border:thin;border-color:darkgray;border-radius:10px">
                                      @foreach (string category in tabscat)
-                                     {
+                                    {
+                           
                                         <MudTabPanel Text=@category ToolTip="Choose a Category" OnClick="() => LoadItems(category)" >
-                                    
+                                <div id="unique_id_scroll_section" class="ma-0" style="height:400px;width:550px;overflow: auto">
                                             <MudGrid>
-                            
+                                                
                                                 @foreach (var item in tabscatitm)
                                                 {
                                                     <MudItem xs="3" >
@@ -67,9 +70,12 @@
                                                         }
                                                                                               
                                                     </MudItem>
-                                                }                            
-                                            </MudGrid>   
-                                        </MudTabPanel>    
+                                                }   
+                                                
+                                            </MudGrid>
+                                           </div>
+                                        </MudTabPanel>
+                            
                                       }
                             </MudTabs>
                         </MudItem>
@@ -92,6 +98,10 @@
     private List<Menuitemlist> orderitems = new List<Menuitemlist> { };
 
     private IEnumerable<Menuitemlist> Elements = new List<Menuitemlist>();
+
+    private bool _hover;
+
+    private bool _striped;
 
     public string cate = "chicken 23";
 
