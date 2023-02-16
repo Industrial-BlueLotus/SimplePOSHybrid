@@ -31,17 +31,49 @@
                                     <MudIconButton Icon="@Icons.Material.Filled.KeyboardArrowDown" OnClick="OpenExtUsers" aria-label="users"></MudIconButton>
                                 </MudItem>
                                 <MudItem xs="12">
-                                    <div id="unique_id_scroll_section" class="ma-0" style="height:250px;overflow: auto">
+                                    <div id="unique_id_scroll_section" class="ma-0" style="height:200px;overflow: auto">
+                                        <MudDataGrid Items="@Elements" Hover="true" Striped="true" Dense="true">
+                                                        <Columns>
+                                                            <Column T="Menuitemlist" StickyLeft="true">
+                                                                <CellTemplate>
+                                                                    <MudIconButton OnClick="@RemoveItem" Color="@Color.Error" Icon="@Icons.Material.Filled.Delete" />
+                                                                </CellTemplate>
+                                                            </Column>
+                                                            <Column T="Menuitemlist" Field="ItemName" Title="Name" />
+                                                            <Column T="Menuitemlist" Title="Qty" Style="width:10px" />
+                                                            <Column T="Menuitemlist" Field="OptionalSalesPrice" Title="Price" Style="width:10px" />
+                                                            <Column T="Menuitemlist" Title="Total" Style="width:10px" />
+                                                        </Columns>
+                                         </MudDataGrid>
+                                     </div> 
+                                </MudItem>
+                                <MudItem xs="12">
+                                    <MudPaper Class="pa-8 ma-0" Outlined="true" Elevation="3" Style="background-color:lightgray"></MudPaper>
+                                </MudItem>
+                                <MudItem xs="12">
+                                    <MudGrid Class="pa-0">                             
+                                        <MudItem xs="3">
+                                            <MudPaper Class="d-flex align-center justify-center py-4">
+                                        <MudIcon Icon="@Icons.Material.Filled.Reply"></MudIcon>
+                                            </MudPaper>
+                                        </MudItem>
+                                        <MudItem xs="3">
+                                            <MudPaper Class="d-flex align-center justify-center py-4">
+                                        <MudIcon Icon="@Icons.Material.Filled.Percent"></MudIcon>
+                                            </MudPaper>
+                                        </MudItem>
+                                        <MudItem xs="3">
+                                            <MudPaper Class="d-flex align-center justify-center py-4">
+                                        <MudIcon Icon="@Icons.Material.Filled.Autorenew"></MudIcon>
+                                            </MudPaper>
+                                        </MudItem>
+                                        <MudItem xs="3">
+                                            <MudPaper Class="d-flex align-center justify-center py-4">
+                                        <MudIcon Icon="@Icons.Material.Filled.ReceiptLong"></MudIcon>
+                                            </MudPaper>
+                                        </MudItem>
+                                    </MudGrid>
 
-                                    <MudDataGrid Items="@Elements" Hover="true"  Striped="true" >
-                                                    <Columns>
-                                                        <Column T="Menuitemlist" Field="ItemName" Title="Name" CellStyle="width:10px" Style="width:10px" />
-                                        <Column T="Menuitemlist" Title="Qty" Style="width:10px" />
-                                        <Column T="Menuitemlist" Field="OptionalSalesPrice" Title="Price" Style="width:10px" />
-                                        <Column T="Menuitemlist" Title="Total" Style="width:10px" />
-                                                    </Columns>
-                                     </MudDataGrid></div>
-                                    
                                 </MudItem>
                       
                             </MudGrid>
@@ -154,7 +186,11 @@
         StateHasChanged();
     }
 
-    
+    void RemoveItem()
+    {
+        orderitems.RemoveAt(0);
+        StateHasChanged();
+    }
 
 
 }

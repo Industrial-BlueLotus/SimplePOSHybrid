@@ -1,13 +1,13 @@
 ﻿<div style="position: relative; cursor: pointer" @onclick="@this.Clicked">
 
   @* the image *@
-    <MudImage Src="@this.Src" Alt="@this.Alt" Height="120" Width="120" Class="rounded-lg" Style="border:thin;border-color:darkgray;border-radius:10px" />
+    <MudImage Src="@this.Src" Alt="@this.Alt" Height="100" Width="100" Class="rounded-lg" Style="border:thin;border-color:darkgray;border-radius:10px" />
 
   @* A transparent background for the text *@
   <MudPaper
     Elevation="0"
     Class="rounded-lg"
-    Style="position: absolute; bottom: 0; left: 0; width: 130px; height:50px; opacity: 0.6">
+    Style="position: absolute; bottom: 0; left: 0; width: 100px; height:45px; opacity: 0.6">
 
     @* Hack: the text is needed to give the transparent part the proper height, but will also display the text in 0.6 transparency *@
         @*<MudText Typo="Typo.body2" Style="font-weight:bold;width: 80px;white-space: nowrap; overflow: hidden;text-overflow: ellipsis;height:40px;" Align="Align.Center">@this.Name</MudText>
@@ -15,9 +15,9 @@
   </MudPaper>
 
   @* The text (in black) *@
-  <span style="position: absolute; bottom: 0; left: 0; padding-left:10px;padding-bottom:4px;width: 40px; color: black" >
-        <MudText Typo="Typo.body2" Style="font-weight:bold;width: 100px;white-space: nowrap; overflow: hidden;text-overflow: ellipsis" >@this.Name</MudText>
-        <MudText Typo="Typo.body2" Style="width: 110px;color:dimgrey;white-space: nowrap; overflow: hidden;text-overflow: ellipsis">@this.ShortName</MudText>
+  <span style="position: absolute; bottom: 0; left: 0; padding-left:10px;padding-bottom:4px;width: 30px; color: black" >
+        <MudText Typo="Typo.body2" Style="font-weight:bold;width: 90px;white-space: nowrap; overflow: hidden;text-overflow: ellipsis" >@this.Name</MudText>
+        <MudText Typo="Typo.body2" Style="width: 90px;color:dimgrey;white-space: nowrap; overflow: hidden;text-overflow: ellipsis">@this.ShortName</MudText>
   </span>
 
 </div>
