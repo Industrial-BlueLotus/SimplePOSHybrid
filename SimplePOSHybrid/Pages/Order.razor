@@ -1,0 +1,36 @@
+﻿@page "/order"
+@layout MainLayout
+@using SimplePOSHybrid.Data
+@using SimplePOSHybrid.Models.PartnerMenu
+@using SimplePOSHybrid.Components
+@inject IDialogService DialogService
+
+<MudLayout>
+    <MudAppBar Style="background-color:#053B71;color:white" Fixed="false" Dense="false" DisableGutters="false" Class="pa-0">
+        <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" />
+        <MudText Class="ml-4" Style="font-weight:800;font-size:large">BLX Super Mart</MudText>
+        <MudSpacer />
+        <MudIconButton Icon="@Icons.Material.Filled.Logout" Style="color:white" Href="/" />
+    </MudAppBar>
+    <MudMainContent Class="pa-0">
+        <MudContainer>
+            <MudGrid Class="pt-3">
+                <MudItem xs="5">
+                   
+                </MudItem>
+                <MudItem xs="7">
+
+                </MudItem>
+
+
+            </MudGrid>
+
+        </MudContainer>
+    </MudMainContent>
+
+
+</MudLayout>
+
+@code {
+
+}
