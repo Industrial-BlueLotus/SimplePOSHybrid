@@ -24,6 +24,7 @@ public static class MauiProgram
         builder.Services.AddSingleton<ItemModel>();
         builder.Services.AddSingleton<DashboardView>();
         builder.Services.AddSingleton<Order>();
+        builder.Services.AddSingleton<OrderState>();
 
 
 #if DEBUG

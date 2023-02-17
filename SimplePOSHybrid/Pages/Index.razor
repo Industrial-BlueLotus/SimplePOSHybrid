@@ -128,8 +128,6 @@
 
     public List<Menuitemlist> tabscatitm = new List<Menuitemlist> { };
 
-    private List<Menuitemlist> orderitems = new List<Menuitemlist> { };
-
     private IEnumerable<Menuitemlist> Elements = new List<Menuitemlist>();
 
     public string cate = "chicken 23";
@@ -179,7 +177,9 @@
 
     private void Click(Menuitemlist item)
     {
-        orderitems.Add(item);
+        OrderStateService ord = new OrderStateService();
+        ord.orderState(item);
+        ////orderitems.Add(item);
         Elements = orderitems.AsEnumerable();
         Console.WriteLine(Elements);
 
