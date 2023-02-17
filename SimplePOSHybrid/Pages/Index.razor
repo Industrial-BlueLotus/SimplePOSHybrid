@@ -5,6 +5,7 @@
 @using SimplePOSHybrid.Components
 @inject IDialogService DialogService
 @inject NavigationManager Navigation
+@using System.Text.Json;
 
 <MudLayout>
     <MudAppBar Style="background-color:#053B71;color:white" Fixed="false" Dense="false" DisableGutters="false" Class="pa-0" >
@@ -73,7 +74,7 @@
                                             <MudButton Variant="Variant.Filled" DisableElevation="true" Class="py-4" Style="font-weight:bold; background-color:#053B71;color:white">Hold Sale</MudButton>
                                         </MudItem>
                                         <MudItem xs="6" Class="d-flex align-center justify-center">
-                                            <MudButton Variant="Variant.Filled" DisableElevation="true" @onclick="@(() => PrcdBtnClick(@Elements))" Class="py-4" Style="font-weight:bold; background-color:#053B71;color:white">Proceed</MudButton>
+                                            <MudButton Variant="Variant.Filled" DisableElevation="true" @onclick="@(() => PrcdBtnClick(jsonStringPrcd))" Class="py-4" Style="font-weight:bold; background-color:#053B71;color:white">Proceed</MudButton>
                                         </MudItem>
                                     </MudGrid>
                                 </MudItem>
@@ -135,6 +136,8 @@
 
     public ItemModel test;
 
+    public string jsonStringPrcd;
+
 
     public async void Load()
     {
@@ -179,6 +182,9 @@
         orderitems.Add(item);
         Elements = orderitems.AsEnumerable();
         Console.WriteLine(Elements);
+
+        //jsonStringPrcd = JsonSerializer.Serialize(orderitems);
+        //Console.WriteLine(jsonStringPrcd);
         StateHasChanged();
     }
 
@@ -188,9 +194,9 @@
         StateHasChanged();
     }
 
-    public void PrcdBtnClick(System.Collections.IEnumerable Elements)
-    {
-        Navigation.NavigateTo($"order/{Elements}");
-    }
+    //public void PrcdBtnClick(string jsonStringPrcd)
+    //{
+    //    Navigation.NavigateTo("order/{jsonStringPrcd}");
+    //}
 
 }

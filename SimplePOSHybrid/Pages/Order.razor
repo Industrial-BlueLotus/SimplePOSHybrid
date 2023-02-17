@@ -1,4 +1,4 @@
-﻿@page "/order/{Elements}"
+﻿@page "/order/{jsonStringPrcd}"
 @layout MainLayout
 @using SimplePOSHybrid.Data
 @using SimplePOSHybrid.Models.PartnerMenu
@@ -97,12 +97,18 @@
     private IEnumerable<Menuitemlist> test = new List<Menuitemlist>();
 
     [Parameter]
+    public string jsonStringPrcd { get; set; }
+
+
     public IEnumerable<Menuitemlist> Elements { get; set; }
 
     protected override void OnParametersSet()
     {
+        var qw = jsonStringPrcd;
+        Console.WriteLine(qw);
         //the param will be set now
-        test = Elements;
+        //Elements = orderitems.AsEnumerable();
+        //test = Elements;
     }
 
 
