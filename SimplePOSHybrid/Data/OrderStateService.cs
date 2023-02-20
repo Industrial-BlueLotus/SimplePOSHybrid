@@ -9,11 +9,13 @@ namespace SimplePOSHybrid.Data
 {
     public class OrderStateService
     {
-        public List<Menuitemlist> orderitems { get; set; }
+        private List<Menuitemlist> orderitems = new List<Menuitemlist> { };
 
         public void orderState(Menuitemlist item)
         {
             orderitems.Add(item);
+            Console.WriteLine(orderitems);
+
 
 
         }

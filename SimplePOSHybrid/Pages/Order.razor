@@ -1,4 +1,4 @@
-﻿@page "/order/{jsonStringPrcd}"
+﻿@page "/order"
 @layout MainLayout
 @using SimplePOSHybrid.Data
 @using SimplePOSHybrid.Models.PartnerMenu
@@ -69,12 +69,10 @@
                         </MudItem>
                         <MudItem xs="12" Class="pa-0">
                             <MudGrid>
-                                <MudItem xs="6" Class="d-flex align-center justify-center">
-                                    <MudButton Variant="Variant.Filled" DisableElevation="true" Class="py-4" Style="font-weight:bold; background-color:#053B71;color:white">Hold Sale</MudButton>
+                                <MudItem xs="12" Class="d-flex align-center justify-center">
+                                    <MudButton Href="/" Variant="Variant.Filled" DisableElevation="true" Class="py-4" Style="font-weight:bold; background-color:#053B71;color:white">Hold Sale</MudButton>
                                 </MudItem>
-                                <MudItem xs="6" Class="d-flex align-center justify-center">
-                                    @*<MudButton Variant="Variant.Filled" DisableElevation="true" OnClick="PrcdBtnClick" Class="py-4" Style="font-weight:bold; background-color:#053B71;color:white">Proceed</MudButton>*@
-                                </MudItem>
+                               
                             </MudGrid>
                         </MudItem>
                     </MudGrid>
@@ -102,14 +100,14 @@
 
     public IEnumerable<Menuitemlist> Elements { get; set; }
 
-    protected override void OnParametersSet()
-    {
-        var qw = jsonStringPrcd;
-        Console.WriteLine(qw);
-        //the param will be set now
-        //Elements = orderitems.AsEnumerable();
-        //test = Elements;
-    }
+    //protected override void OnParametersSet()
+    //{
+    //    var qw = jsonStringPrcd;
+    //    Console.WriteLine(qw);
+    //    //the param will be set now
+    //    //Elements = orderitems.AsEnumerable();
+    //    //test = Elements;
+    //}
 
 
     private void OpenExtUsers()
