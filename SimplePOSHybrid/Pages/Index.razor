@@ -35,17 +35,17 @@
                                 <MudItem xs="12" Class="pt-0">
                                     <div id="unique_id_scroll_section" class="ma-0" style="height:200px;overflow: auto">
                                         <MudDataGrid Items="@Elements" Hover="true" Striped="true" Dense="true">
-                                                        <Columns>
-                                                            <Column T="Menuitemlist" StickyLeft="true">
-                                                                <CellTemplate>
-                                                                    <MudIconButton OnClick="@RemoveItem" Color="@Color.Default" Icon="@Icons.Material.Filled.Delete" />
-                                                                </CellTemplate>
-                                                            </Column>
-                                                            <Column T="Menuitemlist" Field="ItemName" Title="Name" />
-                                                            <Column T="Menuitemlist" Title="Qty" Style="width:10px" />
-                                                            <Column T="Menuitemlist" Field="OptionalSalesPrice" Title="Price" Style="width:10px" />
-                                                            <Column T="Menuitemlist" Title="Total" Style="width:10px" />
-                                                        </Columns>
+                                            <Columns>
+                                                <Column T="Menuitemlist" StickyLeft="true">
+                                                    <CellTemplate>
+                                                        <MudIconButton OnClick="@RemoveItem" Color="@Color.Default" Icon="@Icons.Material.Filled.Delete" />
+                                                    </CellTemplate>
+                                                </Column>
+                                                <Column T="Menuitemlist" Field="ItemName" Title="Name" />
+                                                <Column T="Menuitemlist" Title="Qty" Style="width:10px" />
+                                                <Column T="Menuitemlist" Field="OptionalSalesPrice" Title="Price" Style="width:10px" />
+                                                <Column T="Menuitemlist" Title="Total" Style="width:10px" />
+                                            </Columns>
                                          </MudDataGrid>
                                      </div> 
                                 </MudItem>
@@ -128,6 +128,8 @@
 
     public List<Menuitemlist> tabscatitm = new List<Menuitemlist> { };
 
+    private List<Menuitemlist> orderitems = new List<Menuitemlist> { };
+
     private IEnumerable<Menuitemlist> Elements = new List<Menuitemlist>();
 
     public string cate = "chicken 23";
@@ -176,9 +178,10 @@
     private void Click(Menuitemlist item)
     {
         OrderStateService ord = new OrderStateService();
-        ord.orderState(item);
-        ////orderitems.Add(item);
-        //Elements = orderitems.AsEnumerable();
+        
+        orderitems.Add(item);
+        ord.ElementMthd(orderitems);
+        Elements = ord.GetElements();
         Console.WriteLine(Elements);
 
         StateHasChanged();

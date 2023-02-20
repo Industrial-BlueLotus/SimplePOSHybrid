@@ -33,7 +33,7 @@
                         </MudItem>
                         <MudItem xs="12" Class="pt-0">
                             <div id="unique_id_scroll_section" class="ma-0" style="height:200px;overflow: auto">
-                                <MudDataGrid Items="@test" Hover="true" Striped="true" Dense="true">
+                                <MudDataGrid Items="@Elements" Hover="true" Striped="true" Dense="true">
                                     <Columns>
                                         <Column T="Menuitemlist" StickyLeft="true">
                                             <CellTemplate>
@@ -94,20 +94,7 @@
 
     private IEnumerable<Menuitemlist> test = new List<Menuitemlist>();
 
-    [Parameter]
-    public string jsonStringPrcd { get; set; }
-
-
     public IEnumerable<Menuitemlist> Elements { get; set; }
-
-    //protected override void OnParametersSet()
-    //{
-    //    var qw = jsonStringPrcd;
-    //    Console.WriteLine(qw);
-    //    //the param will be set now
-    //    //Elements = orderitems.AsEnumerable();
-    //    //test = Elements;
-    //}
 
 
     private void OpenExtUsers()
@@ -127,5 +114,16 @@
         //orderitems.RemoveAt(0);
         StateHasChanged();
     }
+
+    protected override void OnInitialized()
+    {
+
+        OrderStateService ord = new OrderStateService();
+        Elements = ord.GetElements();
+        Console.WriteLine(Elements);
+        StateHasChanged();
+
+    }
+    
 
 }
