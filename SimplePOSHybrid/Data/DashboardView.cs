@@ -115,65 +115,10 @@ namespace SimplePOSHybrid.Data
         //display items
         public static List<Menuitemlist> DisplayItem(ItemModel te, string category)
         {
-
-            //int n = te.ResponseData.MenuItemList.Length;
-            //string[] cate = new string[n];
             string catename = category;
             List<Menuitemlist> lst = new();
             lst = te.ResponseData.MenuItemList.Where(x => x.CategoryCode == catename).ToList();
             return lst;
-            //for (int i = 0; i < n; i++)
-            //{
-
-            //    int index = Array.IndexOf(cate, te.ResponseData.MenuItemList[i].CategoryCode);
-            //    if (index.Equals(-1))
-            //    {
-            //        cate[i] = te.ResponseData.MenuItemList[i].CategoryCode;
-            //        Console.WriteLine(cate[i]);
-            //    }
-            //    else
-            //    {
-
-            //        continue;
-            //    }
-            //}
-
-            //int j = 0;
-
-            //for (int i = 0; i < n; i++)
-            //{
-            //    if (cate[i] != null)
-            //    {
-
-            //        j++;
-
-            //    }
-            //    else
-            //    {
-            //        continue;
-            //    }
-            //}
-
-            //string[] arr = new string[j];
-            //int m = 0;
-            //for (int i = 0; i < n; i++)
-            //{
-            //    if (cate[i] != null)
-            //    {
-            //        if (m < j)
-            //        {
-            //            arr[m] = cate[i];
-            //            m++;
-            //        }
-
-            //    }
-            //    else
-            //    {
-            //        continue;
-            //    }
-            //}
-            //Console.WriteLine(arr);
-            //return arr;
         }
 
         //Filtering the categories
