@@ -23,7 +23,6 @@ public static class MauiProgram
         builder.Services.AddSingleton<LoginMethods>();
         builder.Services.AddSingleton<ItemModel>();
         builder.Services.AddSingleton<DashboardView>();
-        builder.Services.AddSingleton<Order>();
         builder.Services.AddSingleton<OrderStateService>();
 
 

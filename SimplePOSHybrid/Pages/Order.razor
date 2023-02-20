@@ -20,7 +20,7 @@
                     <MudGrid>
                         <MudItem xs="2" Class="pa-0"></MudItem>
                         <MudItem xs="6" Class="mt-2 pt-0">
-                            <MudSelect Dense="true" Margin="Margin.Dense" T="string" Label="Order Type" Variant="Variant.Outlined">
+                            <MudSelect Dense="true" Margin="Margin.Dense" T="string" Label="Order Type" Variant="Variant.Filled" >
                                 <MudSelectItem Value="@("Credit")" />
                                 <MudSelectItem Value="@("Debit")" />
                             </MudSelect>
@@ -78,7 +78,58 @@
                     </MudGrid>
                 </MudItem>
                 <MudItem xs="7">
+                    <MudGrid>
+                        <MudItem xs="12" Class="d-flex align-center justify-center py-4">
+                            <MudGrid>
+                                <MudItem xs="4"></MudItem>
+                                <MudItem xs="4">
+                                    <MudSelect @bind-Value="stringValue" Dense="true" Margin="Margin.Dense" T="string" Label="Payment Type" Variant="Variant.Filled">
+                                        <MudSelectItem Value="@("Cash")" />
+                                        <MudSelectItem Value="@("Credit")" />
+                                    </MudSelect>
+                                </MudItem>
+                                <MudItem xs="4"></MudItem>
+                            </MudGrid> 
+                        </MudItem>
+                        <MudItem xs="12" >
+                            <MudText Typo="Typo.h4" Class="d-flex align-center justify-center py-4">50.00</MudText>
+                            <MudText Typo="Typo.h6" Class="d-flex align-center justify-center py-4">Total Amount Due</MudText>
+                        </MudItem>
+                        <MudItem xs="12">
+                            @if (stringValue == "Cash")
+                            {
+                                <MudGrid >
+                                    <MudItem xs="5" Class="d-flex align-center justify-center py-4">
+                                        <MudText Typo="Typo.h5"> Cash Received</MudText>
+                                    </MudItem>
+                                    <MudItem xs="4" Class="d-flex align-center justify-center py-4">
+                                        <MudTextField @bind-Value="Amount" Label="Amount" Variant="Variant.Outlined" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.AttachMoney" AdornmentColor="Color.Warning" />
+                                    </MudItem>
+                                    <MudItem xs="3" Class="d-flex align-center justify-center py-4">
+                                        <MudButton Href="/" Variant="Variant.Filled" DisableElevation="true" Class="py-4" Style="font-weight:bold; background-color:#053B71;color:white">Pay</MudButton>
+                                    </MudItem>
+                                </MudGrid>
+                            }
+                            else 
+                            {
+                                <MudGrid>
+                                    <MudItem xs="8" Class="d-flex align-center justify-center py-4">
+                                        <MudText>
+                                            <MudSelect @bind-Value="stringValue" Dense="true" Margin="Margin.Dense" T="string" Label="Payment Type" Variant="Variant.Filled">
+                                                <MudSelectItem Value="@("Cash")" />
+                                                <MudSelectItem Value="@("Credit")" />
+                                            </MudSelect>
+                                        </MudText>
+                                    </MudItem>
+                                    <MudItem xs="4" Class="d-flex align-center justify-center py-4">
+                                        <MudButton Href="/" Variant="Variant.Filled" DisableElevation="true" Class="py-4" Style="font-weight:bold; background-color:#053B71;color:white">Pay Credit</MudButton>
+                                    </MudItem>
+                                </MudGrid>
+                            }
 
+                        </MudItem>
+
+                    </MudGrid>
                 </MudItem>
 
 
@@ -92,9 +143,13 @@
 
 @code {
 
+    public string Amount { get; set; }
+
+    private string stringValue { get; set; }
+
     private IEnumerable<Menuitemlist> test = new List<Menuitemlist>();
 
-    public IEnumerable<Menuitemlist> Elements { get; set; }
+    private IEnumerable<Menuitemlist> Elements = new List<Menuitemlist>();
 
 
     private void OpenExtUsers()

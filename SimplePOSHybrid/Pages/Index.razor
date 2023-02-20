@@ -38,7 +38,7 @@
                                             <Columns>
                                                 <Column T="Menuitemlist" StickyLeft="true">
                                                     <CellTemplate>
-                                                        <MudIconButton OnClick="@RemoveItem" Color="@Color.Default" Icon="@Icons.Material.Filled.Delete" />
+                                                        <MudIconButton OnClick="@(() => PrcdBtnClick())" Color="@Color.Default" Icon="@Icons.Material.Filled.Delete" />
                                                     </CellTemplate>
                                                 </Column>
                                                 <Column T="Menuitemlist" Field="ItemName" Title="Name" />
