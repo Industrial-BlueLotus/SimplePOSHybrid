@@ -106,7 +106,19 @@
                                         <MudTextField @bind-Value="Amount" Label="Amount" Variant="Variant.Outlined" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.AttachMoney" AdornmentColor="Color.Warning" />
                                     </MudItem>
                                     <MudItem xs="3" Class="d-flex align-center justify-center py-4">
-                                        <MudButton Href="/" Variant="Variant.Filled" DisableElevation="true" Class="py-4" Style="font-weight:bold; background-color:#053B71;color:white">Pay</MudButton>
+                                        <MudButton @onclick="Cash"  Variant="Variant.Filled" DisableElevation="true" Class="py-4" Style="font-weight:bold; background-color:#053B71;color:white">Pay</MudButton>
+                                    </MudItem>
+                                    <MudItem xs="12">
+                                        <MudGrid>
+                                            <MudItem xs="2"></MudItem>
+                                            <MudItem xs="4" Class="d-flex align-center justify-center py-4">
+                                                <MudChip Label="true">Default</MudChip>
+                                            </MudItem>
+                                            <MudItem xs="4" Class="d-flex align-center justify-center py-4">
+                                                <MudChip Label="true">Default</MudChip>
+                                            </MudItem>
+                                            <MudItem xs="2"></MudItem>
+                                        </MudGrid>
                                     </MudItem>
                                 </MudGrid>
                             }
@@ -122,7 +134,7 @@
                                         </MudText>
                                     </MudItem>
                                     <MudItem xs="4" Class="d-flex align-center justify-center py-4">
-                                        <MudButton @onclick="Download" Variant="Variant.Filled" DisableElevation="true" Class="py-4" Style="font-weight:bold; background-color:#053B71;color:white">Pay Credit</MudButton>
+                                        <MudButton @onclick="Credit" Variant="Variant.Filled" DisableElevation="true" Class="py-4" Style="font-weight:bold; background-color:#053B71;color:white">Pay Credit</MudButton>
                                     </MudItem>
                                 </MudGrid>
                             }
@@ -144,6 +156,8 @@
 @code {
 
     public string Amount { get; set; }
+
+    public string balance { get; set; } 
 
     private string stringValue { get; set; }
 
@@ -183,15 +197,28 @@
     }
 
     DialogOptions maxWidth = new DialogOptions() { MaxWidth = MaxWidth.Small };
+
+    private void Cash()
+    {
+        balance = "10.00";
+        var parameters = new DialogParameters();
+        parameters.Add("ContentText", "Balance" +balance);
+        parameters.Add("ButtonText", "Start new sale");
+        parameters.Add("TitleText", "Sales Completed");
+        parameters.Add("Color", Color.Info);
+
+        DialogService.Show<SalesComp>("Sales Completed", parameters);
+    }
     
-    private void Download()
+    private void Credit()
     {
         var parameters = new DialogParameters();
         parameters.Add("ContentText", "Credit purchase have been approved to Dana's account.");
         parameters.Add("ButtonText", "Start new sale");
+        parameters.Add("TitleText", "Sales Completed");
         parameters.Add("Color", Color.Info);
 
-        DialogService.Show<SalesComp>("Sales Completed.", parameters);
+        DialogService.Show<SalesComp>("Sales Completed", parameters);
     }
 
 }
