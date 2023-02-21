@@ -55,16 +55,16 @@
                                 <MudItem xs="12" >
                                     <MudGrid Class="pr-2 pl-2 pt-0 pb-0">
                                         <MudItem xs="3" Class="d-flex align-center justify-center py-4">
-                                            <MudIconButton Icon="@Icons.Material.Filled.Reply" DisableElevation="true" Variant="Variant.Filled" Style="background-color:#0866c4;color:white" Size="Size.Large" />                                          
+                                            <MudIconButton @onclick="@(() => ClickPrevSale())" Icon="@Icons.Material.Filled.Reply" DisableElevation="true" Variant="Variant.Filled" Style="background-color:#0866c4;color:white" Size="Size.Large" />
                                         </MudItem>
                                         <MudItem xs="3" Class="d-flex align-center justify-center py-4">
-                                            <MudIconButton Icon="@Icons.Material.Filled.Percent" DisableElevation="true" Variant="Variant.Filled"  Style="background-color:#0866c4;color:white" Size="Size.Large" />
+                                            <MudIconButton @onclick="@(() => ClickTotdiscount())" Icon="@Icons.Material.Filled.Percent" DisableElevation="true" Variant="Variant.Filled" Style="background-color:#0866c4;color:white" Size="Size.Large" />
                                         </MudItem>
                                         <MudItem xs="3" Class="d-flex align-center justify-center py-4">
-                                            <MudIconButton Icon="@Icons.Material.Filled.Autorenew" DisableElevation="true" Variant="Variant.Filled" Style="background-color:#0866c4;color:white" Size="Size.Large" />
+                                            <MudIconButton @onclick="@(() => ClickRecall())" Icon="@Icons.Material.Filled.Autorenew" DisableElevation="true" Variant="Variant.Filled" Style="background-color:#0866c4;color:white" Size="Size.Large" />
                                         </MudItem>
                                         <MudItem xs="3" Class="d-flex align-center justify-center py-4">
-                                            <MudIconButton Icon="@Icons.Material.Filled.ReceiptLong" DisableElevation="true" Variant="Variant.Filled" Style="background-color:#0866c4;color:white" Size="Size.Large" />
+                                            <MudIconButton @onclick="@(() => ClickReceipt())"  Icon="@Icons.Material.Filled.ReceiptLong" DisableElevation="true" Variant="Variant.Filled" Style="background-color:#0866c4;color:white" Size="Size.Large" />
                                         </MudItem>
                                     </MudGrid>
                                 </MudItem>
@@ -161,6 +161,26 @@
         tabscatitm = DashboardView.DisplayItem(test,cate);
         StateHasChanged();
 
+    }
+
+    private void ClickReceipt()
+    {
+        DialogService.Show<Receipt>("Choose Receipt");
+    }
+
+    private void ClickTotdiscount()
+    {
+        DialogService.Show<Totdiscount>("Choose Total discount");
+    }
+
+    private void ClickRecall()
+    {
+        DialogService.Show<Recall>("Choose Recall");
+    }
+
+    private void ClickPrevSale()
+    {
+        DialogService.Show<PrevSale>("Choose PrevSale");
     }
 
     private void OpenExtUsers()

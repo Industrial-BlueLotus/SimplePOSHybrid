@@ -1,0 +1,51 @@
+﻿@using SimplePOSHybrid.Models.PartnerMenu
+
+<MudDialog Style="background-color:#f2f2f2">
+    <TitleContent>
+        <MudItem xs="12" Class="d-flex align-center justify-center pt-8">
+            <MudGrid>
+                <MudItem xs="3" Class="d-flex align-center justify-center pt-8">
+                </MudItem>
+                <MudItem xs="6" Class="d-flex align-center justify-center pt-8">
+                    <MudDatePicker PickerVariant="PickerVariant.Dialog" Rounded="true" Date="@(DateTime.Today.AddDays(1))" />
+                </MudItem>
+                <MudItem xs="3" Class="d-flex align-center justify-center pt-8">
+                </MudItem>
+            </MudGrid>
+
+        </MudItem>
+    </TitleContent>
+    <DialogContent>
+        <MudItem xs="12" Class="d-flex align-center justify-center pb-4 pl-4 pr-4">
+            @*<MudDataGrid Items="@Elements">
+            <Columns>
+            <Column T="Element" Field="Number" Title="Nr" />
+            <Column T="Element" Field="Sign" />
+            <Column T="Element" Field="Name" />
+            <Column T="Element" Field="Position" />
+            <Column T="Element" Field="Molar" Title="Molar mass" />
+            </Columns>
+            </MudDataGrid>*@
+        </MudItem>
+    </DialogContent>
+    <DialogActions>
+        <MudGrid>
+            <MudItem xs="12" Class="d-flex align-center justify-center pb-8 pt-4 pr-4 pl-4 ">
+
+            </MudItem>
+        </MudGrid>
+
+    </DialogActions>
+</MudDialog>
+
+@code {
+    [CascadingParameter] MudDialogInstance MudDialog { get; set; }
+
+    private List<Menuitemlist> orderitems = new List<Menuitemlist> { };
+
+    private IEnumerable<Menuitemlist> Elements = new List<Menuitemlist>();
+
+
+    void Submit() => MudDialog.Close(DialogResult.Ok(true));
+    void Cancel() => MudDialog.Cancel();
+}
