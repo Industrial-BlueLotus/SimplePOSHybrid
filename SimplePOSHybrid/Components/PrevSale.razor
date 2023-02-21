@@ -1,6 +1,6 @@
 ﻿@using SimplePOSHybrid.Models.PartnerMenu
 
-<MudDialog Style="background-color:#f2f2f2">
+<MudDialog Style="background-color:#f2f2f2;border-radius:15px">
     <TitleContent>
         <MudItem xs="12" Class="d-flex align-center justify-center pt-8">
             <MudGrid>
@@ -17,21 +17,13 @@
     </TitleContent>
     <DialogContent>
         <MudItem xs="12" Class="d-flex align-center justify-center pb-4 pl-4 pr-4">
-            @*<MudDataGrid Items="@Elements">
-            <Columns>
-            <Column T="Element" Field="Number" Title="Nr" />
-            <Column T="Element" Field="Sign" />
-            <Column T="Element" Field="Name" />
-            <Column T="Element" Field="Position" />
-            <Column T="Element" Field="Molar" Title="Molar mass" />
-            </Columns>
-            </MudDataGrid>*@
+            <MudText Typo="Typo.subtitle1" Style="font-weight:bold">@ContentText</MudText>
         </MudItem>
     </DialogContent>
     <DialogActions>
         <MudGrid>
             <MudItem xs="12" Class="d-flex align-center justify-center pb-8 pt-4 pr-4 pl-4 ">
-
+                <MudButton Style="font-weight:bold; background-color:#053B71;color:white" Variant="Variant.Filled" OnClick="Submit">@ButtonText</MudButton>
             </MudItem>
         </MudGrid>
 
@@ -40,6 +32,14 @@
 
 @code {
     [CascadingParameter] MudDialogInstance MudDialog { get; set; }
+
+    [Parameter] public string TitleText { get; set; }
+
+    [Parameter] public string ContentText { get; set; }
+
+    [Parameter] public string link { get; set; }
+
+    [Parameter] public string ButtonText { get; set; }
 
     private List<Menuitemlist> orderitems = new List<Menuitemlist> { };
 

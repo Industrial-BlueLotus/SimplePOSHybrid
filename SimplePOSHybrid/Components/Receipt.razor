@@ -1,6 +1,6 @@
 ﻿@using SimplePOSHybrid.Models.PartnerMenu
 
-<MudDialog Style="background-color:#f2f2f2">
+<MudDialog Style="background-color:#f2f2f2;border-radius:15px">
     <TitleContent>
         <MudItem xs="12" Class="d-flex align-center justify-center pt-8">
             <MudGrid>
@@ -39,6 +39,13 @@
 </MudDialog>
 
 @code {
+
+    [Parameter] public string TitleText { get; set; }
+
+    [Parameter] public string ContentText { get; set; }
+
+    [Parameter] public string ButtonText { get; set; }
+
     [CascadingParameter] MudDialogInstance MudDialog { get; set; }
 
     private List<Menuitemlist> orderitems = new List<Menuitemlist> { };

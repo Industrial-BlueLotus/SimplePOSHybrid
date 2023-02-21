@@ -165,27 +165,42 @@
 
     private void ClickReceipt()
     {
-        DialogService.Show<Receipt>("Choose Receipt");
+        var parameters = new DialogParameters();
+        parameters.Add("ButtonText", "Close");
+        DialogService.Show<Receipt>("Choose Receipt", parameters);
     }
 
     private void ClickTotdiscount()
     {
-        DialogService.Show<Totdiscount>("Choose Total discount");
+        var parameters = new DialogParameters();
+        parameters.Add("ContentText", "Please select a discount type.");
+        parameters.Add("ButtonText1", "Set Discount");
+        parameters.Add("ButtonText2", "Cancel Discount");
+        DialogService.Show<Totdiscount>("Choose Total discount", parameters);
     }
 
     private void ClickRecall()
     {
-        DialogService.Show<Recall>("Choose Recall");
+        var parameters = new DialogParameters();
+        parameters.Add("ButtonText1", "OK");
+        parameters.Add("ButtonText2", "Cancel");
+        parameters.Add("ButtonText3", "Assign Driver");
+        DialogService.Show<Recall>("Choose Recall", parameters);
     }
 
     private void ClickPrevSale()
     {
-        DialogService.Show<PrevSale>("Choose PrevSale");
+        var parameters = new DialogParameters();
+        parameters.Add("ContentText", "Previous sales should be fetched from the backend and displayed here.");
+        parameters.Add("ButtonText", "Close");
+
+        DialogService.Show<PrevSale>("Choose PrevSale", parameters);
     }
 
     private void OpenExtUsers()
     {
         DialogService.Show<Dialog>("Choose Customer");
+       
     }
 
     private void OpenRegUser()
