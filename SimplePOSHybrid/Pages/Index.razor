@@ -182,9 +182,9 @@
     private void ClickRecall()
     {
         var parameters = new DialogParameters();
-        parameters.Add("ButtonText1", "OK");
+        parameters.Add("ButtonText3", "OK");
         parameters.Add("ButtonText2", "Cancel");
-        parameters.Add("ButtonText3", "Assign Driver");
+        parameters.Add("ButtonText1", "Assign Driver");
         DialogService.Show<Recall>("Choose Recall", parameters);
     }
 
