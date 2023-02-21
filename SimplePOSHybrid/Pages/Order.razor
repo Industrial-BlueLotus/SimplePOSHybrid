@@ -115,14 +115,14 @@
                                 <MudGrid>
                                     <MudItem xs="8" Class="d-flex align-center justify-center py-4">
                                         <MudText>
-                                            <MudSelect @bind-Value="stringValue" Dense="true" Margin="Margin.Dense" T="string" Label="Payment Type" Variant="Variant.Filled">
+                                            <MudSelect @bind-Value="customerSelection" Dense="true" Margin="Margin.Dense" T="string" Label="Select Customer" Variant="Variant.Filled">
                                                 <MudSelectItem Value="@("Cash")" />
                                                 <MudSelectItem Value="@("Credit")" />
                                             </MudSelect>
                                         </MudText>
                                     </MudItem>
                                     <MudItem xs="4" Class="d-flex align-center justify-center py-4">
-                                        <MudButton Href="/" Variant="Variant.Filled" DisableElevation="true" Class="py-4" Style="font-weight:bold; background-color:#053B71;color:white">Pay Credit</MudButton>
+                                        <MudButton @onclick="Download" Variant="Variant.Filled" DisableElevation="true" Class="py-4" Style="font-weight:bold; background-color:#053B71;color:white">Pay Credit</MudButton>
                                     </MudItem>
                                 </MudGrid>
                             }
@@ -146,6 +146,8 @@
     public string Amount { get; set; }
 
     private string stringValue { get; set; }
+
+    private string customerSelection { get; set; }
 
     private IEnumerable<Menuitemlist> test = new List<Menuitemlist>();
 
@@ -179,6 +181,17 @@
         StateHasChanged();
 
     }
+
+    DialogOptions maxWidth = new DialogOptions() { MaxWidth = MaxWidth.Small };
     
+    private void Download()
+    {
+        var parameters = new DialogParameters();
+        parameters.Add("ContentText", "Credit purchase have been approved to Dana's account.");
+        parameters.Add("ButtonText", "Start new sale");
+        parameters.Add("Color", Color.Info);
+
+        DialogService.Show<SalesComp>("Sales Completed.", parameters);
+    }
 
 }

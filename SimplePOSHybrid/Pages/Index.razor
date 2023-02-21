@@ -38,7 +38,7 @@
                                             <Columns>
                                                 <Column T="Menuitemlist" StickyLeft="true">
                                                     <CellTemplate>
-                                                        <MudIconButton OnClick="@(() => PrcdBtnClick())" Color="@Color.Default" Icon="@Icons.Material.Filled.Delete" />
+                                                <MudIconButton OnClick="@(() => RemoveItem(@context.Item))" Color="@Color.Default" Icon="@Icons.Material.Filled.Delete" />
                                                     </CellTemplate>
                                                 </Column>
                                                 <Column T="Menuitemlist" Field="ItemName" Title="Name" />
@@ -178,7 +178,7 @@
     private void Click(Menuitemlist item)
     {
         OrderStateService ord = new OrderStateService();
-        
+
         orderitems.Add(item);
         ord.ElementMthd(orderitems);
         Elements = ord.GetElements();
@@ -187,9 +187,11 @@
         StateHasChanged();
     }
 
-    void RemoveItem()
+    private void RemoveItem(Menuitemlist x)
     {
         //orderitems.RemoveAt(0);
+        orderitems = orderitems.Where(u => u.ItemName != x.ItemName).ToList();
+        Elements = orderitems;
         StateHasChanged();
     }
 
