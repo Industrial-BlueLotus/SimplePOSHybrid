@@ -33,24 +33,66 @@
                                     <MudIconButton Icon="@Icons.Material.Filled.KeyboardArrowDown" OnClick="OpenExtUsers" aria-label="users"></MudIconButton>
                                 </MudItem>
                                 <MudItem xs="12" Class="pt-0">
-                                    <div id="unique_id_scroll_section" class="ma-0" style="height:200px;overflow: auto">
+                                    <div class="ma-0" style="height:200px;overflow: auto">
                                         <MudDataGrid Items="@Elements" Hover="true" Striped="true" Dense="true">
+                                            <ColGroup>
+                                                <col style="width: 10px;" />
+                                                <col style="width: 10px;" />
+                                                <col style="width: 10px;" />
+                                                <col style="width: 10px;" />
+                                                <col style="width: 10px;" />
+                                            </ColGroup>
                                             <Columns>
                                                 <Column T="Menuitemlist" StickyLeft="true">
                                                     <CellTemplate>
-                                                <MudIconButton OnClick="@(() => RemoveItem(@context.Item))" Color="@Color.Default" Icon="@Icons.Material.Filled.Delete" />
+                                                        <MudIconButton OnClick="@(() => RemoveItem(@context.Item))" Color="@Color.Default" Icon="@Icons.Material.Filled.Delete" />
                                                     </CellTemplate>
                                                 </Column>
                                                 <Column T="Menuitemlist" Field="ItemName" Title="Name" />
-                                                <Column T="Menuitemlist" Title="Qty" Style="width:10px" />
-                                                <Column T="Menuitemlist" Field="OptionalSalesPrice" Title="Price" Style="width:10px" />
-                                                <Column T="Menuitemlist" Title="Total" Style="width:10px" />
+                                                <Column T="Menuitemlist" Title="Qty">
+                                                    <MudNumericField @bind-Value="DecimalValue" Variant="Variant.Filled" Step=".5M" />
+                                                </Column>
+                                                <Column T="Menuitemlist" Field="OptionalSalesPrice" Title="Price" />
+                                                <Column T="Menuitemlist" Title="Total"  />
                                             </Columns>
                                          </MudDataGrid>
                                      </div> 
                                 </MudItem>
                                 <MudItem xs="12" Class="pr-0 pl-0 pb-0">
-                                    <MudPaper Class="pa-8 ma-0" Outlined="true" Elevation="3" Style="background-color:#e6e6e6;border:none"></MudPaper>
+                                    <MudPaper Class="pa-8 ma-0" Outlined="true" Elevation="3" Style="background-color:#e6e6e6;border:none">
+                                        <MudGrid>
+                                            <MudItem xs="12" >
+                                                <MudGrid>
+                                                    <MudItem xs="6">
+                                                        <MudText>Sub Total:</MudText>
+                                                    </MudItem>
+                                                    <MudItem xs="6">
+                                                        <MudText>Rs.600.00</MudText>
+                                                    </MudItem>
+                                                </MudGrid>
+                                            </MudItem>
+                                            <MudItem xs="12" >
+                                                <MudGrid>
+                                                    <MudItem xs="6">
+                                                        <MudText>Discount:</MudText>
+                                                    </MudItem>
+                                                    <MudItem xs="6">
+                                                        <MudText>10%</MudText>
+                                                    </MudItem>
+                                                </MudGrid>
+                                            </MudItem>
+                                            <MudItem xs="12">
+                                                <MudGrid>
+                                                    <MudItem xs="6">
+                                                        <MudText>Net Total:</MudText>
+                                                    </MudItem>
+                                                    <MudItem xs="6">
+                                                        <MudText>Rs.600.00</MudText>
+                                                    </MudItem>
+                                                </MudGrid>
+                                            </MudItem>
+                                        </MudGrid>
+                                    </MudPaper>
                                 </MudItem>
                                 <MudItem xs="12" >
                                     <MudGrid Class="pr-2 pl-2 pt-0 pb-0">
@@ -123,6 +165,8 @@
 
 
 @code{
+
+    public decimal DecimalValue { get; set; }
 
     public List<string> tabscat = new List<string> { };
 

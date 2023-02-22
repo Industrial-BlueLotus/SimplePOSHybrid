@@ -7,7 +7,10 @@
                 <MudItem xs="3" Class="d-flex align-center justify-center pt-8">
                 </MudItem>
                 <MudItem xs="6" Class="d-flex align-center justify-center pt-8">
-                    <MudDatePicker PickerVariant="PickerVariant.Dialog" Rounded="true" Date="@(DateTime.Today.AddDays(1))" />
+                    <MudSelect @bind-Value="ChoType" Dense="true" Margin="Margin.Dense" T="string" Label="Choose Type" Variant="Variant.Filled">
+                        <MudSelectItem Value="@("Percentage")" />
+                        <MudSelectItem Value="@("Amount")" />
+                    </MudSelect>
                 </MudItem>
                 <MudItem xs="3" Class="d-flex align-center justify-center pt-8">
                 </MudItem>
@@ -30,13 +33,16 @@
     </DialogContent>
     <DialogActions>
         <MudGrid>
-            <MudItem xs="6" Class="d-flex align-center justify-center pb-8 pt-4 pr-4 pl-4 ">
+            <MudItem xs="6" Class="d-flex align-center justify-center pb-4 pt-4 pr-2 pl-4 ">
                 <MudButton Style="font-size:small; background-color:#053B71;color:white" Variant="Variant.Filled" OnClick="Submit">@ButtonText1</MudButton>
             </MudItem>
-            <MudItem xs="2" Class="d-flex align-center justify-center pb-8 pt-4 pr-4 pl-4 ">
+            <MudItem xs="1" Class="d-flex align-center justify-center pb-4 pt-4 pr-4 pl-0 " >
+                
+            </MudItem>
+            <MudItem xs="2" Class="d-flex align-center justify-center pb-4 pt-4 pr-2 pl-2 ">
                 <MudButton Style="font-size:small; background-color:#053B71;color:white" Variant="Variant.Filled" OnClick="Submit">@ButtonText3</MudButton>
             </MudItem>
-            <MudItem xs="4" Class="d-flex align-center justify-center pb-8 pt-4 pr-4 pl-4 ">
+            <MudItem xs="3" Class="d-flex align-center justify-center pb-4 pt-4 pr-4 pl-2 " >
                 <MudButton Style="font-size:small; background-color:#053B71;color:white" Variant="Variant.Filled" OnClick="Submit">@ButtonText2</MudButton>
             </MudItem>
         </MudGrid>
@@ -45,6 +51,8 @@
 </MudDialog>
 
 @code {
+
+    private string ChoType { get; set; }
 
     [Parameter] public string TitleText { get; set; }
 

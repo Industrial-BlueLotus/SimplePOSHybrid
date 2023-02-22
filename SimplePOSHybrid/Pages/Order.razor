@@ -41,9 +41,11 @@
                                             </CellTemplate>
                                         </Column>
                                         <Column T="Menuitemlist" Field="ItemName" Title="Name" />
-                                        <Column T="Menuitemlist" Title="Qty" Style="width:10px" />
-                                        <Column T="Menuitemlist" Field="OptionalSalesPrice" Title="Price" Style="width:10px" />
-                                        <Column T="Menuitemlist" Title="Total" Style="width:10px" />
+                                        <Column T="Menuitemlist" Title="Qty"  >
+                                            <MudNumericField @bind-Value="DecimalValue"  Variant="Variant.Filled" Step=".5M" />
+                                        </Column>
+                                        <Column T="Menuitemlist" Field="OptionalSalesPrice" Title="Price" />
+                                        <Column T="Menuitemlist" Title="Total"  />
                                     </Columns>
                                 </MudDataGrid>
                             </div>
@@ -162,6 +164,8 @@
     private string stringValue { get; set; }
 
     private string customerSelection { get; set; }
+
+    public decimal DecimalValue { get; set; }
 
     private IEnumerable<Menuitemlist> test = new List<Menuitemlist>();
 
