@@ -19,17 +19,17 @@
                     <MudGrid Class="pt-3">
                         <MudItem xs="5"    >
                             <MudGrid>
-                                <MudItem xs="2" Class="pa-0"></MudItem>
-                                <MudItem xs="6" Class="mt-2 pt-0">
+                                <MudItem xs="2" Class="pt-0 pb-1"></MudItem>
+                        <MudItem xs="6" Class="mt-2 pt-0 pb-1">
                                     <MudSelect Dense="true" Margin="Margin.Dense" T="string" Label="Order Type" Variant="Variant.Outlined">
                                         <MudSelectItem Value="@("Credit")" />
                                         <MudSelectItem Value="@("Debit")" />
                                     </MudSelect>
                                 </MudItem>
-                                <MudItem xs="1" Class="mt-2 pt-0">
+                                <MudItem xs="1" Class="mt-2 pt-0 pb-1">
                                     <MudIconButton Icon="@Icons.Material.Filled.PersonAddAlt1" OnClick="OpenRegUser" aria-label="add user"></MudIconButton>
                                 </MudItem>
-                                <MudItem xs="3" Class="mt-2 pt-0">
+                                <MudItem xs="3" Class="mt-2 pt-0 pb-1">
                                     <MudIconButton Icon="@Icons.Material.Filled.KeyboardArrowDown" OnClick="OpenExtUsers" aria-label="users"></MudIconButton>
                                 </MudItem>
                                 <MudItem xs="12" Class="pt-0">
@@ -58,43 +58,43 @@
                                          </MudDataGrid>
                                      </div> 
                                 </MudItem>
-                                <MudItem xs="12" Class="pr-0 pl-0 pb-0">
-                                    <MudPaper Class="pa-8 ma-0" Outlined="true" Elevation="3" Style="background-color:#e6e6e6;border:none">
+                                <MudItem xs="12" Class="pr-0 pl-0 pb-0 pt-0">
+                                    <MudPaper Class="pa-4 ma-0" Outlined="true" Elevation="3" Style="background-color:#e6e6e6;border:none">
                                         <MudGrid>
-                                            <MudItem xs="12" >
+                                            <MudItem xs="12" Class="pt-1 pb-1 ma-0" >
                                                 <MudGrid>
-                                                    <MudItem xs="6">
-                                                        <MudText>Sub Total:</MudText>
+                                                    <MudItem xs="6" Class="d-flex align-center justify-left">
+                                                        <MudText Typo="Typo.caption" Style="font-weight:bold">Sub Total:</MudText>
                                                     </MudItem>
-                                                    <MudItem xs="6">
-                                                        <MudText>Rs.600.00</MudText>
+                                                    <MudItem xs="6" Class="d-flex align-center justify-end">
+                                                <MudText Typo="Typo.caption" Style="font-weight:bold">Rs.600.00</MudText>
                                                     </MudItem>
                                                 </MudGrid>
                                             </MudItem>
-                                            <MudItem xs="12" >
+                                            <MudItem xs="12" Class="pt-0 pb-0 ma-0">
                                                 <MudGrid>
-                                                    <MudItem xs="6">
-                                                        <MudText>Discount:</MudText>
+                                                    <MudItem xs="6" Class="d-flex align-center justify-left">
+                                                        <MudText Typo="Typo.caption" Style="font-weight:bold">Discount:</MudText>
                                                     </MudItem>
-                                                    <MudItem xs="6">
-                                                        <MudText>10%</MudText>
+                                                    <MudItem xs="6" Class="d-flex align-center justify-end">
+                                                <MudText Typo="Typo.caption" Style="font-weight:bold">10%</MudText>
                                                     </MudItem>
                                                 </MudGrid>
                                             </MudItem>
-                                            <MudItem xs="12">
+                                    <MudItem xs="12" Class="pb-1 pt-1 ma-0">
                                                 <MudGrid>
-                                                    <MudItem xs="6">
-                                                        <MudText>Net Total:</MudText>
+                                                    <MudItem xs="6" Class="d-flex align-center justify-left">
+                                                <MudText Typo="Typo.caption" Style="font-weight:bold">Net Total:</MudText>
                                                     </MudItem>
-                                                    <MudItem xs="6">
-                                                        <MudText>Rs.600.00</MudText>
+                                                    <MudItem xs="6" Class="d-flex align-center justify-end">
+                                                <MudText Typo="Typo.caption" Style="font-weight:bold">Rs.600.00</MudText>
                                                     </MudItem>
                                                 </MudGrid>
                                             </MudItem>
                                         </MudGrid>
                                     </MudPaper>
                                 </MudItem>
-                                <MudItem xs="12" >
+                                <MudItem xs="12" Class="pr-2 pl-2 pt-2  pb-1">
                                     <MudGrid Class="pr-2 pl-2 pt-0 pb-0">
                                         <MudItem xs="3" Class="d-flex align-center justify-center py-4">
                                             <MudIconButton @onclick="@(() => ClickPrevSale())" Icon="@Icons.Material.Filled.Reply" DisableElevation="true" Variant="Variant.Filled" Style="background-color:#0866c4;color:white" Size="Size.Large" />
@@ -110,7 +110,7 @@
                                         </MudItem>
                                     </MudGrid>
                                 </MudItem>
-                                <MudItem xs="12" Class="pa-0">
+                                <MudItem xs="12" Class="pt-1">
                                     <MudGrid>
                                         <MudItem xs="6" Class="d-flex align-center justify-center">
                                             <MudButton Variant="Variant.Filled" DisableElevation="true" Class="py-4" Style="font-weight:bold; background-color:#053B71;color:white">Hold Sale</MudButton>
@@ -244,7 +244,7 @@
     private void OpenExtUsers()
     {
         DialogService.Show<Dialog>("Choose Customer");
-       
+
     }
 
     private void OpenRegUser()
@@ -256,11 +256,12 @@
 
     private void Click(Menuitemlist item)
     {
-        OrderStateService ord = new OrderStateService();
+
 
         orderitems.Add(item);
-        ord.ElementMthd(orderitems);
-        Elements = ord.GetElements();
+        //ord.ElementMthd(orderitems);
+        _orderState.ElementMthd(orderitems);
+        Elements = _orderState.GetElements();
         Console.WriteLine(Elements);
 
         StateHasChanged();

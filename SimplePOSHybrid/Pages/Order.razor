@@ -193,8 +193,8 @@
     protected override void OnInitialized()
     {
 
-        OrderStateService ord = new OrderStateService();
-        Elements = ord.GetElements();
+
+        Elements = _orderState.GetElements();
         Console.WriteLine(Elements);
         StateHasChanged();
 

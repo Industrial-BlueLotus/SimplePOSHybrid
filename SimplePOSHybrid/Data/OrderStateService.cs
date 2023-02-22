@@ -6,6 +6,7 @@ namespace SimplePOSHybrid.Data
     {
         private IEnumerable<Menuitemlist> Elements = new List<Menuitemlist>();
 
+        public OrderStateService() { }
         public IEnumerable<Menuitemlist> ElementMthd(List<Menuitemlist> orderitems)
         {
             Elements = orderitems.AsEnumerable();
