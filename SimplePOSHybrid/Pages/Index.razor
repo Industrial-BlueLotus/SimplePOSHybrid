@@ -18,14 +18,14 @@
         <MudContainer Class="pl-3" >
                     <MudGrid Class="pt-3">
 
-                        <MudItem xs="6" Class="pa-0">
+                        <MudItem xs="6" Class="pa-0" Style="background-color:steelblue">
                             <MudTabs Elevation="2" Rounded="true" PanelClass="pa-6" Class="pr-0" PrevIcon="@Icons.Material.Filled.SkipPrevious" NextIcon="@Icons.Material.Filled.SkipNext"
                                 AlwaysShowScrollButtons="true" Color="@Color.Primary" Style="border:thin;border-color:darkgray;border-radius:10px">
                                      @foreach (string category in tabscat)
                                      {
 
-                                        <MudTabPanel Text=@category ToolTip="Choose a Category" Class="pt-2 pl-0 pr-0" OnClick="() => LoadItems(category)" >
-                                            <div class="ma-0 pa-0" style="height:560px;width:620px;overflow: auto">
+                                        <MudTabPanel Text=@category ToolTip="Choose a Category" OnClick="() => LoadItems(category)" >
+                                            <div  style="height:560px;width:610px;overflow: auto">
                                                 <MudGrid>
                                                 
                                                     @foreach (var item in tabscatitm)
@@ -36,7 +36,7 @@
                                                                <CustomImage Src=@item.ItemImageUrl Name=@item.ItemName ShortName=@item.ItemShortName OnClick="@(() => this.Click(item))" />
                                                             }else
                                                             {
-                                                               <CustomImage Src="./Img/no1.jpg" Name=@item.ItemName ShortName=@item.ItemShortName OnClick="@(() => this.Click(item))" />
+                                                               <CustomImage Src="./Img/white_box.png" Name=@item.ItemName ShortName=@item.ItemShortName OnClick="@(() => this.Click(item))" />
                                                                
                                                             }
                                                                                               
@@ -53,21 +53,21 @@
 
                  <MudItem xs="6" Class="pa-4" >
                     <MudGrid>
-                        <MudItem xs="2" Class="pt-0 pb-1"></MudItem>
-                        <MudItem xs="6" Class="mt-2 pt-0 pb-1">
+                        <MudItem xs="2" Class="pt-2 pb-1"></MudItem>
+                        <MudItem xs="6" Class="mt-2 pt-2 pb-1">
                             <MudSelect Dense="true" Margin="Margin.Dense" T="string" Label="Order Type" Variant="Variant.Outlined">
                                 <MudSelectItem Value="@("Credit")" />
                                 <MudSelectItem Value="@("Debit")" />
                             </MudSelect>
                         </MudItem>
-                        <MudItem xs="1" Class="mt-2 pt-0 pb-1">
+                        <MudItem xs="1" Class="mt-2 pt-2 pb-1">
                             <MudIconButton Icon="@Icons.Material.Filled.PersonAddAlt1" OnClick="OpenRegUser" aria-label="add user"></MudIconButton>
                         </MudItem>
-                        <MudItem xs="3" Class="mt-2 pt-0 pb-1">
+                        <MudItem xs="3" Class="mt-2 pt-2 pb-1">
                             <MudIconButton Icon="@Icons.Material.Filled.KeyboardArrowDown" OnClick="OpenExtUsers" aria-label="users"></MudIconButton>
                         </MudItem>
-                        <MudItem xs="12" Class="pt-0">
-                            <div class="ma-0" style="height:200px;overflow: auto">
+                        <MudItem xs="12" Class="pt-3">
+                            <div class="ma-0" style="height:310px;overflow: auto">
                                 <MudDataGrid Items="@Elements" Hover="true" Striped="true" Dense="true">
                                     <ColGroup>
                                         <col style="width: 10px;" />
@@ -83,9 +83,16 @@
                                             </CellTemplate>
                                         </Column>
                                         <Column T="Menuitemlist" Field="ItemName" Title="Name" />
-                                        <Column T="Menuitemlist" Title="%"></Column>
+                                        <Column T="Menuitemlist" Title="%">
+                                            <CellTemplate>
+                                                <MudNumericField @bind-Value="DecimalValue" Margin="Margin.None" Variant="Variant.Filled" Step=".5M" />
+                                            </CellTemplate>
+                                        </Column>
                                         <Column T="Menuitemlist" Title="Qty">
-                                            <MudNumericField @bind-Value="DecimalValue" Variant="Variant.Filled" Step=".5M" />
+                                            <CellTemplate>
+                                                @*<MudNumericField @bind-Value="DecimalValue" Margin="Margin.None" Variant="Variant.Filled" Step=".5M" />*@
+                                                <MudNumericField @bind-Value="DecimalValue"  Format="F1" Variant="Variant.Outlined" Step=".5M" />
+                                            </CellTemplate>
                                         </Column>
                                         <Column T="Menuitemlist" Field="OptionalSalesPrice" Title="Price" />
                                         <Column T="Menuitemlist" Title="Total" />
@@ -129,19 +136,23 @@
                                 </MudGrid>
                             </MudPaper>
                         </MudItem>
-                        <MudItem xs="12" Class="pr-2 pl-2 pt-2  pb-1">
+                        <MudItem xs="12" Class="pr-2 pl-2 pt-0  pb-1">
                             <MudGrid Class="pr-2 pl-2 pt-0 pb-0">
                                 <MudItem xs="3" Class="d-flex align-center justify-center py-4">
-                                    <MudIconButton @onclick="@(() => ClickPrevSale())" Icon="@Icons.Material.Filled.Reply" DisableElevation="true" Variant="Variant.Filled" Style="background-color:#0866c4;color:white" Size="Size.Large" />
+                                    <MudButton Variant="Variant.Filled" @onclick="@(() => ClickPrevSale())" StartIcon="@Icons.Material.Filled.Reply" Style="background-color:#0866c4;color:white" Size="Size.Large">Prev</MudButton>
+                                    @*<MudIconButton @onclick="@(() => ClickPrevSale())" Icon="@Icons.Material.Filled.Reply" DisableElevation="true" Variant="Variant.Filled" Style="background-color:#0866c4;color:white" Size="Size.Large" />*@
                                 </MudItem>
                                 <MudItem xs="3" Class="d-flex align-center justify-center py-4">
-                                    <MudIconButton @onclick="@(() => ClickTotdiscount())" Icon="@Icons.Material.Filled.Percent" DisableElevation="true" Variant="Variant.Filled" Style="background-color:#0866c4;color:white" Size="Size.Large" />
+                                    <MudButton Variant="Variant.Filled" @onclick="@(() => ClickTotdiscount())" StartIcon="@Icons.Material.Filled.Percent" Style="background-color:#0866c4;color:white" Size="Size.Large">Discount</MudButton>
+                                    @*<MudIconButton @onclick="@(() => ClickTotdiscount())" Icon="@Icons.Material.Filled.Percent" DisableElevation="true" Variant="Variant.Filled" Style="background-color:#0866c4;color:white" Size="Size.Large" />*@
                                 </MudItem>
                                 <MudItem xs="3" Class="d-flex align-center justify-center py-4">
-                                    <MudIconButton @onclick="@(() => ClickRecall())" Icon="@Icons.Material.Filled.Autorenew" DisableElevation="true" Variant="Variant.Filled" Style="background-color:#0866c4;color:white" Size="Size.Large" />
+                                    <MudButton Variant="Variant.Filled" @onclick="@(() => ClickRecall())" StartIcon="@Icons.Material.Filled.Autorenew" Style="background-color:#0866c4;color:white" Size="Size.Large">Recall</MudButton>
+                                    @*<MudIconButton @onclick="@(() => ClickRecall())" Icon="@Icons.Material.Filled.Autorenew" DisableElevation="true" Variant="Variant.Filled" Style="background-color:#0866c4;color:white" Size="Size.Large" />*@
                                 </MudItem>
                                 <MudItem xs="3" Class="d-flex align-center justify-center py-4">
-                                    <MudIconButton @onclick="@(() => ClickReceipt())" Icon="@Icons.Material.Filled.ReceiptLong" DisableElevation="true" Variant="Variant.Filled" Style="background-color:#0866c4;color:white" Size="Size.Large" />
+                                    <MudButton Variant="Variant.Filled" @onclick="@(() => ClickReceipt())" StartIcon="@Icons.Material.Filled.ReceiptLong" Style="background-color:#0866c4;color:white" Size="Size.Large">Receipt</MudButton>
+                                    @*<MudIconButton @onclick="@(() => ClickReceipt())" Icon="@Icons.Material.Filled.ReceiptLong" DisableElevation="true" Variant="Variant.Filled" Style="background-color:#0866c4;color:white" Size="Size.Large" />*@
                                 </MudItem>
                             </MudGrid>
                         </MudItem>

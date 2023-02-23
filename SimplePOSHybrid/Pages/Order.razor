@@ -4,6 +4,7 @@
 @using SimplePOSHybrid.Models.PartnerMenu
 @using SimplePOSHybrid.Components
 @inject IDialogService DialogService
+@inject NavigationManager Navigation
 
 <MudLayout>
     <MudAppBar Style="background-color:#053B71;color:white" Fixed="false" Dense="false" DisableGutters="false" Class="pa-0">
@@ -18,26 +19,26 @@
                 <MudItem xs="5">
 
                     <MudGrid>
-                        <MudItem xs="2" Class="pa-0"></MudItem>
-                        <MudItem xs="6" Class="mt-2 pt-0">
+                        <MudItem xs="2" Class="pb-1 pt-2"></MudItem>
+                        <MudItem xs="6" Class="mt-2 pt-2">
                             <MudSelect Dense="true" Margin="Margin.Dense" T="string" Label="Order Type" Variant="Variant.Filled" >
                                 <MudSelectItem Value="@("Credit")" />
                                 <MudSelectItem Value="@("Debit")" />
                             </MudSelect>
                         </MudItem>
-                        <MudItem xs="1" Class="mt-2 pt-0">
+                        <MudItem xs="1" Class="mt-2 pt-2">
                             <MudIconButton Icon="@Icons.Material.Filled.PersonAddAlt1" OnClick="OpenRegUser" aria-label="add user"></MudIconButton>
                         </MudItem>
-                        <MudItem xs="3" Class="mt-2 pt-0">
+                        <MudItem xs="3" Class="mt-2 pt-2">
                             <MudIconButton Icon="@Icons.Material.Filled.KeyboardArrowDown" OnClick="OpenExtUsers" aria-label="users"></MudIconButton>
                         </MudItem>
-                        <MudItem xs="12" Class="pt-0">
-                            <div id="unique_id_scroll_section" class="ma-0" style="height:200px;overflow: auto">
+                        <MudItem xs="12" Class="pt-2">
+                            <div id="unique_id_scroll_section" class="ma-0" style="height:320px;overflow: auto">
                                 <MudDataGrid Items="@Elements" Hover="true" Striped="true" Dense="true">
                                     <Columns>
                                         <Column T="Menuitemlist" StickyLeft="true">
                                             <CellTemplate>
-                                                <MudIconButton OnClick="@RemoveItem" Color="@Color.Default" Icon="@Icons.Material.Filled.Delete" />
+                                                <MudIconButton OnClick="@(() => RemoveItem(@context.Item))" Color="@Color.Default" Icon="@Icons.Material.Filled.Delete" />
                                             </CellTemplate>
                                         </Column>
                                         <Column T="Menuitemlist" Field="ItemName" Title="Name" />
@@ -51,32 +52,52 @@
                             </div>
                         </MudItem>
                         <MudItem xs="12" Class="pr-0 pl-0 pb-0">
-                            <MudPaper Class="pa-8 ma-0" Outlined="true" Elevation="3" Style="background-color:#e6e6e6;border:none"></MudPaper>
+                            <MudPaper Class="pa-8 ma-0" Outlined="true" Elevation="3" Style="background-color:#e6e6e6;border:none">
+                                <MudGrid>
+                                    <MudItem xs="12" Class="pt-1 pb-1 ma-0">
+                                        <MudGrid>
+                                            <MudItem xs="6" Class="d-flex align-center justify-left">
+                                                <MudText Typo="Typo.caption" Style="font-weight:bold">Sub Total:</MudText>
+                                            </MudItem>
+                                            <MudItem xs="6" Class="d-flex align-center justify-end">
+                                                <MudText Typo="Typo.caption" Style="font-weight:bold">Rs.600.00</MudText>
+                                            </MudItem>
+                                        </MudGrid>
+                                    </MudItem>
+                                    <MudItem xs="12" Class="pt-0 pb-0 ma-0">
+                                        <MudGrid>
+                                            <MudItem xs="6" Class="d-flex align-center justify-left">
+                                                <MudText Typo="Typo.caption" Style="font-weight:bold">Discount:</MudText>
+                                            </MudItem>
+                                            <MudItem xs="6" Class="d-flex align-center justify-end">
+                                                <MudText Typo="Typo.caption" Style="font-weight:bold">10%</MudText>
+                                            </MudItem>
+                                        </MudGrid>
+                                    </MudItem>
+                                    <MudItem xs="12" Class="pb-1 pt-1 ma-0">
+                                        <MudGrid>
+                                            <MudItem xs="6" Class="d-flex align-center justify-left">
+                                                <MudText Typo="Typo.caption" Style="font-weight:bold">Net Total:</MudText>
+                                            </MudItem>
+                                            <MudItem xs="6" Class="d-flex align-center justify-end">
+                                                <MudText Typo="Typo.caption" Style="font-weight:bold">Rs.600.00</MudText>
+                                            </MudItem>
+                                        </MudGrid>
+                                    </MudItem>
+                                </MudGrid>
+                            </MudPaper>
                         </MudItem>
                         <MudItem xs="12">
                             <MudGrid Class="pr-2 pl-2 pt-0 pb-0">
-                                <MudItem xs="3" Class="d-flex align-center justify-center py-4">
-                                    <MudIconButton @onclick="@(() => ClickPrevSale())" Icon="@Icons.Material.Filled.Reply" DisableElevation="true" Variant="Variant.Filled" Style="background-color:#0866c4;color:white" Size="Size.Large" />
+                                <MudItem xs="6" Class="d-flex align-center justify-center py-4">
+                                    <MudIconButton @onclick="@(() => Goback())" Icon="@Icons.Material.Filled.ArrowBack" DisableElevation="true" Variant="Variant.Filled" Style="background-color:#0866c4;color:white" Size="Size.Large" />
                                 </MudItem>
-                                <MudItem xs="3" Class="d-flex align-center justify-center py-4">
+                                <MudItem xs="6" Class="d-flex align-center justify-center py-4">
                                     <MudIconButton @onclick="@(() => ClickTotdiscount())" Icon="@Icons.Material.Filled.Percent" DisableElevation="true" Variant="Variant.Filled" Style="background-color:#0866c4;color:white" Size="Size.Large" />
                                 </MudItem>
-                                <MudItem xs="3" Class="d-flex align-center justify-center py-4">
-                                    <MudIconButton @onclick="@(() => ClickRecall())" Icon="@Icons.Material.Filled.Autorenew" DisableElevation="true" Variant="Variant.Filled" Style="background-color:#0866c4;color:white" Size="Size.Large" />
-                                </MudItem>
-                                <MudItem xs="3" Class="d-flex align-center justify-center py-4">
-                                    <MudIconButton @onclick="@(() => ClickReceipt())" Icon="@Icons.Material.Filled.ReceiptLong" DisableElevation="true" Variant="Variant.Filled" Style="background-color:#0866c4;color:white" Size="Size.Large" />
-                                </MudItem>
+                                
                             </MudGrid>
-                        </MudItem>
-                        <MudItem xs="12" Class="pa-0">
-                            <MudGrid>
-                                <MudItem xs="12" Class="d-flex align-center justify-center">
-                                    <MudButton Href="/" Variant="Variant.Filled" DisableElevation="true" Class="py-4" Style="font-weight:bold; background-color:#053B71;color:white">Hold Sale</MudButton>
-                                </MudItem>
-                               
-                            </MudGrid>
-                        </MudItem>
+                        </MudItem>        
                     </MudGrid>
                 </MudItem>
                 <MudItem xs="7">
@@ -105,7 +126,7 @@
                                         <MudText Typo="Typo.h5"> Cash Received</MudText>
                                     </MudItem>
                                     <MudItem xs="4" Class="d-flex align-center justify-center py-4">
-                                        <MudTextField @bind-Value="Amount" Label="Amount" Variant="Variant.Outlined" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.AttachMoney" AdornmentColor="Color.Warning" />
+                                        <MudTextField @bind-Value="Amount" Label="Amount" Variant="Variant.Outlined" Adornment="Adornment.Start"  AdornmentColor="Color.Warning" />
                                     </MudItem>
                                     <MudItem xs="3" Class="d-flex align-center justify-center py-4">
                                         <MudButton @onclick="Cash"  Variant="Variant.Filled" DisableElevation="true" Class="py-4" Style="font-weight:bold; background-color:#053B71;color:white">Pay</MudButton>
@@ -114,10 +135,10 @@
                                         <MudGrid>
                                             <MudItem xs="2"></MudItem>
                                             <MudItem xs="4" Class="d-flex align-center justify-center py-4">
-                                                <MudChip Label="true">Default</MudChip>
+                                                <MudButton @onclick="Cash" Variant="Variant.Filled" DisableElevation="true" Class="py-4" Style="font-weight:bold; background-color:darkgray;color:white;font-size:large">60.00</MudButton>
                                             </MudItem>
                                             <MudItem xs="4" Class="d-flex align-center justify-center py-4">
-                                                <MudChip Label="true">Default</MudChip>
+                                                <MudButton @onclick="Cash" Variant="Variant.Filled" DisableElevation="true" Class="py-4" Style="font-weight:bold; background-color:darkgray;color:white;font-size:large">150.00</MudButton>
                                             </MudItem>
                                             <MudItem xs="2"></MudItem>
                                         </MudGrid>
@@ -171,6 +192,8 @@
 
     private IEnumerable<Menuitemlist> Elements = new List<Menuitemlist>();
 
+    private List<Menuitemlist> orderitems = new List<Menuitemlist> { };
+
 
     private void OpenExtUsers()
     {
@@ -184,10 +207,17 @@
         DialogService.Show<RegUser>("Add Customer", closeOnEscapeKey);
     }
 
-    void RemoveItem()
+    void RemoveItem(Menuitemlist x)
     {
         //orderitems.RemoveAt(0);
+        orderitems = orderitems.Where(u => u.ItemName != x.ItemName).ToList();
+        Elements = orderitems;
         StateHasChanged();
+    }
+
+    void Goback()
+    {
+        Navigation.NavigateTo("/");
     }
 
     protected override void OnInitialized()
@@ -225,13 +255,6 @@
         DialogService.Show<SalesComp>("Sales Completed", parameters);
     }
 
-    private void ClickReceipt()
-    {
-        var parameters = new DialogParameters();
-        parameters.Add("ButtonText", "Close");
-        DialogService.Show<Receipt>("Choose Receipt", parameters);
-    }
-
     private void ClickTotdiscount()
     {
         var parameters = new DialogParameters();
@@ -241,21 +264,5 @@
         DialogService.Show<Totdiscount>("Choose Total discount", parameters);
     }
 
-    private void ClickRecall()
-    {
-        var parameters = new DialogParameters();
-        parameters.Add("ButtonText3", "OK");
-        parameters.Add("ButtonText2", "Cancel");
-        parameters.Add("ButtonText1", "Assign Driver");
-        DialogService.Show<Recall>("Choose Recall", parameters);
-    }
-
-    private void ClickPrevSale()
-    {
-        var parameters = new DialogParameters();
-        parameters.Add("ContentText", "Previous sales should be fetched from the backend and displayed here.");
-        parameters.Add("ButtonText", "Close");
-
-        DialogService.Show<PrevSale>("Choose PrevSale", parameters);
-    }
+    
 }
