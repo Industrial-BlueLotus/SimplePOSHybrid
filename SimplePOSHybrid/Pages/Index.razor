@@ -15,23 +15,23 @@
         <MudIconButton Icon="@Icons.Material.Filled.Logout" Style="color:white" Href="/" />
     </MudAppBar>
         <MudMainContent Class="pa-0">
-            <MudContainer >
+        <MudContainer Class="pl-3" >
                     <MudGrid Class="pt-3">
-                        
-                        <MudItem xs="6" Class="pa-0" >
-                            <MudTabs Elevation="2" Rounded="true" PanelClass="pa-2"  PrevIcon="@Icons.Material.Filled.SkipPrevious" NextIcon="@Icons.Material.Filled.SkipNext"
+
+                        <MudItem xs="6" Class="pa-0">
+                            <MudTabs Elevation="2" Rounded="true" PanelClass="pa-6" Class="pr-0" PrevIcon="@Icons.Material.Filled.SkipPrevious" NextIcon="@Icons.Material.Filled.SkipNext"
                                 AlwaysShowScrollButtons="true" Color="@Color.Primary" Style="border:thin;border-color:darkgray;border-radius:10px">
                                      @foreach (string category in tabscat)
                                      {
 
-                                        <MudTabPanel Text=@category ToolTip="Choose a Category" Class="pt-2" OnClick="() => LoadItems(category)">
-                                            <div id="unique_id_scroll_section" class="ma-0" style="height:650px;width:650px;overflow: auto">
+                                        <MudTabPanel Text=@category ToolTip="Choose a Category" Class="pt-2 pl-0 pr-0" OnClick="() => LoadItems(category)" >
+                                            <div class="ma-0 pa-0" style="height:560px;width:620px;overflow: auto">
                                                 <MudGrid>
                                                 
                                                     @foreach (var item in tabscatitm)
                                                     {
                                                         <MudItem xs="3" >
-                                                            @if(@item.ItemImageUrl != null)
+                                                             @if(@item.ItemImageUrl != null)
                                                             {
                                                                <CustomImage Src=@item.ItemImageUrl Name=@item.ItemName ShortName=@item.ItemShortName OnClick="@(() => this.Click(item))" />
                                                             }else
@@ -51,7 +51,7 @@
                             </MudTabs>
                         </MudItem>
 
-                <MudItem xs="6" Class="pa-4">
+                 <MudItem xs="6" Class="pa-4" >
                     <MudGrid>
                         <MudItem xs="2" Class="pt-0 pb-1"></MudItem>
                         <MudItem xs="6" Class="mt-2 pt-0 pb-1">
@@ -83,6 +83,7 @@
                                             </CellTemplate>
                                         </Column>
                                         <Column T="Menuitemlist" Field="ItemName" Title="Name" />
+                                        <Column T="Menuitemlist" Title="%"></Column>
                                         <Column T="Menuitemlist" Title="Qty">
                                             <MudNumericField @bind-Value="DecimalValue" Variant="Variant.Filled" Step=".5M" />
                                         </Column>

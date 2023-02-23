@@ -5,7 +5,6 @@ using SimplePOSHybrid.Models.PartnerMenu;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Net;
-using static MudBlazor.CategoryTypes;
 
 namespace SimplePOSHybrid.Data
 {
