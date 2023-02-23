@@ -1,4 +1,4 @@
-﻿@page "/"
+﻿@page "/home"
 @layout MainLayout
 @using SimplePOSHybrid.Data
 @using SimplePOSHybrid.Models.PartnerMenu
@@ -85,13 +85,13 @@
                                         <Column T="Menuitemlist" Field="ItemName" Title="Name" />
                                         <Column T="Menuitemlist" Title="%">
                                             <CellTemplate>
-                                                <MudNumericField @bind-Value="DecimalValue" Margin="Margin.None" Variant="Variant.Filled" Step=".5M" />
+                                                <MudNumericField @bind-Value="DiscountValue" Style="height:30px" Variant="Variant.Outlined" Step=".5M" />
                                             </CellTemplate>
                                         </Column>
                                         <Column T="Menuitemlist" Title="Qty">
                                             <CellTemplate>
                                                 @*<MudNumericField @bind-Value="DecimalValue" Margin="Margin.None" Variant="Variant.Filled" Step=".5M" />*@
-                                                <MudNumericField @bind-Value="DecimalValue"  Format="F1" Variant="Variant.Outlined" Step=".5M" />
+                                                <MudNumericField @bind-Value="DecimalValue" Style="height:30px"  Variant="Variant.Outlined" Step=".5M" />
                                             </CellTemplate>
                                         </Column>
                                         <Column T="Menuitemlist" Field="OptionalSalesPrice" Title="Price" />
@@ -181,6 +181,8 @@
 @code{
 
     public decimal DecimalValue { get; set; }
+
+    public decimal DiscountValue { get; set; }
 
     public List<string> tabscat = new List<string> { };
 

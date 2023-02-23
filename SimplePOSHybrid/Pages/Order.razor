@@ -42,11 +42,19 @@
                                             </CellTemplate>
                                         </Column>
                                         <Column T="Menuitemlist" Field="ItemName" Title="Name" />
-                                        <Column T="Menuitemlist" Title="Qty"  >
-                                            <MudNumericField @bind-Value="DecimalValue"  Variant="Variant.Filled" Step=".5M" />
+                                        <Column T="Menuitemlist" Title="%">
+                                            <CellTemplate>
+                                                <MudNumericField @bind-Value="DiscountValue" Style="height:30px" Variant="Variant.Outlined" Step=".5M" />
+                                            </CellTemplate>
+                                        </Column>
+                                        <Column T="Menuitemlist" Title="Qty">
+                                            <CellTemplate>
+                                                @*<MudNumericField @bind-Value="DecimalValue" Margin="Margin.None" Variant="Variant.Filled" Step=".5M" />*@
+                                                <MudNumericField @bind-Value="DecimalValue" Style="height:30px" Variant="Variant.Outlined" Step=".5M" />
+                                            </CellTemplate>
                                         </Column>
                                         <Column T="Menuitemlist" Field="OptionalSalesPrice" Title="Price" />
-                                        <Column T="Menuitemlist" Title="Total"  />
+                                        <Column T="Menuitemlist" Title="Total" />
                                     </Columns>
                                 </MudDataGrid>
                             </div>
@@ -90,11 +98,11 @@
                         <MudItem xs="12">
                             <MudGrid Class="pr-2 pl-2 pt-0 pb-0">
                                 <MudItem xs="6" Class="d-flex align-center justify-center py-4">
-                                    <MudIconButton @onclick="@(() => Goback())" Icon="@Icons.Material.Filled.ArrowBack" DisableElevation="true" Variant="Variant.Filled" Style="background-color:#0866c4;color:white" Size="Size.Large" />
-                                </MudItem>
+                                    <MudButton Variant="Variant.Filled" @onclick="@(() => Goback())" StartIcon="@Icons.Material.Filled.Reply" Style="background-color:#0866c4;color:white" Size="Size.Large">Prev</MudButton>
+                                   </MudItem>
                                 <MudItem xs="6" Class="d-flex align-center justify-center py-4">
-                                    <MudIconButton @onclick="@(() => ClickTotdiscount())" Icon="@Icons.Material.Filled.Percent" DisableElevation="true" Variant="Variant.Filled" Style="background-color:#0866c4;color:white" Size="Size.Large" />
-                                </MudItem>
+                                    <MudButton Variant="Variant.Filled" @onclick="@(() => ClickTotdiscount())" StartIcon="@Icons.Material.Filled.Percent" Style="background-color:#0866c4;color:white" Size="Size.Large">Discount</MudButton>
+                                     </MudItem>
                                 
                             </MudGrid>
                         </MudItem>        
@@ -188,6 +196,8 @@
 
     public decimal DecimalValue { get; set; }
 
+    public decimal DiscountValue { get; set; }
+
     private IEnumerable<Menuitemlist> test = new List<Menuitemlist>();
 
     private IEnumerable<Menuitemlist> Elements = new List<Menuitemlist>();
@@ -217,7 +227,7 @@
 
     void Goback()
     {
-        Navigation.NavigateTo("/");
+        Navigation.NavigateTo("/home");
     }
 
     protected override void OnInitialized()
