@@ -1,4 +1,4 @@
-﻿@page "/home"
+﻿@page "/"
 @layout MainLayout
 @using SimplePOSHybrid.Data
 @using SimplePOSHybrid.Models.PartnerMenu
@@ -14,18 +14,18 @@
         <MudSpacer />
         <MudIconButton Icon="@Icons.Material.Filled.Logout" Style="color:white" Href="/" />
     </MudAppBar>
-        <MudMainContent Class="pa-0">
-        <MudContainer Class="pl-3" >
+        <MudMainContent Class="pa-0 pl-3 pr-3">
+        @*<MudContainer Class="pl-3" Style="background-color:blue;width:100%" Fixed="true">*@
                     <MudGrid Class="pt-3">
 
-                        <MudItem xs="6" Class="pa-0" Style="background-color:steelblue">
+                        <MudItem xs="6" Class="pa-0" Style="background-color:steelblue" >
                             <MudTabs Elevation="2" Rounded="true" PanelClass="pa-6" Class="pr-0" PrevIcon="@Icons.Material.Filled.SkipPrevious" NextIcon="@Icons.Material.Filled.SkipNext"
                                 AlwaysShowScrollButtons="true" Color="@Color.Primary" Style="border:thin;border-color:darkgray;border-radius:10px">
                                      @foreach (string category in tabscat)
                                      {
 
                                         <MudTabPanel Text=@category ToolTip="Choose a Category" OnClick="() => LoadItems(category)" >
-                                            <div  style="height:560px;width:610px;overflow: auto">
+                                            <div  style="height:560px;width:100%;overflow: auto">
                                                 <MudGrid>
                                                 
                                                     @foreach (var item in tabscatitm)
@@ -171,7 +171,7 @@
        
                     </MudGrid>
                 
-            </MudContainer>
+            @*</MudContainer>*@
         </MudMainContent>
     
      
