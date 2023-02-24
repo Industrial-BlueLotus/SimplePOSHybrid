@@ -1,4 +1,4 @@
-﻿@page "/"
+﻿@page "/home"
 @layout MainLayout
 @using SimplePOSHybrid.Data
 @using SimplePOSHybrid.Models.PartnerMenu
@@ -7,14 +7,14 @@
 @inject NavigationManager Navigation
 @using System.Text.Json;
 
-<MudLayout>
+<MudLayout Style="height:contain">
     <MudAppBar Style="background-color:#053B71;color:white" Fixed="false" Dense="false" DisableGutters="false" Class="pa-0" >
         <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start"  />
         <MudText Class="ml-4" Style="font-weight:800;font-size:large">BLX Super Mart</MudText>
         <MudSpacer />
         <MudIconButton Icon="@Icons.Material.Filled.Logout" Style="color:white" Href="/" />
     </MudAppBar>
-        <MudMainContent Class="pa-0 pl-3 pr-3">
+        <MudMainContent Class="pa-0 pl-3 pr-3"  >
         @*<MudContainer Class="pl-3" Style="background-color:blue;width:100%" Fixed="true">*@
                     <MudGrid Class="pt-3">
 
@@ -25,12 +25,12 @@
                                      {
 
                                         <MudTabPanel Text=@category ToolTip="Choose a Category" OnClick="() => LoadItems(category)" >
-                                            <div  style="height:560px;width:100%;overflow: auto">
+                                            <div  style="height:100%;width:100%">
                                                 <MudGrid>
                                                 
                                                     @foreach (var item in tabscatitm)
                                                     {
-                                                        <MudItem xs="3" >
+                                                        <MudItem xs="3" Class="pa-1">
                                                              @if(@item.ItemImageUrl != null)
                                                             {
                                                                <CustomImage Src=@item.ItemImageUrl Name=@item.ItemName ShortName=@item.ItemShortName OnClick="@(() => this.Click(item))" />
@@ -51,7 +51,7 @@
                             </MudTabs>
                         </MudItem>
 
-                 <MudItem xs="6" Class="pa-4" >
+            <MudItem xs="6" Class="pa-4" >
                     <MudGrid>
                         <MudItem xs="2" Class="pt-2 pb-1"></MudItem>
                         <MudItem xs="6" Class="mt-2 pt-2 pb-1">
@@ -67,7 +67,7 @@
                             <MudIconButton Icon="@Icons.Material.Filled.KeyboardArrowDown" OnClick="OpenExtUsers" aria-label="users"></MudIconButton>
                         </MudItem>
                         <MudItem xs="12" Class="pt-3">
-                            <div class="ma-0" style="height:310px;overflow: auto">
+                            <div class="ma-0" style="height:50%;overflow: auto">
                                 <MudDataGrid Items="@Elements" Hover="true" Striped="true" Dense="true">
                                     <ColGroup>
                                         <col style="width: 10px;" />
