@@ -1,4 +1,4 @@
-﻿@page "/home"
+﻿@page "/"
 @layout MainLayout
 @using SimplePOSHybrid.Data
 @using SimplePOSHybrid.Models.PartnerMenu
@@ -24,8 +24,8 @@
                                      @foreach (string category in tabscat)
                                      {
 
-                                        <MudTabPanel Text=@category ToolTip="Choose a Category" OnClick="() => LoadItems(category)" >
-                                            <div  style="height:100%;width:100%">
+                                        <MudTabPanel Text=@category ToolTip="Choose a Category" OnClick="() => LoadItems(category)"   >
+                                            <div style="height:510px;width:100%;overflow-y: auto;overflow-x: hidden;padding: 20px">
                                                 <MudGrid>
                                                 
                                                     @foreach (var item in tabscatitm)
@@ -66,9 +66,9 @@
                         <MudItem xs="3" Class="mt-2 pt-2 pb-1">
                             <MudIconButton Icon="@Icons.Material.Filled.KeyboardArrowDown" OnClick="OpenExtUsers" aria-label="users"></MudIconButton>
                         </MudItem>
-                        <MudItem xs="12" Class="pt-3">
-                            <div class="ma-0" style="height:50%;overflow: auto">
-                                <MudDataGrid Items="@Elements" Hover="true" Striped="true" Dense="true">
+                        <MudItem xs="12" Class="pt-3" Style="height:100%">
+                            <div class="ma-0" style="height:320px;overflow: auto">
+                                <MudDataGrid Items="@Elements" Hover="true" Striped="true" Dense="true" >
                                     <ColGroup>
                                         <col style="width: 10px;" />
                                         <col style="width: 10px;" />
