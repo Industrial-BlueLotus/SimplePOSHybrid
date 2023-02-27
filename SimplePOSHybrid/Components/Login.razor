@@ -1,23 +1,27 @@
 ﻿@layout LoginLayout
-@page "/home"
+@page "/"
 @using SimplePOSHybrid.Data
 @using SimplePOSHybrid.Models
 @inject LoginMethods ILoginService
 @inject NavigationManager Navigation
+@using Newtonsoft.Json;
 
 
 
 
 <MudGrid Style="width:100%;height:100%">
+    <MudItem xs="12" Class="d-flex align-center justify-center mr-2 ml-2 mt-2" >
+
+    </MudItem>
     <MudItem xs="12" Class="d-flex align-center justify-center mr-2 ml-2 mt-2">
         <MudImage Src="./Img/logo.jpeg"  Width="150" Height="150" Alt="logo" Elevation="25" Class="rounded-lg" Style="box-shadow:none"    />
     </MudItem>
     <MudItem xs="12" Class="d-flex align-center justify-center pl-16 pr-16 mr-16 ml-16 ">
-        <MudTextField @bind-Value="loginModel.UserName" Label="User Name" Variant="Variant.Outlined" Margin="Margin.Dense"></MudTextField>
+        <MudTextField @bind-Value="loginModel.UserName" Required="true" Label="User Name" Variant="Variant.Outlined" Margin="Margin.Dense"></MudTextField>
     </MudItem>
     <MudItem xs="12" Class="d-flex align-center justify-center pl-16 pr-16 mr-16 ml-16 ">
-        <MudTextField @bind-Value="loginModel.Password" Label="Password" Variant="Variant.Outlined" 
-            InputType="@PasswordInput" Adornment="Adornment.End" AdornmentIcon="@PasswordInputIcon"
+        <MudTextField @bind-Value="loginModel.Password" Label="Password" Required="true" Variant="Variant.Outlined"
+                      InputType="@PasswordInput" Adornment="Adornment.End" AdornmentIcon="@PasswordInputIcon"
                       OnAdornmentClick="ButtonTestclick" AdornmentAriaLabel="Show Password" Margin="Margin.Dense" />
     </MudItem>
     <MudItem xs="12" Class="d-flex align-center justify-center pl-16 pr-16 mr-16 ml-16  ">
@@ -47,22 +51,38 @@
     InputType PasswordInput = InputType.Password;
     string PasswordInputIcon = Icons.Material.Filled.VisibilityOff;
 
-   
+
     public async void LgnBtnClick()
     {
+        if (loginModel.UserName != string.Empty && loginModel.Password != string.Empty)
+        {
+            var response1 = await ILoginService.Authenticate(loginModel);
 
-        var response1 = await ILoginService.Authenticate(loginModel);
+            if (!string.IsNullOrWhiteSpace(response1))
+            {
+                LoginResModel arraylog = JsonConvert.DeserializeObject<LoginResModel>(response1);
+
+                if (arraylog.ResponseType == 1)
+                {
+                    Navigation.NavigateTo("home");
+                }
+                else if (arraylog.ResponseType == 2)
+                {
+                    await App.Current.MainPage.DisplayAlert("Alert", "Invalid User", "Cancel");
+                }
+
+
+            }
+            else
+            {
+                Console.WriteLine(response1);
+                await App.Current.MainPage.DisplayAlert("Oops", "Invalid username or Password", "Cancel");
+            }
+
+        }
         
-        if (!string.IsNullOrWhiteSpace(response1))
-        {
-            Navigation.NavigateTo("home");
 
-        }
-        else
-        {
-            await App.Current.MainPage.DisplayAlert("Oops","Invalid username or Password","Cancel");
-        }
-
+        
       
     }
 

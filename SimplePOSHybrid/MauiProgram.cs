@@ -2,6 +2,7 @@
 using MudBlazor.Services;
 using SimplePOSHybrid.Data;
 using SimplePOSHybrid.Models.PartnerMenu;
+using SimplePOSHybrid.Models;
 using SimplePOSHybrid.Pages;
 
 namespace SimplePOSHybrid;
@@ -22,6 +23,7 @@ public static class MauiProgram
         builder.Services.AddMudServices();
         builder.Services.AddSingleton<LoginMethods>();
         builder.Services.AddSingleton<ItemModel>();
+        builder.Services.AddSingleton<LoginResModel>();
         builder.Services.AddSingleton<DashboardView>();
         builder.Services.AddSingleton<OrderStateService>();
 
