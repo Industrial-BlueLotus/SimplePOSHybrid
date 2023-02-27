@@ -1,46 +1,205 @@
-﻿@page "/fetchdata"
-
+﻿
+@page "/fetchdata"
 @using SimplePOSHybrid.Data
-@inject WeatherForecastService ForecastService
+@using SimplePOSHybrid.Models
+@inject LoginMethods ILoginService
+@inject NavigationManager Navigation
+@using Newtonsoft.Json;
 
-<h1>Weather forecast</h1>
+<MudLayout Style="height:contain">
+    <MudMainContent Class="pa-0 pl-3 pr-3">
+        <MudGrid Style="width:100%;height:100%">
+            <MudItem xs="12" Class="d-flex align-center justify-center">
+                <MudGrid>
+                    <MudItem xs="2"></MudItem>
+                    <MudItem xs="8" Class="d-flex align-center justify-center mt-4"><MudImage Src="./Img/logo.jpeg" Width="150" Height="150" Alt="logo" Elevation="25" Class="rounded-lg" Style="box-shadow:none" /></MudItem>
+                    <MudItem xs="2"></MudItem>
+                </MudGrid>
+            </MudItem>
 
-<p>This component demonstrates fetching data from a service.</p>
+            <MudItem xs="12" Class="d-flex align-center justify-center">
+                <MudGrid>
+                    <MudItem xs="2"></MudItem>
+                    <MudItem xs="8">
+                        <MudGrid>
 
-@if (forecasts == null)
-{
-    <p><em>Loading...</em></p>
-}
-else
-{
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Date</th>
-                <th>Temp. (C)</th>
-                <th>Temp. (F)</th>
-                <th>Summary</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var forecast in forecasts)
-            {
-                <tr>
-                    <td>@forecast.Date.ToShortDateString()</td>
-                    <td>@forecast.TemperatureC</td>
-                    <td>@forecast.TemperatureF</td>
-                    <td>@forecast.Summary</td>
-                </tr>
-            }
-        </tbody>
-    </table>
-}
+
+                            <MudItem xs="12" Class="d-flex align-center justify-center pl-16 pr-16 mr-16 ml-16">
+                                <MudGrid>
+                                    <MudItem xs="3"></MudItem>
+                                    <MudItem xs="6">
+                                        <MudTextField @bind-Value="loginModel.UserName" Required="true" Label="User Name" Variant="Variant.Outlined" Margin="Margin.Dense"></MudTextField>
+                                    </MudItem>
+                                    <MudItem xs="3"></MudItem>
+                                </MudGrid>
+
+                            </MudItem>
+                            <MudItem xs="12" Class="d-flex align-center justify-center pl-16 pr-16 mr-16 ml-16 ">
+                                <MudGrid>
+                                    <MudItem xs="3"></MudItem>
+                                    <MudItem xs="6">
+                                        <MudTextField @bind-Value="loginModel.Password" Label="Password" Required="true" Variant="Variant.Outlined"
+                                                      InputType="@PasswordInput" Adornment="Adornment.End" AdornmentIcon="@PasswordInputIcon"
+                                                      OnAdornmentClick="ButtonTestclick" AdornmentAriaLabel="Show Password" Margin="Margin.Dense" />
+                                    </MudItem>
+                                    <MudItem xs="3"></MudItem>
+                                </MudGrid>
+
+                            </MudItem>
+                            <MudItem xs="12" Class="d-flex align-center justify-center pl-16 pr-16 mr-16 ml-16  ">
+                                <MudGrid>
+                                    <MudItem xs="3"></MudItem>
+                                    <MudItem xs="6">
+                                        <MudTextField @bind-Value="Environmentname" Label="Environment Name" Variant="Variant.Outlined" Margin="Margin.Dense"></MudTextField>
+                                    </MudItem>
+                                    <MudItem xs="3"></MudItem>
+                                </MudGrid>
+
+                            </MudItem>
+                            <MudItem xs="12" Class="d-flex align-center justify-center pl-4 pr-4 mr-16 ml-16 ">
+                                <MudButton Variant="Variant.Filled" OnClick="LgnBtnClick" Style="background-color:#02198B;color:white;width:120px;height:45px;font-size:larger;border-radius:10px">
+                                    Login
+                                </MudButton>
+                            </MudItem>
+
+                        </MudGrid>
+                    </MudItem>
+                    <MudItem xs="2"></MudItem>
+                </MudGrid>
+            </MudItem>
+
+            <MudItem xs="12" Class="d-flex align-center justify-center">
+                <MudGrid>
+                    <MudItem xs="2"></MudItem>
+                    <MudItem xs="8" Class="d-flex align-center justify-center"><MudImage Src="./Img/banner.jpeg" Width="200" Height="50" Alt="logo" Elevation="25" Class="rounded-lg ma-4" Style="box-shadow:none" /></MudItem>
+                    <MudItem xs="2"></MudItem>
+                </MudGrid>
+            </MudItem>
+
+
+            @* <MudItem xs="2" Style="background-color:lightgreen"></MudItem>
+
+            <MudItem xs="8" Style="background-color:yellow">
+            <MudGrid>
+            <MudItem xs="12" Class="d-flex align-center justify-center mr-2 ml-2 ">
+            <MudImage Src="./Img/logo.jpeg" Width="150" Height="150" Alt="logo" Elevation="25" Class="rounded-lg" Style="box-shadow:none" />
+            </MudItem>
+
+            <MudItem xs="12" Class="d-flex align-center justify-center pl-16 pr-16 mr-16 ml-16">
+            <MudGrid>
+            <MudItem xs="3"></MudItem>
+            <MudItem xs="6">
+            <MudTextField @bind-Value="loginModel.UserName" Required="true" Label="User Name" Variant="Variant.Outlined" Margin="Margin.Dense"></MudTextField>
+            </MudItem>
+            <MudItem xs="3"></MudItem>
+            </MudGrid>
+
+            </MudItem>
+            <MudItem xs="12" Class="d-flex align-center justify-center pl-16 pr-16 mr-16 ml-16 ">
+            <MudGrid>
+            <MudItem xs="3"></MudItem>
+            <MudItem xs="6">
+            <MudTextField @bind-Value="loginModel.Password" Label="Password" Required="true" Variant="Variant.Outlined"
+            InputType="@PasswordInput" Adornment="Adornment.End" AdornmentIcon="@PasswordInputIcon"
+            OnAdornmentClick="ButtonTestclick" AdornmentAriaLabel="Show Password" Margin="Margin.Dense" />
+            </MudItem>
+            <MudItem xs="3"></MudItem>
+            </MudGrid>
+
+            </MudItem>
+            <MudItem xs="12" Class="d-flex align-center justify-center pl-16 pr-16 mr-16 ml-16  ">
+            <MudGrid>
+            <MudItem xs="3"></MudItem>
+            <MudItem xs="6">
+            <MudTextField @bind-Value="Environmentname" Label="Environment Name" Variant="Variant.Outlined" Margin="Margin.Dense"></MudTextField>
+            </MudItem>
+            <MudItem xs="3"></MudItem>
+            </MudGrid>
+
+            </MudItem>
+            <MudItem xs="12" Class="d-flex align-center justify-center pl-4 pr-4 mr-16 ml-16 ">
+            <MudButton Variant="Variant.Filled" OnClick="LgnBtnClick" Style="background-color:#02198B;color:white;width:120px;height:45px;font-size:larger;border-radius:10px">
+            Login
+            </MudButton>
+            </MudItem>
+            <MudItem xs="12" Class="d-flex align-center justify-center pl-4 pr-4 mr-16 ml-16 ">
+            <MudImage Src="./Img/banner.jpeg" Width="200" Height="50" Alt="logo" Elevation="25" Class="rounded-lg ma-4" Style="box-shadow:none" />
+            </MudItem>
+            </MudGrid>
+            </MudItem>
+
+            <MudItem xs="2" Style="background-color:aquamarine"></MudItem>*@
+
+
+
+        </MudGrid>
+    </MudMainContent>
+</MudLayout>
+
+
 
 @code {
-    private WeatherForecast[] forecasts;
 
-    protected override async Task OnInitializedAsync()
+
+
+    public string Environmentname { get; set; }
+
+    LoginObj loginModel = new();
+
+    bool isShow;
+    InputType PasswordInput = InputType.Password;
+    string PasswordInputIcon = Icons.Material.Filled.VisibilityOff;
+
+
+    public async void LgnBtnClick()
     {
-        forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
+        if (loginModel.UserName != string.Empty && loginModel.Password != string.Empty)
+        {
+            var response1 = await ILoginService.Authenticate(loginModel);
+
+            if (!string.IsNullOrWhiteSpace(response1))
+            {
+                LoginResModel arraylog = JsonConvert.DeserializeObject<LoginResModel>(response1);
+
+                if (arraylog.ResponseType == 1)
+                {
+                    Navigation.NavigateTo("home");
+                }
+                else if (arraylog.ResponseType == 2)
+                {
+                    await App.Current.MainPage.DisplayAlert("Alert", "Invalid User", "Cancel");
+                }
+
+
+            }
+            else
+            {
+                Console.WriteLine(response1);
+                await App.Current.MainPage.DisplayAlert("Oops", "Invalid username or Password", "Cancel");
+            }
+
+        }
+
+
+
+
     }
+
+    void ButtonTestclick()
+    {
+        @if (isShow)
+        {
+            isShow = false;
+            PasswordInputIcon = Icons.Material.Filled.VisibilityOff;
+            PasswordInput = InputType.Password;
+        }
+        else
+        {
+            isShow = true;
+            PasswordInputIcon = Icons.Material.Filled.Visibility;
+            PasswordInput = InputType.Text;
+        }
+    }
+
+
 }
