@@ -26,6 +26,7 @@ public static class MauiProgram
         builder.Services.AddSingleton<LoginResModel>();
         builder.Services.AddSingleton<DashboardView>();
         builder.Services.AddSingleton<OrderStateService>();
+        builder.Services.AddScoped<BrowserService>();
 
 
 #if DEBUG
