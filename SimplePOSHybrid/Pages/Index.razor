@@ -1,4 +1,4 @@
-﻿@page "/"
+﻿@page "/home"
 @layout MainLayout
 @using SimplePOSHybrid.Data
 @using SimplePOSHybrid.Models.PartnerMenu
@@ -14,9 +14,9 @@
         <MudSpacer />
         <MudIconButton Icon="@Icons.Material.Filled.Logout" Style="color:white" Href="/" />
     </MudAppBar>
-        <MudMainContent Class="pa-0 pl-3 pr-3" Style="height:100%"  >
+        <MudMainContent Class="pa-0 pl-3 pr-3"  >
         @*<MudContainer Class="pl-3" Style="background-color:blue;width:100%" Fixed="true">*@
-                    <MudGrid Class="pt-3" Style="height:100%">
+                    <MudGrid Class="pt-3">
 
                         <MudItem xs="6" Class="pa-0" Style="background-color:steelblue" >
                             <MudTabs Elevation="2" Rounded="true" PanelClass="pa-6" Class="pr-0" PrevIcon="@Icons.Material.Filled.SkipPrevious" NextIcon="@Icons.Material.Filled.SkipNext"
@@ -25,7 +25,7 @@
                                      {
 
                                         <MudTabPanel Text=@category ToolTip="Choose a Category" OnClick="() => LoadItems(category)"   >
-                                            <div style="height:100%;width:100%;overflow-y: auto;overflow-x: hidden;padding: 20px">
+                                            <div style="height:310px;width:100%;overflow-y: auto;overflow-x: hidden;padding: 20px">
                                                 <MudGrid>
                                                 
                                                     @foreach (var item in tabscatitm)
@@ -51,8 +51,8 @@
                             </MudTabs>
                         </MudItem>
 
-                        <MudItem xs="6" Class="pa-4" >
-                            <MudGrid>
+            <MudItem xs="6" Class="pa-4" >
+                    <MudGrid>
                         <MudItem xs="2" Class="pt-2 pb-1"></MudItem>
                         <MudItem xs="6" Class="mt-2 pt-2 pb-1">
                             <MudSelect Dense="true" Margin="Margin.Dense" T="string" Label="Order Type" Variant="Variant.Outlined">
@@ -67,9 +67,15 @@
                             <MudIconButton Icon="@Icons.Material.Filled.KeyboardArrowDown" OnClick="OpenExtUsers" aria-label="users"></MudIconButton>
                         </MudItem>
                         <MudItem xs="12" Class="pt-3" Style="height:100%">
-                            <div class="ma-0" style="height:100%;overflow: auto">
+                            <div class="ma-0" style="height:320px;overflow: auto">
                                 <MudDataGrid Items="@Elements" Hover="true" Striped="true" Dense="true" >
-                                    
+                                    <ColGroup>
+                                        <col style="width: 10px;" />
+                                        <col style="width: 10px;" />
+                                        <col style="width: 10px;" />
+                                        <col style="width: 10px;" />
+                                        <col style="width: 10px;" />
+                                    </ColGroup>
                                     <Columns>
                                         <Column T="Menuitemlist" StickyLeft="true">
                                             <CellTemplate>
