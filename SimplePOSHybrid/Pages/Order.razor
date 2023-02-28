@@ -33,7 +33,7 @@
                             <MudIconButton Icon="@Icons.Material.Filled.KeyboardArrowDown" OnClick="OpenExtUsers" aria-label="users"></MudIconButton>
                         </MudItem>
                         <MudItem xs="12" Class="pt-2">
-                            <div id="unique_id_scroll_section" class="ma-0" style="height:320px;overflow: auto">
+                        <div id="unique_id_scroll_section" class="ma-0" style="height: calc( 100vh - 380px);overflow: auto">
                                 <MudDataGrid Items="@Elements" Hover="true" Striped="true" Dense="true">
                                     <Columns>
                                         <Column T="Menuitemlist" StickyLeft="true">
