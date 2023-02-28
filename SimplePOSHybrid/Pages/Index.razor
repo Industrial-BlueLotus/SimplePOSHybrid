@@ -26,7 +26,7 @@
                                      {
 
                                         <MudTabPanel Text=@category ToolTip="Choose a Category" OnClick="() => LoadItems(category)"   >
-                                            <div style="height:430px;width:100%;overflow-y: auto;overflow-x: hidden;padding: 20px">
+                                            <div style="height:calc( 100vh - 120px  );width:100%;overflow-y: auto;overflow-x: hidden;padding: 20px">
                                                 <MudGrid>
                                                 
                                                     @foreach (var item in tabscatitm)
@@ -68,7 +68,7 @@
                                     <MudIconButton Icon="@Icons.Material.Filled.KeyboardArrowDown" OnClick="OpenExtUsers" aria-label="users"></MudIconButton>
                                 </MudItem>
                                 <MudItem xs="12" Class="pt-3" Style="height:100%">
-                                    <div class="ma-0" style="height:180px;overflow: auto">
+                                    <div class="ma-0" style="height:calc( 100vh - 400px );overflow: auto">
                                         <MudDataGrid Items="@Elements" Hover="true" Striped="true" Dense="true" >
                                             <ColGroup>
                                                 <col  />
