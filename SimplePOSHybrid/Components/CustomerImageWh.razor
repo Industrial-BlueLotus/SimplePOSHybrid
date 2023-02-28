@@ -1,12 +1,12 @@
-﻿<div style="position: relative; cursor: pointer;background-color:white;height:100px;width:252px" @onclick="@this.Clicked">
+﻿<div style="position: relative; cursor: pointer;padding:unset" @onclick="@this.Clicked">
 
     @* the image *@
-    @*<MudImage Src="@this.Src" Alt="@this.Alt" Height="90" Width="152" Class="rounded-lg" Style="border:thin;border-color:darkgray;border-radius:10px" />*@
+    <MudImage Src="@this.Src" Alt="@this.Alt" Height="90" Class="rounded-lg" Style="border:thin;border-color:darkgray;border-radius:10px;width:100%" />
 
     @* A transparent background for the text *@
     <MudPaper Elevation="0"
               Class="rounded-lg"
-              Style="position: absolute; bottom: 0; left: 0; width: 100px; height:45px; opacity: 0.6">
+              Style="position: absolute; bottom: 0; left: 0; width: 100%; height:45px">
 
         @* Hack: the text is needed to give the transparent part the proper height, but will also display the text in 0.6 transparency *@
         @*<MudText Typo="Typo.body2" Style="font-weight:bold;width: 80px;white-space: nowrap; overflow: hidden;text-overflow: ellipsis;height:40px;" Align="Align.Center">@this.Name</MudText>
@@ -15,8 +15,14 @@
 
     @* The text (in black) *@
     <span style="position: absolute; bottom: 0; left: 0; padding-left:10px;padding-bottom:4px;width: 30px; color: black">
-        <MudText Typo="Typo.body2" Style="font-weight:bold;width: 90px;white-space: nowrap; overflow: hidden;text-overflow: ellipsis">@this.Name</MudText>
+        @*<MudText Typo="Typo.body2" Style="font-weight:bold;width: 90px;white-space: nowrap; overflow: hidden;text-overflow: ellipsis">@this.Name</MudText>*@
         <MudText Typo="Typo.body2" Style="width: 90px;color:dimgrey;white-space: nowrap; overflow: hidden;text-overflow: ellipsis">@this.ShortName</MudText>
+    </span>
+
+    @* The price (in black) *@
+    <span style="position: absolute; bottom: 0; left: 0; padding-left:10px;padding-bottom:4px;width: 30px; color: black">
+        @*<MudText Typo="Typo.body2" Style="font-weight:bold;width: 90px;white-space: nowrap; overflow: hidden;text-overflow: ellipsis">@this.Name</MudText>*@
+        <MudText Typo="Typo.body2" Style="width: 90px;color:dimgrey;white-space: nowrap; overflow: hidden;text-overflow: ellipsis">@this.OptionalSalesPrice</MudText>
     </span>
 
 </div>
@@ -34,6 +40,9 @@
 
     [Parameter]
     public string ShortName { get; set; } = default!;
+
+    [Parameter]
+    public double OptionalSalesPrice { get; set; } = default!;
 
     [Parameter]
     public EventCallback OnClick { get; set; }
