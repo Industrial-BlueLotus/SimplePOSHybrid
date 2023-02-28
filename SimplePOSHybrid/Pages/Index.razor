@@ -34,10 +34,10 @@
                                                         <MudItem xs="3" Class="pa-1">
                                                              @if(@item.ItemImageUrl != null)
                                                             {
-                                                               <CustomImage Src=@item.ItemImageUrl Name=@item.ItemName ShortName=@item.ItemShortName OnClick="@(() => this.Click(item))" />
+                                                               <CustomImage Src=@item.ItemImageUrl ShortName=@item.ItemShortName OptionalSalesPrice=@item.OptionalSalesPrice OnClick="@(() => this.Click(item))" />
                                                             }else
                                                             {
-                                                               <CustomImage Src="./Img/white_box.png" Name=@item.ItemName ShortName=@item.ItemShortName OnClick="@(() => this.Click(item))" />
+                                                               <CustomerImageWh Src="./Img/white_box.png" ShortName=@item.ItemShortName OptionalSalesPrice=@item.OptionalSalesPrice OnClick="@(() => this.Click(item))" />
                                                                
                                                             }
                                                                                               
@@ -79,13 +79,13 @@
                                                 <Column T="Menuitemlist" Field="ItemName" Title="Name" />
                                                 <Column T="Menuitemlist" Title="%">
                                                     <CellTemplate>
-                                                        <MudNumericField @bind-Value="DiscountValue" Style="height:30px" Variant="Variant.Outlined" Step=".5M" />
+                                                        <MudNumericField @bind-Value="DiscountValue" Variant="Variant.Outlined" Step=".5M" />
                                                     </CellTemplate>
                                                 </Column>
                                                 <Column T="Menuitemlist" Title="Qty">
                                                     <CellTemplate>
                                                         
-                                                        <MudNumericField @bind-Value="DecimalValue" Style="height:30px"  Variant="Variant.Outlined" Step=".5M" />
+                                                        <MudNumericField @bind-Value="DecimalValue"   Variant="Variant.Outlined" Step=".5M" />
                                                     </CellTemplate>
                                                 </Column>
                                                 <Column T="Menuitemlist" Field="OptionalSalesPrice" Title="Price" />
@@ -186,8 +186,6 @@
     private List<Menuitemlist> orderitems = new List<Menuitemlist> { };
 
     private IEnumerable<Menuitemlist> Elements = new List<Menuitemlist>();
-
-    private int selectedRowId;
 
     public string cate = "chicken 23";
 
