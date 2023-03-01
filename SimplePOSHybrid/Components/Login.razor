@@ -1,5 +1,5 @@
 ﻿@layout MainLayout
-@page "/home"
+@page "/"
 @using SimplePOSHybrid.Data
 @using SimplePOSHybrid.Models
 @inject LoginMethods ILoginService
@@ -155,32 +155,40 @@
 
     public async void LgnBtnClick()
     {
-        if (loginModel.UserName != string.Empty && loginModel.Password != string.Empty)
+        try
         {
-            var response1 = await ILoginService.Authenticate(loginModel);
-
-            if (!string.IsNullOrWhiteSpace(response1))
+            if (loginModel.UserName != string.Empty && loginModel.Password != string.Empty)
             {
-                LoginResModel arraylog = JsonConvert.DeserializeObject<LoginResModel>(response1);
+                var response1 = await ILoginService.Authenticate(loginModel);
 
-                if (arraylog.ResponseType == 1)
+                if (!string.IsNullOrWhiteSpace(response1))
                 {
-                    Navigation.NavigateTo("home");
-                }
-                else if (arraylog.ResponseType == 2)
-                {
-                    await App.Current.MainPage.DisplayAlert("Alert", "Invalid User", "Cancel");
-                }
+                    LoginResModel arraylog = JsonConvert.DeserializeObject<LoginResModel>(response1);
 
+                    if (arraylog.ResponseType == 1)
+                    {
+                        Navigation.NavigateTo("home");
+                    }
+                    else if (arraylog.ResponseType == 2)
+                    {
+                        await App.Current.MainPage.DisplayAlert("Alert", "Invalid User", "Cancel");
+                    }
+
+
+                }
+                else
+                {
+                    Console.WriteLine(response1);
+                    await App.Current.MainPage.DisplayAlert("Oops", "Invalid username or Password", "Cancel");
+                }
 
             }
-            else
-            {
-                Console.WriteLine(response1);
-                await App.Current.MainPage.DisplayAlert("Oops", "Invalid username or Password", "Cancel");
-            }
-
         }
+        catch (Exception)
+        {
+             await App.Current.MainPage.DisplayAlert("Oops", "Check your Connection !!! ", "Cancel");
+        }
+        
         
 
         

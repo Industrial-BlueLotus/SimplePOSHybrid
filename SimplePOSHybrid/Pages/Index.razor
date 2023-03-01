@@ -1,4 +1,4 @@
-﻿@page "/"
+﻿@page "/home"
 @layout MainLayout
 @using SimplePOSHybrid.Data
 @using SimplePOSHybrid.Models.PartnerMenu
@@ -69,7 +69,7 @@
                                 </MudItem>
                                 <MudItem xs="12" Class="pt-3" Style="height:100%">
                                     <div class="ma-0" style="height:calc( 100vh - 400px );overflow: auto">
-                                        <MudDataGrid Items="@Elements" Hover="true" Striped="true" Dense="true" FixedHeader="true" >
+                                        <MudDataGrid Items="@Elements" Hover="true" Striped="true" Dense="true">
                                            <Columns>
                                                 <Column T="Menuitemlist" StickyLeft="true">
                                                     <CellTemplate>
