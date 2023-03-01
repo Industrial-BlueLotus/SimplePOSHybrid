@@ -6,17 +6,12 @@
     @* A transparent background for the text *@
     <MudPaper Elevation="0"
               Class="rounded-lg"
-              Style="position: absolute; bottom: 0; left: 0; width: 100%; height:45px">
-
-        @* Hack: the text is needed to give the transparent part the proper height, but will also display the text in 0.6 transparency *@
-        @*<MudText Typo="Typo.body2" Style="font-weight:bold;width: 80px;white-space: nowrap; overflow: hidden;text-overflow: ellipsis;height:40px;" Align="Align.Center">@this.Name</MudText>
-        <MudText Typo="Typo.caption" Style="width: 80px;white-space: nowrap; overflow: hidden;text-overflow: ellipsis;height:40px;" Class="d-flex align-center justify-center">@this.ShortName</MudText>*@
-    </MudPaper>
+              Style="position: absolute; bottom: 0; left: 0; width: 100%; height:45px"></MudPaper>
 
     @* The text (in black) *@
     <span style="position: absolute; bottom: inherit; left: 0; padding-left:10px;padding-bottom:4px;width: 30px">
         @*<MudText Typo="Typo.body2" Style="font-weight:bold;width: 90px;white-space: nowrap; overflow: hidden;text-overflow: ellipsis">@this.Name</MudText>*@
-        <MudText Typo="Typo.body2" Style="width: 90px;color:black;font-weight:bold;white-space: nowrap; overflow: hidden;text-overflow: ellipsis">@this.ShortName</MudText>
+        <MudText Typo="Typo.body2" Style="width: calc( 20vh - 0px);color:black;font-weight:bold;white-space: nowrap; overflow: hidden;text-overflow: ellipsis">@this.ShortName</MudText>
     </span>
 
     @* The price (in black) *@
