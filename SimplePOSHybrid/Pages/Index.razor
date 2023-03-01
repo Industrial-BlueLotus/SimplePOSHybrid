@@ -1,4 +1,4 @@
-﻿@page "/home"
+﻿@page "/"
 @layout MainLayout
 @using SimplePOSHybrid.Data
 @using SimplePOSHybrid.Models.PartnerMenu
@@ -134,20 +134,16 @@
                                 <MudItem xs="12" Class="pr-2 pl-2 pt-0  pb-1">
                                     <MudGrid Class="pr-2 pl-2 pt-0 pb-0">
                                         <MudItem xs="3" Class="d-flex align-center justify-center py-4">
-                                <MudButton Variant="Variant.Filled" @onclick="@(() => ClickPrevSale())" StartIcon="@Icons.Material.Filled.Receipt" Style="background-color:#0866c4;color:white" Size="Size.Large">Prev</MudButton>
-                                            
+                                            <MudButton Variant="Variant.Filled" @onclick="@(() => ClickPrevSale())" StartIcon="@Icons.Material.Filled.Receipt" Style="background-color:#0866c4;color:white" Size="Size.Large">Prev</MudButton>                                          
                                         </MudItem>
                                         <MudItem xs="3" Class="d-flex align-center justify-center py-4">
-                                            <MudButton Variant="Variant.Filled" @onclick="@(() => ClickTotdiscount())" StartIcon="@Icons.Material.Filled.Percent" Style="background-color:#0866c4;color:white" Size="Size.Large">Discount</MudButton>
-                                           
+                                            <MudButton Variant="Variant.Filled" @onclick="@(() => ClickTotdiscount())" StartIcon="@Icons.Material.Filled.Percent" Style="background-color:#0866c4;color:white" Size="Size.Large">Discount</MudButton>                                         
                                         </MudItem>
                                         <MudItem xs="3" Class="d-flex align-center justify-center py-4">
-                                            <MudButton Variant="Variant.Filled" @onclick="@(() => ClickRecall())" StartIcon="@Icons.Material.Filled.Autorenew" Style="background-color:#0866c4;color:white" Size="Size.Large">Recall</MudButton>
-                                           
+                                            <MudButton Variant="Variant.Filled" @onclick="@(() => ClickRecall())" StartIcon="@Icons.Material.Filled.Autorenew" Style="background-color:#0866c4;color:white" Size="Size.Large">Recall</MudButton>                                          
                                         </MudItem>
                                         <MudItem xs="3" Class="d-flex align-center justify-center py-4">
-                                            <MudButton Variant="Variant.Filled" @onclick="@(() => ClickReceipt())" StartIcon="@Icons.Material.Filled.ReceiptLong" Style="background-color:#0866c4;color:white" Size="Size.Large">Receipt</MudButton>
-                                           
+                                            <MudButton Variant="Variant.Filled" @onclick="@(() => ClickReceipt())" StartIcon="@Icons.Material.Filled.ReceiptLong" Style="background-color:#0866c4;color:white" Size="Size.Large">Receipt</MudButton>                                           
                                         </MudItem>
                                     </MudGrid>
                                 </MudItem>
