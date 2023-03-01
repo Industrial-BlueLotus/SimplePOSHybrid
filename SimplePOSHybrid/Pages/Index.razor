@@ -67,10 +67,10 @@
                                 <MudItem xs="3" Class="mt-2 pt-2 pb-1">
                                     <MudIconButton Icon="@Icons.Material.Filled.KeyboardArrowDown" OnClick="OpenExtUsers" aria-label="users"></MudIconButton>
                                 </MudItem>
-                                <MudItem xs="12" Class="pt-3" Style="height:100%">
-                                    <div class="ma-0" style="height:calc( 100vh - 400px );overflow: auto">
+                                <MudItem xs="12" Class="pt-2">
+                                    <div  class="ma-0" style="height: calc( 100vh - 400px);overflow: auto">
                                         <MudDataGrid Items="@Elements" Hover="true" Striped="true" Dense="true">
-                                           <Columns>
+                                            <Columns>
                                                 <Column T="Menuitemlist" StickyLeft="true">
                                                     <CellTemplate>
                                                         <MudIconButton OnClick="@(() => RemoveItem(@context.Item))" Color="@Color.Default" Icon="@Icons.Material.Filled.Delete" />
@@ -79,13 +79,13 @@
                                                 <Column T="Menuitemlist" Field="ItemName" Title="Name" />
                                                 <Column T="Menuitemlist" Title="%">
                                                     <CellTemplate>
-                                                        <MudNumericField @bind-Value="DiscountValue" Variant="Variant.Outlined" Step=".5M" />
+                                                        <MudNumericField @bind-Value="DiscountValue" Style="height:30px" Variant="Variant.Outlined" Step=".5M" />
                                                     </CellTemplate>
                                                 </Column>
                                                 <Column T="Menuitemlist" Title="Qty">
                                                     <CellTemplate>
-                                                        
-                                                        <MudNumericField @bind-Value="DecimalValue"   Variant="Variant.Outlined" Step=".5M" />
+                                                        @*<MudNumericField @bind-Value="DecimalValue" Margin="Margin.None" Variant="Variant.Filled" Step=".5M" />*@
+                                                        <MudNumericField @bind-Value="DecimalValue" Style="height:30px" Variant="Variant.Outlined" Step=".5M" />
                                                     </CellTemplate>
                                                 </Column>
                                                 <Column T="Menuitemlist" Field="OptionalSalesPrice" Title="Price" />
@@ -134,7 +134,7 @@
                                 <MudItem xs="12" Class="pr-2 pl-2 pt-0  pb-1">
                                     <MudGrid Class="pr-2 pl-2 pt-0 pb-0">
                                         <MudItem xs="3" Class="d-flex align-center justify-center py-4">
-                                            <MudButton Variant="Variant.Filled" @onclick="@(() => ClickPrevSale())" StartIcon="@Icons.Material.Filled.Reply" Style="background-color:#0866c4;color:white" Size="Size.Large">Prev</MudButton>
+                                <MudButton Variant="Variant.Filled" @onclick="@(() => ClickPrevSale())" StartIcon="@Icons.Material.Filled.Receipt" Style="background-color:#0866c4;color:white" Size="Size.Large">Prev</MudButton>
                                             
                                         </MudItem>
                                         <MudItem xs="3" Class="d-flex align-center justify-center py-4">
@@ -208,6 +208,15 @@
         Load();
 
     }
+
+    //void RowClicked(DataGridRowClickEventArgs<Element> args)
+    //{
+    //    //_events.Insert(0, $"Event = RowClick, Index = {args.RowIndex}, Data = {System.Text.Json.JsonSerializer.Serialize(args.Item)}");
+    //    orderitems.RemoveAt(args.RowIndex);
+    //    Elements = orderitems;
+    //    StateHasChanged();
+    //}
+
 
     public void LoadItems(string cate)
     {

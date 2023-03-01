@@ -30,14 +30,17 @@
   [Parameter]
   public string Alt { get; set; } = string.Empty;
 
-    //[Parameter]
-    //public string Name { get; set; } = default!;
-
     [Parameter]
     public string ShortName { get; set; } = default!;
 
     [Parameter]
-    public double OptionalSalesPrice { get; set; } = default!;
+    public double OptionalSalesPrice
+    {
+        get { return Math.Round(_optionalSalesPrice, 2); }
+        set { _optionalSalesPrice = value; }
+    }
+
+    private double _optionalSalesPrice = 0.00;
 
     [Parameter]
     public EventCallback OnClick { get; set; }
