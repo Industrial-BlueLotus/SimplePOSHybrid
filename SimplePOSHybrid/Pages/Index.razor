@@ -1,4 +1,4 @@
-﻿@page "/"
+﻿@page "/home"
 @layout MainLayout
 @using SimplePOSHybrid.Data
 @using SimplePOSHybrid.Models.PartnerMenu
@@ -77,11 +77,6 @@
                                                     </CellTemplate>
                                                 </Column>
                                                 <Column T="Menuitemlist" Field="ItemName" Title="Name" />
-                                                <Column T="Menuitemlist" Title="%">
-                                                    <CellTemplate>
-                                                        <MudNumericField @bind-Value="DiscountValue" Style="height:30px" Variant="Variant.Outlined" Step=".5M" />
-                                                    </CellTemplate>
-                                                </Column>
                                                 <Column T="Menuitemlist" Title="Qty">
                                                     <CellTemplate>
                                                         @*<MudNumericField @bind-Value="DecimalValue" Margin="Margin.None" Variant="Variant.Filled" Step=".5M" />*@
@@ -89,6 +84,11 @@
                                                     </CellTemplate>
                                                 </Column>
                                                 <Column T="Menuitemlist" Field="OptionalSalesPrice" Title="Price" />
+                                                <Column T="Menuitemlist" Title="%">
+                                                    <CellTemplate>
+                                                        <MudText @bind-Value="DiscountValue" Style="height:30px" Typo="Typo.body2" >@DiscountValue</MudText>
+                                                    </CellTemplate>
+                                                </Column>
                                                 <Column T="Menuitemlist" Title="Total" >
                                                     <CellTemplate>
                                                         <MudText Typo="Typo.body2">@context.Item.OptionalSalesPrice*@DecimalValue</MudText>
@@ -181,7 +181,7 @@
 
     public decimal DecimalValue { get; set; }
 
-    public decimal DiscountValue { get; set; }
+    public double DiscountValue { get; set; } = 0.00;
 
     public List<string> tabscat = new List<string> { };
 

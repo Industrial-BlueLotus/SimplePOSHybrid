@@ -1,5 +1,5 @@
 ﻿@layout MainLayout
-@page "/home"
+@page "/"
 @using SimplePOSHybrid.Data
 @using SimplePOSHybrid.Models
 @inject LoginMethods ILoginService
@@ -48,16 +48,7 @@
                         </MudGrid>
 
                     </MudItem>
-                    <MudItem xs="12" Class="d-flex align-center justify-center pl-16 pr-16 mr-16 ml-16  ">
-                        <MudGrid>
-                            <MudItem xs="2"></MudItem>
-                            <MudItem xs="8">
-                                <MudTextField @bind-Value="Environmentname" Label="Environment Name" Variant="Variant.Outlined" Margin="Margin.Dense"></MudTextField>
-                            </MudItem>
-                            <MudItem xs="2"></MudItem>
-                        </MudGrid>
-
-                    </MudItem>
+                    
                     <MudItem xs="12" Class="d-flex align-center justify-center pl-4 pr-4 mr-16 ml-16 ">
                         <MudButton Variant="Variant.Filled" OnClick="LgnBtnClick" Style="background-color:#02198B;color:white;width:120px;height:45px;font-size:larger;border-radius:10px">
                             Login
@@ -73,7 +64,7 @@
     <MudItem xs="12" Class="d-flex align-center justify-center pa-0" >
         <MudGrid>
             <MudItem xs="2"></MudItem>
-            <MudItem xs="8" Class="d-flex align-center justify-center"><MudImage Src="./Img/banner.jpeg" Width="200" Height="50" Alt="logo" Elevation="25" Class="rounded-lg ma-4" Style="box-shadow:none" /></MudItem>
+                <MudItem xs="8" Class="d-flex align-center justify-center"><MudImage Src="./Img/banner.jpeg" Alt="logo" Elevation="25" Class="rounded-lg ma-4" Style="box-shadow:none;height:calc( 25vh - 100px)" /></MudItem>
             <MudItem xs="2"></MudItem>
         </MudGrid>
     </MudItem>
