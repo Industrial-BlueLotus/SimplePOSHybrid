@@ -33,11 +33,17 @@
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-android33.0|AnyCPU'">
 		<AndroidPackageFormat>apk</AndroidPackageFormat>
-		<AndroidKeyStore>False</AndroidKeyStore>
+		<AndroidKeyStore>True</AndroidKeyStore>
+		<AndroidSigningStorePass>Siva@123</AndroidSigningStorePass>
+		<AndroidSigningKeyAlias>key</AndroidSigningKeyAlias>
+		<AndroidSigningKeyPass>Siva@123</AndroidSigningKeyPass>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-android33.0|AnyCPU'">
-		<AndroidKeyStore>False</AndroidKeyStore>
+		<AndroidKeyStore>True</AndroidKeyStore>
+		<AndroidSigningStorePass>Siva@123</AndroidSigningStorePass>
+		<AndroidSigningKeyAlias>key</AndroidSigningKeyAlias>
+		<AndroidSigningKeyPass>Siva@123</AndroidSigningKeyPass>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows' and '$(Configuration)' == 'Release'">
@@ -48,9 +54,17 @@
 		<RuntimeIdentifier>$(RuntimeIdentifierOverride)</RuntimeIdentifier>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="$(TargetFramework.Contains('-android')) and '$(Configuration)' == 'Release'">
+		<AndroidKeyStore>True</AndroidKeyStore>
+		<AndroidSigningKeyStore>myapp.keystore</AndroidSigningKeyStore>
+		<AndroidSigningKeyAlias>key</AndroidSigningKeyAlias>
+		<AndroidSigningKeyPass>Siva@123</AndroidSigningKeyPass>
+		<AndroidSigningStorePass>Siva@123</AndroidSigningStorePass>
+	</PropertyGroup>
+
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+		<MauiIcon Include="Resources\AppIcon\logo.jpeg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
 
 		<!-- Splash Screen -->
 		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
@@ -67,6 +81,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<None Remove="Resources\Images\logo.jpeg" />
 		<None Remove="Resources\Images\no.jpg" />
 	</ItemGroup>
 
