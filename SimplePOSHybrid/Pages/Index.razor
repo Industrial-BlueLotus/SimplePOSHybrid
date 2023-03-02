@@ -1,4 +1,4 @@
-﻿@page "/home"
+﻿@page "/"
 @layout MainLayout
 @using SimplePOSHybrid.Data
 @using SimplePOSHybrid.Models.PartnerMenu
@@ -52,7 +52,8 @@
                             </MudTabs>
                         </MudItem>
 
-                        <MudItem xs="6" Class="pa-4" >
+            <MudItem xs="6" Class="pa-4" >
+                 <div style="height:calc( 100vh - 80px  )">
                             <MudGrid>
                                 <MudItem xs="2" Class="pt-2 pb-1"></MudItem>
                                 <MudItem xs="6" Class="mt-2 pt-2 pb-1">
@@ -98,7 +99,7 @@
                                         </MudDataGrid>
                                     </div>
                                 </MudItem>
-                                <MudItem xs="12" Class="pa-4">
+                                <MudItem xs="12" Class="pa-2">
                                     <MudPaper Class="pa-4 ma-0" Outlined="true" Elevation="3" Style="background-color:#e6e6e6;border:none">
                                         <MudGrid>
                                             <MudItem xs="12" Class="pt-1 pb-1 ma-0">
@@ -138,35 +139,49 @@
                                 <MudItem xs="12" Class="pr-2 pl-2 pt-0  pb-1">
                                     <MudGrid Class="pr-2 pl-2 pt-0 pb-0">
                                         <MudItem xs="4" Class="d-flex align-center justify-center py-4">
-                                            <MudButton Variant="Variant.Filled" @onclick="@(() => ClickTotdiscount())" StartIcon="@Icons.Material.Filled.Percent" Style="background-color:#0866c4;color:white" Size="Size.Large">Discount</MudButton>                                         
-                                        </MudItem>
+                                    <MudButton Variant="Variant.Filled" @onclick="@(() => ClickTotdiscount())" Class="pa-4" StartIcon="@Icons.Material.Filled.Percent" Style="background-color:#0866c4;color:white;width:80%" Size="Size.Large">Discount</MudButton>
+                                </MudItem>
                                         <MudItem xs="4" Class="d-flex align-center justify-center py-4">
-                                            <MudButton Variant="Variant.Filled" @onclick="@(() => ClickRecall())" StartIcon="@Icons.Material.Filled.Autorenew" Style="background-color:#0866c4;color:white" Size="Size.Large">Recall</MudButton>                                          
-                                        </MudItem>
+                                    <MudButton Variant="Variant.Filled" @onclick="@(() => ClickRecall())" Class="pa-4" StartIcon="@Icons.Material.Filled.Autorenew" Style="background-color:#0866c4;color:white;width:80%" Size="Size.Large">Recall</MudButton>
+                                </MudItem>
                                         <MudItem xs="4" Class="d-flex align-center justify-center py-4">
-                                            <MudButton Variant="Variant.Filled" @onclick="@(() => ClickReceipt())" StartIcon="@Icons.Material.Filled.ReceiptLong" Style="background-color:#0866c4;color:white" Size="Size.Large">Receipt</MudButton>                                           
-                                        </MudItem>
+                                    <MudButton Variant="Variant.Filled" @onclick="@(() => ClickReceipt())" Class="pa-4" StartIcon="@Icons.Material.Filled.ReceiptLong" Style="background-color:#0866c4;color:white;width:80%" Size="Size.Large">Receipt</MudButton>
+                                </MudItem>
                                     </MudGrid>
                                 </MudItem>
-                                <MudItem xs="12">
-                                    <MudGrid >
-                                        <MudItem xs="6" Class="d-flex align-center justify-center">
-                                            <MudGrid>
-                                                <MudItem xs="6" Class="d-flex align-center justify-end py-2">
-                                                    <MudButton Variant="Variant.Filled" @onclick="@(() => ClickPrevSale())" DisableElevation="true" Class="py-4" Style="font-weight:bold; background-color:#053B71;color:white">Prev</MudButton>
-                                                </MudItem>
-                                                <MudItem xs="6" Class="d-flex align-center justify-start py-2">
-                                                    <MudButton Variant="Variant.Filled" DisableElevation="true" Class="py-4" Style="font-weight:bold; background-color:#053B71;color:white">Hold Sale</MudButton>
-                                                </MudItem>
-                                            </MudGrid>
-                                        </MudItem>
-                                        <MudItem xs="6" Class="d-flex align-center justify-center py-2">
-                                            <MudButton @onclick="@(() => PrcdBtnClick())" Variant="Variant.Filled" DisableElevation="true" Class="py-4" Style="font-weight:bold; background-color:#0b6413;color:white">Proceed to Pay</MudButton>
-                                        </MudItem>
-                                    </MudGrid>
+                        <MudItem xs="12" Class="pr-2 pl-2 pt-0  pb-1">
+                            <MudGrid Class="pr-2 pl-2 pt-0 pb-0">
+                                <MudItem xs="3" Class="d-flex align-center justify-end py-4">
+                                    <MudButton Variant="Variant.Filled" @onclick="@(() => ClickPrevSale())" DisableElevation="true" Style="background-color:#053B71;color:white" Class="pa-4" Size="Size.Large">Prev</MudButton>
+                                </MudItem>
+                                <MudItem xs="4" Class="d-flex align-center justify-start py-4">
+                                    <MudButton Variant="Variant.Filled" DisableElevation="true" Style="background-color:#053B71;color:white;width:80%" Class="pa-4" Size="Size.Large">Hold Sale</MudButton>
+                                </MudItem>
+                                <MudItem xs="5" Class="d-flex align-center justify-center py-4">
+                                    <MudButton Variant="Variant.Filled" @onclick="@(() => PrcdBtnClick())" DisableElevation="true" Style="background-color:#0b6413;color:white;width:100%" Class="pa-4" Size="Size.Large">Proceed to Pay</MudButton>
                                 </MudItem>
                             </MudGrid>
                         </MudItem>
+                                @*<MudItem xs="12">
+                                    <MudGrid >
+                                        <MudItem xs="6" Class="d-flex align-center justify-center pa-0">
+                                            <MudGrid>
+                                                <MudItem xs="6" Class="d-flex align-center justify-end pa-0">
+                                                    <MudButton Variant="Variant.Filled" @onclick="@(() => ClickPrevSale())" DisableElevation="true" Style="font-weight:bold; background-color:#053B71;color:white">Prev</MudButton>
+                                                </MudItem>
+                                                <MudItem xs="6" Class="d-flex align-center justify-start pa-0">
+                                                    <MudButton Variant="Variant.Filled" DisableElevation="true" Style="font-weight:bold; background-color:#053B71;color:white">Hold Sale</MudButton>
+                                                </MudItem>
+                                            </MudGrid>
+                                        </MudItem>
+                                        <MudItem xs="6" Class="d-flex align-center justify-center pa-0">
+                                            <MudButton @onclick="@(() => PrcdBtnClick())" Variant="Variant.Filled" DisableElevation="true" Style="font-weight:bold; background-color:#0b6413;color:white;height: 100%;width: 100%">Proceed to Pay</MudButton>
+                                        </MudItem>
+                                    </MudGrid>
+                                </MudItem>*@
+                            </MudGrid>
+                            </div>
+            </MudItem>
        
                     </MudGrid>
                 
