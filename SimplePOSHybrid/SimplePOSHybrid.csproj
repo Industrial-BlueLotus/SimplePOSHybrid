@@ -33,14 +33,14 @@
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-android33.0|AnyCPU'">
 		<AndroidPackageFormat>apk</AndroidPackageFormat>
-		<AndroidKeyStore>True</AndroidKeyStore>
+		<AndroidKeyStore>False</AndroidKeyStore>
 		<AndroidSigningStorePass>Siva@123</AndroidSigningStorePass>
 		<AndroidSigningKeyAlias>key</AndroidSigningKeyAlias>
 		<AndroidSigningKeyPass>Siva@123</AndroidSigningKeyPass>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-android33.0|AnyCPU'">
-		<AndroidKeyStore>True</AndroidKeyStore>
+		<AndroidKeyStore>False</AndroidKeyStore>
 		<AndroidSigningStorePass>Siva@123</AndroidSigningStorePass>
 		<AndroidSigningKeyAlias>key</AndroidSigningKeyAlias>
 		<AndroidSigningKeyPass>Siva@123</AndroidSigningKeyPass>
@@ -64,7 +64,7 @@
 
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\logo.jpeg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\logo1.jpeg" Color="#512BD4" />
 
 		<!-- Splash Screen -->
 		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
