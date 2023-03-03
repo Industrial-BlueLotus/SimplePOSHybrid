@@ -17,6 +17,7 @@
 
     public class Menuitemlist
     {
+        public int ID { set; get; } = 0;
         public string ItemImage { get; set; }
         public string ItemImageUrl { get; set; }
         public string ItemName { get; set; }
