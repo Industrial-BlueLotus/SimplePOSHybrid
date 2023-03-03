@@ -1,4 +1,4 @@
-﻿@page "/"
+﻿@page "/home"
 @layout MainLayout
 @using SimplePOSHybrid.Data
 @using SimplePOSHybrid.Models.PartnerMenu
@@ -8,6 +8,7 @@
 @inject NavigationManager Navigation
 @using System.Text.Json;
 
+
 <MudLayout>
     <MudAppBar Style="background-color:#053B71;color:white" Fixed="false" Dense="false" DisableGutters="false" Class="pa-0" >
         <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start"  />
@@ -16,7 +17,7 @@
         <MudIconButton Icon="@Icons.Material.Filled.Logout" Style="color:white" Href="/" />
     </MudAppBar>
         <MudMainContent Class="pt-0 pb-0 pl-3 pr-3" Style="height:100%" >
-        @*<MudContainer Class="pl-3" Style="background-color:blue;width:100%" Fixed="true">*@
+        
                     <MudGrid Class="pt-3" Style="height:100%">
 
                         <MudItem xs="6" Class="pa-0" Style="background-color:steelblue" >
@@ -77,6 +78,7 @@
                                             }
                                         }
                                         <MudDataGrid Items="@Elements" Hover="true" Striped="true" Dense="true">
+                                           
                                             <Columns>
                                                 <Column T="Menuitemlist" StickyLeft="true">
                                                     <CellTemplate>
@@ -97,16 +99,15 @@
                                                         <MudIconButton Icon="@Icons.Material.Filled.RemoveCircle" Variant="Variant.Filled" Size="Size.Small" @onclick="DecrementCount" />
                                                             </MudItem>
                                                         </MudGrid>
-                                                        @*<MudNumericField @bind-Value="DecimalValue" Style="height:30px" Variant="Variant.Outlined" Step=".5M" />*@
                                                     </CellTemplate>
                                                 </Column>
-                                                <Column T="Menuitemlist" Field="OptionalSalesPrice" Title="Price" />
-                                                <Column T="Menuitemlist" Title="%" >
+                                        <Column T="Menuitemlist" Field="OptionalSalesPrice" Title="Price" CellStyle="text-align: right" />
+                                        <Column T="Menuitemlist" Title="%" CellStyle="text-align: right">
                                                     <CellTemplate>
-                                                        <MudText @bind-Value="DiscountValue" Style="height:30px" Typo="Typo.body2" >@DiscountValue</MudText>
+                                                        <MudText @bind-Value="DiscountValue" Typo="Typo.body2" >@DiscountValue</MudText>
                                                     </CellTemplate>
                                                 </Column>
-                                                <Column T="Menuitemlist" Title="Total">
+                                        <Column T="Menuitemlist" Title="Total" CellStyle="text-align: right">
                                                     <CellTemplate>
                                                         <MudText Typo="Typo.body2">@context.Item.OptionalSalesPrice*@DecimalValue</MudText>
                                                     </CellTemplate>
