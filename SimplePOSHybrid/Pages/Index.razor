@@ -76,7 +76,7 @@
                                                 orderitems[i].ID = i;
                                             }
                                         }
-                                        <MudDataGrid Items="@orderitems" Hover="true" Striped="true" Dense="true">
+                                        <MudDataGrid Items="@Elements" Hover="true" Striped="true" Dense="true">
                                             <Columns>
                                                 <Column T="Menuitemlist" StickyLeft="true">
                                                     <CellTemplate>
@@ -88,13 +88,13 @@
                                                     <CellTemplate>
                                                         <MudGrid Style="padding-left:unset;padding-right:unset">
                                                             <MudItem xs="3"  Class="d-flex align-center justify-center ">
-                                                                <MudIconButton Icon="@Icons.Material.Filled.AddCircle" Variant="Variant.Filled" Size="Size.Small" />
+                                                        <MudIconButton Icon="@Icons.Material.Filled.AddCircle" Variant="Variant.Filled" Size="Size.Small" @onclick="IncrementCount" />
                                                             </MudItem>
                                                             <MudItem xs="6"  Class="d-flex align-center justify-center pa-0">
                                                                 <MudText Typo="Typo.subtitle1">@qty</MudText>
                                                             </MudItem>
                                                             <MudItem xs="3"  Class="d-flex align-center justify-center pa-0">
-                                                                <MudIconButton Icon="@Icons.Material.Filled.RemoveCircle" Variant="Variant.Filled"  Size="Size.Small" />
+                                                        <MudIconButton Icon="@Icons.Material.Filled.RemoveCircle" Variant="Variant.Filled" Size="Size.Small" @onclick="DecrementCount" />
                                                             </MudItem>
                                                         </MudGrid>
                                                         @*<MudNumericField @bind-Value="DecimalValue" Style="height:30px" Variant="Variant.Outlined" Step=".5M" />*@
@@ -214,7 +214,7 @@
 
     public double DiscountValue { get; set; } = 0.00;
 
-    public double qty { get; set; }
+    public double qty { get; set; } = 0;
 
     public List<string> tabscat = new List<string> { };
 
@@ -228,6 +228,7 @@
 
     public ItemModel test;
 
+        
     public async void Load()
     {
         DashboardView dashboard = new DashboardView();
@@ -346,4 +347,13 @@
         Navigation.NavigateTo("order");
     }
 
+    private void IncrementCount()
+    {
+        qty = qty + 0.5;
+    }
+
+    private void DecrementCount()
+    {
+        qty = qty - 0.5;
+    }
 }
