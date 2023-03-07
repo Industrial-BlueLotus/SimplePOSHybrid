@@ -80,7 +80,7 @@
                                         <MudDataGrid Items="@Elements" Hover="true" Striped="true" Dense="true">
                                            
                                             <Columns>
-                                                <Column T="Menuitemlist" StickyLeft="true">
+                                                <Column T="Menuitemlist" StickyLeft="true" Class="removeicon">
                                                     <CellTemplate>
                                                         <MudIconButton OnClick="@(() => RemoveItem(@context.Item))" Color="@Color.Default" Icon="@Icons.Material.Filled.Delete" />
                                                     </CellTemplate>
