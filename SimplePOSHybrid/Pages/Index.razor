@@ -102,7 +102,11 @@
                                                         </MudGrid>
                                                     </CellTemplate>
                                                 </Column>
-                                        <Column T="Menuitemlist" Field="OptionalSalesPrice" Title="Price" CellStyle="text-align: right" />
+                                        <Column T="Menuitemlist" Field="OptionalSalesPrice" Title="Price" CellStyle="text-align: right" >
+                                            <CellTemplate>
+                                                <MudText Typo="Typo.subtitle1">@context.Item.OptionalSalesPrice.ToString("F")</MudText>
+                                            </CellTemplate>         
+                                        </Column>
                                         <Column T="Menuitemlist" Title="%" CellStyle="text-align: right">
                                                     <CellTemplate>
                                                         <MudText @bind-Value="DiscountValue" Typo="Typo.body2" >@DiscountValue</MudText>
