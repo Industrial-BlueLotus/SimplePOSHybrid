@@ -107,9 +107,18 @@
                                                         <MudText @bind-Value="DiscountValue" Typo="Typo.body2" >@DiscountValue</MudText>
                                                     </CellTemplate>
                                                 </Column>
-                                        <Column T="Menuitemlist" Title="Total" CellStyle="text-align: right">
+                                        <Column T="Menuitemlist" Title="Total" CellStyle="text-align: right" >
                                                     <CellTemplate>
-                                                        <MudText Typo="Typo.body2">@context.Item.OptionalSalesPrice*@DecimalValue</MudText>
+                                                         @{
+                                                            //@context.Item.OptionalSalesPrice*@DecimalValue
+                                                            var total = (context.Item.OptionalSalesPrice * qty) *(1- (DiscountValue/100));
+                                                            double truncatedtotal = Math.Round(total, 2);
+                                                        
+                                                          }
+                                                        <MudText Typo="Typo.body2">
+
+                                                    @truncatedtotal
+                                                        </MudText>
                                                     </CellTemplate>
                                                 </Column>
                                             </Columns>
@@ -210,10 +219,9 @@
 
 
 @code{
+    public decimal DecimalValue { get; set; } = 1;
 
-    public decimal DecimalValue { get; set; }
-
-    public double DiscountValue { get; set; } = 0.00;
+    public double DiscountValue { get; set; } = 1.00;
 
     public double qty { get; set; } = 0;
 
