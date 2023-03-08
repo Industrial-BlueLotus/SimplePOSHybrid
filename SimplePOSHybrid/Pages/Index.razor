@@ -85,19 +85,19 @@
                                                         <MudIconButton OnClick="@(() => RemoveItem(@context.Item))" Color="@Color.Default" Icon="@Icons.Material.Filled.Delete" />
                                                     </CellTemplate>
                                                 </Column>
-                                                <Column T="Menuitemlist" Field="ItemName" Title="Name" Class="pr-2" />
+                                                <Column T="Menuitemlist" Field="ItemName" Title="Name" />
                                                 <Column T="Menuitemlist" Field="qty" Title="Qty" >
                                                     <CellTemplate>
                                                         
                                                         <MudGrid Style="padding-left:unset;padding-right:unset">
-                                                    <MudItem xs="3" Class="d-flex align-center justify-center ">
+                                                            <MudItem xs="3"  Class="d-flex align-center justify-center ">
                                                         <MudIconButton Icon="@Icons.Material.Filled.AddCircle" Variant="Variant.Filled" Size="Size.Small" @onclick="(() => context.Item.qty = context.Item.qty + 0.5)" />
                                                             </MudItem>
-                                                    <MudItem xs="6" Class="d-flex align-center justify-center" >
-                                                        <MudTextField @bind-Value="@context.Item.qty" Variant="Variant.Outlined" Margin="Margin.Dense" Style="padding:unset" />
+                                                            <MudItem xs="6"  Class="d-flex align-center justify-center pa-0">
+                                                                <MudText Typo="Typo.subtitle1">@context.Item.qty</MudText>
                                                             </MudItem>
-                                                    <MudItem xs="3" Class="d-flex align-center justify-center" >
-                                                        <MudIconButton Icon="@Icons.Material.Filled.RemoveCircle" Variant="Variant.Filled" Size="Size.Small"  @onclick="(() => context.Item.qty = context.Item.qty - 0.5)" />
+                                                            <MudItem xs="3"  Class="d-flex align-center justify-center pa-0">
+                                                        <MudIconButton Icon="@Icons.Material.Filled.RemoveCircle" Variant="Variant.Filled" Size="Size.Small" @onclick="(() => context.Item.qty = context.Item.qty - 0.5)" />
                                                             </MudItem>
                                                         </MudGrid>
                                                     </CellTemplate>
@@ -242,16 +242,6 @@
 
     }
 
-    //AggregateDefinition<Menuitemlist> _totAggregation = new AggregateDefinition<Menuitemlist>
-    //    {
-    //        Type = AggregateType.Custom,
-    //        CustomAggregate = x =>
-    //        {
-    //            var highestSalary = x.Sum(z => z.trunca);
-    //            //var countOver100Grand = x.Count(z => z.Salary > 100_000);
-    //            return $"Highest: {highestSalary.ToString("C0")} | {countOver100Grand} Over {100000:C0}";
-    //        }
-    //    };
     //AggregateDefinition<Menuitemlist> _totalAggregation = new AggregateDefinition<Menuitemlist>
     //    {
     //        Type = AggregateType.Custom,
