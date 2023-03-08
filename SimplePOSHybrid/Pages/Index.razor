@@ -97,7 +97,7 @@
                                                         <MudTextField @bind-Value="@context.Item.qty"  Margin="Margin.Dense" Style="text-align:center"  />
                                                             </MudItem>
                                                             <MudItem xs="3"  Class="d-flex align-center justify-center">
-                                                        <MudIconButton Icon="@Icons.Material.Filled.RemoveCircle" Variant="Variant.Filled" Size="Size.Small" @onclick="(() => context.Item.qty = context.Item.qty - 0.5)" />
+                                                        <MudIconButton Icon="@Icons.Material.Filled.RemoveCircle" Variant="Variant.Filled" Size="Size.Small" @onclick="(() => {context.Item.qty = context.Item.qty - 0.5; RecalculateTotal();})" />
                                                             </MudItem>
                                                         </MudGrid>
                                                     </CellTemplate>
@@ -141,7 +141,7 @@
                                                         <MudText Typo="Typo.caption" Style="font-weight:bold">Sub Total:</MudText>
                                                     </MudItem>
                                                     <MudItem xs="6" Class="d-flex align-center justify-end">
-                                                <MudText Typo="Typo.caption" Style="font-weight:bold" @bind-Value="subtotal">Rs.600.00</MudText>
+                                                <MudText Typo="Typo.caption" Style="font-weight:bold" @bind-Value="subtotal">@subtotal.ToString("F")</MudText>
                                                     </MudItem>
                                                 </MudGrid>
                                             </MudItem>
@@ -241,6 +241,7 @@
     protected override void OnInitialized()
     {
         Load();
+        
 
     }
 
@@ -327,6 +328,14 @@
         Elements = _orderState.GetElements();
         Console.WriteLine(Elements);
 
+        
+        
+        StateHasChanged();
+    }
+
+    void RecalculateTotal()
+    {
+        subtotal = Elements.Sum(item => item.OptionalSalesPrice);
         StateHasChanged();
     }
 
