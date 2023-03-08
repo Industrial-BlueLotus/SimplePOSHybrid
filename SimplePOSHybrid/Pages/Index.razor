@@ -118,6 +118,8 @@
                                                             
                                                             var total = (context.Item.OptionalSalesPrice * context.Item.qty) * (1- (DiscountValue/100.00));
                                                             double truncatedtotal = Math.Round(total, 2);
+
+                                                            //double subtotal12 = 
                                                         
                                                           }
                                                         <MudText Typo="Typo.body2">
@@ -139,7 +141,7 @@
                                                         <MudText Typo="Typo.caption" Style="font-weight:bold">Sub Total:</MudText>
                                                     </MudItem>
                                                     <MudItem xs="6" Class="d-flex align-center justify-end">
-                                                        <MudText Typo="Typo.caption" Style="font-weight:bold">Rs.600.00</MudText>
+                                                <MudText Typo="Typo.caption" Style="font-weight:bold" @bind-Value="subtotal">Rs.600.00</MudText>
                                                     </MudItem>
                                                 </MudGrid>
                                             </MudItem>
@@ -198,8 +200,6 @@
             </MudItem>
        
                     </MudGrid>
-                
-            @*</MudContainer>*@
         </MudMainContent>
     
      
@@ -210,6 +210,8 @@
     public decimal DecimalValue { get; set; } = 1;
 
     public double DiscountValue { get; set; } = 1.00;
+
+    public double subtotal { get; set; } = 0.00;
 
     public List<string> tabscat = new List<string> { };
 
@@ -242,16 +244,16 @@
 
     }
 
-    //AggregateDefinition<Menuitemlist> _totalAggregation = new AggregateDefinition<Menuitemlist>
-    //    {
-    //        Type = AggregateType.Custom,
-    //        CustomAggregate = x =>
-    //        {
-    //            var total = x.Max(z => z.OptionalSalesPrice*);
+    AggregateDefinition<Menuitemlist> _totalAggregation = new AggregateDefinition<Menuitemlist>
+        {
+            Type = AggregateType.Custom,
+            CustomAggregate = x =>
+            {
+                 var subtotal1 = x.Sum(z => z.OptionalSalesPrice);
                 
-    //            return $" {}";
-    //        }
-    //    };
+                return $"{subtotal1.ToString("C0")}";
+            }
+        };
     //void RowClicked(DataGridRowClickEventArgs<Element> args)
     //{
     //    //_events.Insert(0, $"Event = RowClick, Index = {args.RowIndex}, Data = {System.Text.Json.JsonSerializer.Serialize(args.Item)}");
