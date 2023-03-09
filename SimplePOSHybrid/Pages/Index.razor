@@ -1,4 +1,4 @@
-﻿@page "/home"
+﻿@page "/"
 @layout MainLayout
 @using SimplePOSHybrid.Data
 @using SimplePOSHybrid.Models.PartnerMenu
@@ -104,7 +104,7 @@
                                                 </Column>
                                         <Column T="Menuitemlist" Field="OptionalSalesPrice" Title="Price" CellStyle="text-align:right" >
                                             <CellTemplate>
-                                                <MudText Typo="Typo.subtitle1">@context.Item.OptionalSalesPrice.ToString("F")</MudText>
+                                                <MudText Typo="Typo.subtitle1">@context.Item.OptionalSalesPrice.ToString("0.00")</MudText>
                                             </CellTemplate>         
                                         </Column>
                                         <Column T="Menuitemlist" Title="%" CellStyle="text-align: right">
@@ -126,7 +126,7 @@
                                                           }
                                                         <MudText Typo="Typo.body2">
 
-                                                            @truncatedtotal.ToString("F")
+                                                    @truncatedtotal.ToString("0.00")
                                                         </MudText>
                                                     </CellTemplate>
                                                 </Column>
