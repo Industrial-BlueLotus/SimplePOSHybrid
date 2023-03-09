@@ -18,6 +18,7 @@
     public class Menuitemlist
     {
         public int ID { set; get; } = 0;
+        public double totalmodel { get; set; } = 0.00;
         public string ItemImage { get; set; }
         public string ItemImageUrl { get; set; }
         public string ItemName { get; set; }

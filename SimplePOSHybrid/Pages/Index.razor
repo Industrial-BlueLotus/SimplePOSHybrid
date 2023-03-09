@@ -1,4 +1,4 @@
-﻿@page "/"
+﻿@page "/home"
 @layout MainLayout
 @using SimplePOSHybrid.Data
 @using SimplePOSHybrid.Models.PartnerMenu
@@ -91,13 +91,13 @@
                                                         
                                                         <MudGrid Style="padding-left:unset;padding-right:unset">
                                                             <MudItem xs="3"  Class="d-flex align-center justify-center ">
-                                                        <MudIconButton Icon="@Icons.Material.Filled.AddCircle" Variant="Variant.Filled" Size="Size.Small" @onclick="(() => context.Item.qty = context.Item.qty + 0.5)" />
+                                                        <MudIconButton Icon="@Icons.Material.Filled.AddCircle" Variant="Variant.Filled" Size="Size.Small" @onclick="(() => {context.Item.qty = context.Item.qty + 0.5;RecalculateTotalPlus();})" />
                                                             </MudItem>
                                                             <MudItem xs="6"  Class="d-flex align-center justify-center pa-2">
                                                         <MudTextField @bind-Value="@context.Item.qty"  Margin="Margin.Dense" Style="text-align:center"  />
                                                             </MudItem>
                                                             <MudItem xs="3"  Class="d-flex align-center justify-center">
-                                                        <MudIconButton Icon="@Icons.Material.Filled.RemoveCircle" Variant="Variant.Filled" Size="Size.Small" @onclick="(() => {context.Item.qty = context.Item.qty - 0.5; RecalculateTotal();})" />
+                                                        <MudIconButton Icon="@Icons.Material.Filled.RemoveCircle" Variant="Variant.Filled" Size="Size.Small" @onclick="(() => {context.Item.qty = context.Item.qty - 0.5; RecalculateTotalPlus();})" />
                                                             </MudItem>
                                                         </MudGrid>
                                                     </CellTemplate>
@@ -114,13 +114,15 @@
                                                 </Column>
                                         <Column T="Menuitemlist" Title="Total" CellStyle="text-align: right" >
                                                     <CellTemplate>
-                                                         @{
-                                                            
-                                                            var total = (context.Item.OptionalSalesPrice * context.Item.qty) * (1- (DiscountValue/100.00));
-                                                            double truncatedtotal = Math.Round(total, 2);
+                                                @{
 
-                                                            //double subtotal12 = 
-                                                        
+                                                    var total = (context.Item.OptionalSalesPrice * context.Item.qty) * (1- (DiscountValue/100.00));
+                                                    double truncatedtotal = Math.Round(total, 2);
+                                                    //Menuitemlist qwe = new();
+                                                    //qwe.totalmodel = truncatedtotal;
+
+                                                    
+
                                                           }
                                                         <MudText Typo="Typo.body2">
 
@@ -141,6 +143,7 @@
                                                         <MudText Typo="Typo.caption" Style="font-weight:bold">Sub Total:</MudText>
                                                     </MudItem>
                                                     <MudItem xs="6" Class="d-flex align-center justify-end">
+                                                        
                                                 <MudText Typo="Typo.caption" Style="font-weight:bold" @bind-Value="subtotal">@subtotal.ToString("F")</MudText>
                                                     </MudItem>
                                                 </MudGrid>
@@ -225,7 +228,7 @@
 
     public ItemModel test;
 
-        
+
     public async void Load()
     {
         DashboardView dashboard = new DashboardView();
@@ -241,7 +244,7 @@
     protected override void OnInitialized()
     {
         Load();
-        
+
 
     }
 
@@ -251,7 +254,7 @@
             CustomAggregate = x =>
             {
                  var subtotal1 = x.Sum(z => z.OptionalSalesPrice);
-                
+
                 return $"{subtotal1.ToString("C0")}";
             }
         };
@@ -328,14 +331,17 @@
         Elements = _orderState.GetElements();
         Console.WriteLine(Elements);
 
-        
-        
+
+
         StateHasChanged();
     }
 
-    void RecalculateTotal()
+    void RecalculateTotalPlus()
     {
         subtotal = Elements.Sum(item => item.OptionalSalesPrice);
+        //Menuitemlist sq = new();
+        //sq.totalmodel = Elements.Sum(item => item.totalmodel);
+        //Console.WriteLine(sq.totalmodel);
         StateHasChanged();
     }
 
