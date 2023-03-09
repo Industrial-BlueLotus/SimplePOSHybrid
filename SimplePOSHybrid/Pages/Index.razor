@@ -22,7 +22,7 @@
 
                         <MudItem xs="6" Class="pa-0" Style="background-color:steelblue" >
                             <MudTabs Elevation="2" Rounded="true" PanelClass="pa-0" Class="pr-0" PrevIcon="@Icons.Material.Filled.SkipPrevious" NextIcon="@Icons.Material.Filled.SkipNext"
-                                AlwaysShowScrollButtons="true" Color="@Color.Primary" Style="border:thin;border-color:darkgray;border-radius:10px">
+                                AlwaysShowScrollButtons="true" Color="@Color.Primary" DisableSliderAnimation="false" Style="border:thin;border-color:darkgray;border-radius:10px">
                                      @foreach (string category in tabscat)
                                      {
 
@@ -71,11 +71,11 @@
                                 </MudItem>
                                 <MudItem xs="12" Class="pt-2">
                                     <div  class="ma-0" style="height: calc( 100vh - 400px);overflow: auto">
-                                        @{
-                                            for (int i = 0; i < orderitems.Count(); i++)
-                                            {
-                                                orderitems[i].ID = i;
-                                            }
+                                @{
+                                    for (int i = 0; i < Elements.Count(); i++)
+                                    {
+                                        Elements.ElementAt<Menuitemlist>(i).ID = i;
+                                    }
                                         }
                                         <MudDataGrid Items="@Elements" Hover="true" Striped="true" Dense="true">
                                            
@@ -86,18 +86,18 @@
                                                     </CellTemplate>
                                                 </Column>
                                                 <Column T="Menuitemlist" Field="ItemName" Title="Name"  />
-                                        <Column T="Menuitemlist" Field="qty" Title="Qty" >
+                                                <Column T="Menuitemlist" Field="qty" Title="Qty" >
                                                     <CellTemplate>
                                                         
                                                         <MudGrid Style="padding-left:unset;padding-right:unset">
                                                             <MudItem xs="3"  Class="d-flex align-center justify-center ">
-                                                        <MudIconButton Icon="@Icons.Material.Filled.AddCircle" Variant="Variant.Filled" Size="Size.Small" @onclick="(() => {context.Item.qty = context.Item.qty + 0.5;RecalculateTotalPlus();})" />
+                                                        <MudIconButton Icon="@Icons.Material.Filled.AddCircle" Variant="Variant.Filled" Size="Size.Small" @onclick="(() => {context.Item.qty = context.Item.qty + 1;RecalculateTotalPlus();})" />
                                                             </MudItem>
                                                             <MudItem xs="6"  Class="d-flex align-center justify-center pa-2">
-                                                        <MudTextField @bind-Value="@context.Item.qty"  Margin="Margin.Dense" Style="text-align:center"  />
+                                                        <MudTextField @bind-Value="@context.Item.qty"  Margin="Margin.Dense" Style="text-align:center"   />
                                                             </MudItem>
                                                             <MudItem xs="3"  Class="d-flex align-center justify-center">
-                                                        <MudIconButton Icon="@Icons.Material.Filled.RemoveCircle" Variant="Variant.Filled" Size="Size.Small" @onclick="(() => {context.Item.qty = context.Item.qty - 0.5; RecalculateTotalPlus();})" />
+                                                        <MudIconButton Icon="@Icons.Material.Filled.RemoveCircle" Variant="Variant.Filled" Size="Size.Small" @onclick="(() => {context.Item.qty = context.Item.qty - 1; RecalculateTotalPlus();})" />
                                                             </MudItem>
                                                         </MudGrid>
                                                     </CellTemplate>
@@ -109,7 +109,7 @@
                                         </Column>
                                         <Column T="Menuitemlist" Title="%" CellStyle="text-align: right">
                                                     <CellTemplate>
-                                                        <MudText @bind-Value="DiscountValue" Typo="Typo.body2" >@DiscountValue</MudText>
+                                                        <MudText @bind-Value="DiscountValue" Typo="Typo.body2" >@context.Item.ID</MudText>
                                                     </CellTemplate>
                                                 </Column>
                                         <Column T="Menuitemlist" Title="Total" CellStyle="text-align: right" >
@@ -144,7 +144,7 @@
                                                     </MudItem>
                                                     <MudItem xs="6" Class="d-flex align-center justify-end">
                                                         
-                                                <MudText Typo="Typo.caption" Style="font-weight:bold" @bind-Value="subtotal">@subtotal.ToString("F")</MudText>
+                                                <MudText Typo="Typo.caption" Style="font-weight:bold" @bind-Value="subtotal">@subtotal.ToString("0.00")</MudText>
                                                     </MudItem>
                                                 </MudGrid>
                                             </MudItem>
@@ -347,8 +347,8 @@
 
     private void RemoveItem(Menuitemlist x)
     {
-        orderitems = orderitems.Where(u => u.ID != x.ID).ToList();
-        Elements = orderitems;
+        Elements = Elements.Where(u => u.ID != x.ID).ToList();
+        //Elements = orderitems;
         StateHasChanged();
     }
 
