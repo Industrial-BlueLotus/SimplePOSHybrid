@@ -74,7 +74,7 @@
                                 @{
                                     for (int i = 0; i < Elements.Count(); i++)
                                     {
-                                        Elements.ElementAt<Menuitemlist>(i).ID = i;
+                                        //Elements.ElementAt<Menuitemlist>(i).ID = i;
                                     }
                                         }
                                         <MudDataGrid Items="@Elements" Hover="true" Striped="true" Dense="true">
@@ -347,8 +347,8 @@
 
     private void RemoveItem(Menuitemlist x)
     {
-        Elements = Elements.Where(u => u.ID != x.ID).ToList();
-        //Elements = orderitems;
+        orderitems = Elements.Where(u => u.ItemName != x.ItemName).ToList();
+        Elements = orderitems;
         StateHasChanged();
     }
 

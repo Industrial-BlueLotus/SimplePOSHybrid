@@ -92,31 +92,6 @@
                                 </Columns>
                             </MudDataGrid>
                         </div>
-@*                                <div id="unique_id_scroll_section" class="ma-0" style="height: calc( 100vh - 380px);overflow: auto">
-                                        <MudDataGrid Items="@Elements" Hover="true" Striped="true" Dense="true">
-                                            <Columns>
-                                                <Column T="Menuitemlist" StickyLeft="true">
-                                                    <CellTemplate>
-                                                        <MudIconButton OnClick="@(() => RemoveItem(@context.Item))" Color="@Color.Default" Icon="@Icons.Material.Filled.Delete" />
-                                                    </CellTemplate>
-                                                </Column>
-                                                <Column T="Menuitemlist" Field="ItemName" Title="Name" />
-                                                <Column T="Menuitemlist" Title="%">
-                                                    <CellTemplate>
-                                                        <MudNumericField @bind-Value="DiscountValue" Style="height:30px" Variant="Variant.Outlined" Step=".5M" />
-                                                    </CellTemplate>
-                                                </Column>
-                                                <Column T="Menuitemlist" Title="Qty">
-                                                    <CellTemplate>
-                                                        <MudNumericField @bind-Value="DecimalValue" Margin="Margin.None" Variant="Variant.Filled" Step=".5M" />
-                                                        <MudNumericField @bind-Value="DecimalValue" Style="height:30px" Variant="Variant.Outlined" Step=".5M" />
-                                                    </CellTemplate>
-                                                </Column>
-                                                <Column T="Menuitemlist" Field="OptionalSalesPrice" Title="Price" />
-                                                <Column T="Menuitemlist" Title="Total" />
-                                            </Columns>
-                                        </MudDataGrid>
-                                    </div>*@
                         </MudItem>
                     <MudItem xs="12" Class="pa-4">
                         <MudPaper Class="pa-4 ma-0" Outlined="true" Elevation="3" Style="background-color:#e6e6e6;border:none">
@@ -279,7 +254,7 @@
     void RemoveItem(Menuitemlist x)
     {
         //orderitems.RemoveAt(0);
-        orderitems = orderitems.Where(u => u.ItemName != x.ItemName).ToList();
+        orderitems = Elements.Where(u => u.ItemName != x.ItemName).ToList();
         Elements = orderitems;
         StateHasChanged();
     }
