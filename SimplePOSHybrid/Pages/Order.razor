@@ -35,11 +35,11 @@
                         <MudItem xs="12" Class="pt-2">
                         <div class="ma-0" style="height: calc( 100vh - 400px);overflow: auto">
                             @{
-                                for (int i = 0; i < orderitems.Count(); i++)
-                                {
-                                    orderitems[i].ID = i;
+                                    for (int i = 0; i < orderitems.Count(); i++)
+                                    {
+                                        orderitems[i].ID = i;
+                                    }
                                 }
-                            }
                             <MudDataGrid Items="@Elements" Hover="true" Striped="true" Dense="true">
 
                                 <Columns>

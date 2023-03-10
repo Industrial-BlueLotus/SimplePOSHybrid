@@ -92,20 +92,20 @@
 
                                                 <MudGrid Style="padding-left:unset;padding-right:unset">
                                                     <MudItem xs="3" Class="d-flex align-center justify-center ">
-                                                        <MudIconButton Icon="@Icons.Material.Filled.AddCircle" Variant="Variant.Filled" Size="Size.Small" @onclick="(() => {context.Item.qty = context.Item.qty + 0.5;RecalculateTotalPlus();})" />
+                                                        <MudIconButton Icon="@Icons.Material.Filled.AddCircle" Variant="Variant.Filled" Size="Size.Small" @onclick="(() => {context.Item.qty = context.Item.qty + 1;RecalculateTotal();})" />
                                                     </MudItem>
                                                     <MudItem xs="6" Class="d-flex align-center justify-center pa-2">
                                                         <MudTextField @bind-Value="@context.Item.qty" Margin="Margin.Dense" Style="text-align:center" />
                                                     </MudItem>
                                                     <MudItem xs="3" Class="d-flex align-center justify-center">
-                                                        <MudIconButton Icon="@Icons.Material.Filled.RemoveCircle" Variant="Variant.Filled" Size="Size.Small" @onclick="(() => {context.Item.qty = context.Item.qty - 0.5; RecalculateTotalPlus();})" />
+                                                        <MudIconButton Icon="@Icons.Material.Filled.RemoveCircle" Variant="Variant.Filled" Size="Size.Small" @onclick="(() => {context.Item.qty = context.Item.qty - 1; RecalculateTotal();})" />
                                                     </MudItem>
                                                 </MudGrid>
                                             </CellTemplate>
                                         </Column>
                                         <Column T="Menuitemlist" Field="OptionalSalesPrice" Title="Price" CellStyle="text-align:right">
                                             <CellTemplate>
-                                                <MudText Typo="Typo.subtitle1">@context.Item.OptionalSalesPrice.ToString("F")</MudText>
+                                                <MudText Typo="Typo.subtitle1">@context.Item.OptionalSalesPrice.ToString("0.00")</MudText>
                                             </CellTemplate>
                                         </Column>
                                         <Column T="Menuitemlist" Title="%" CellStyle="text-align: right">
@@ -119,15 +119,11 @@
 
                                                     var total = (context.Item.OptionalSalesPrice * context.Item.qty) * (1 - (DiscountValue / 100.00));
                                                     double truncatedtotal = Math.Round(total, 2);
-                                                    //Menuitemlist qwe = new();
-                                            //qwe.totalmodel = truncatedtotal;
-
-
 
                                                 }
                                                 <MudText Typo="Typo.body2">
 
-                                                    @truncatedtotal.ToString("F")
+                                                    @truncatedtotal.ToString("0.00")
                                                 </MudText>
                                             </CellTemplate>
                                         </Column>
@@ -145,7 +141,7 @@
                                             </MudItem>
                                             <MudItem xs="6" Class="d-flex align-center justify-end">
 
-                                                <MudText Typo="Typo.caption" Style="font-weight:bold" @bind-Value="subtotal">@subtotal.ToString("F")</MudText>
+                                                <MudText Typo="Typo.caption" Style="font-weight:bold" @bind-Value="subtotal">Rs.@subtotal.ToString("0.00")</MudText>
                                             </MudItem>
                                         </MudGrid>
                                     </MudItem>
@@ -155,7 +151,7 @@
                                                 <MudText Typo="Typo.caption" Style="font-weight:bold">Discount:</MudText>
                                             </MudItem>
                                             <MudItem xs="6" Class="d-flex align-center justify-end">
-                                                <MudText Typo="Typo.caption" Style="font-weight:bold">10%</MudText>
+                                                <MudText Typo="Typo.caption" Style="font-weight:bold" @bind-Value="FinalDiscount">Rs.@FinalDiscount.ToString("0.00")</MudText>
                                             </MudItem>
                                         </MudGrid>
                                     </MudItem>
@@ -166,7 +162,7 @@
 
                                             </MudItem>
                                             <MudItem xs="6" Class="d-flex align-center justify-end">
-                                                <MudText Typo="Typo.caption" Style="font-weight:bold">Rs.600.00</MudText>
+                                                <MudText Typo="Typo.caption" Style="font-weight:bold" @bind-Value="NetTotal">Rs.@NetTotal.ToString("0.00")</MudText>
                                             </MudItem>
                                         </MudGrid>
                                     </MudItem>
@@ -213,7 +209,13 @@
 @code {
     public decimal DecimalValue { get; set; } = 1;
 
+    public double NetTotal { get; set; } = 0.00;
+
     public double DiscountValue { get; set; } = 1.00;
+
+    public double FinalDiscountPer { get; set; } = 10.00;
+
+    public double FinalDiscount { get; set; } = 0.00;
 
     public double subtotal { get; set; } = 0.00;
 
@@ -248,18 +250,6 @@
 
 
     }
-
-    AggregateDefinition<Menuitemlist> _totalAggregation = new AggregateDefinition<Menuitemlist>
-        {
-            Type = AggregateType.Custom,
-            CustomAggregate = x =>
-            {
-                var subtotal1 = x.Sum(z => z.OptionalSalesPrice);
-
-                return $"{subtotal1.ToString("C0")}";
-            }
-        };
-    
 
     public void LoadItems(string cate)
     {
@@ -322,16 +312,29 @@
         _orderState.ElementMthd(orderitems);
         Elements = _orderState.GetElements();
         Console.WriteLine(Elements);
+        RecalculateTotal();
         StateHasChanged();
     }
 
-    void RecalculateTotalPlus()
+    void RecalculateTotal()
     {
         subtotal = Elements.Sum(item => item.OptionalSalesPrice);
-        //Menuitemlist sq = new();
-        //sq.totalmodel = Elements.Sum(item => item.totalmodel);
-        //Console.WriteLine(sq.totalmodel);
         StateHasChanged();
+
+        double totalre = 0.00;
+        foreach(var it in Elements)
+        {
+            totalre += (it.OptionalSalesPrice * it.qty) * (1 - (DiscountValue / 100.00));
+            subtotal = Math.Round(totalre, 2);
+        }
+
+
+        FinalDiscount = subtotal * (FinalDiscountPer/100.00);
+        FinalDiscount = Math.Round(FinalDiscount, 2);
+        NetTotal = subtotal * (1-FinalDiscountPer/100.00);
+        NetTotal = Math.Round(NetTotal, 2);
+
+
     }
 
     private void RemoveItem(Menuitemlist x)
