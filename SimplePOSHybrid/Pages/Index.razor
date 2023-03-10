@@ -91,13 +91,13 @@
                                                         
                                                         <MudGrid Style="padding-left:unset;padding-right:unset">
                                                             <MudItem xs="3"  Class="d-flex align-center justify-center ">
-                                                        <MudIconButton Icon="@Icons.Material.Filled.AddCircle" Variant="Variant.Filled" Size="Size.Small" @onclick="(() => {context.Item.qty = context.Item.qty + 0.5;RecalculateTotalPlus();})" />
+                                                        <MudIconButton Icon="@Icons.Material.Filled.AddCircle" Variant="Variant.Filled" Size="Size.Small" @onclick="(() => {context.Item.qty = context.Item.qty + 1;RecalculateTotalPlus();})" />
                                                             </MudItem>
                                                             <MudItem xs="6"  Class="d-flex align-center justify-center pa-2">
                                                         <MudTextField @bind-Value="@context.Item.qty"  Margin="Margin.Dense" Style="text-align:center"  />
                                                             </MudItem>
                                                             <MudItem xs="3"  Class="d-flex align-center justify-center">
-                                                        <MudIconButton Icon="@Icons.Material.Filled.RemoveCircle" Variant="Variant.Filled" Size="Size.Small" @onclick="(() => {context.Item.qty = context.Item.qty - 0.5; RecalculateTotalPlus();})" />
+                                                        <MudIconButton Icon="@Icons.Material.Filled.RemoveCircle" Variant="Variant.Filled" Size="Size.Small" @onclick="(() => {context.Item.qty = context.Item.qty - 1; RecalculateTotalPlus();})" />
                                                             </MudItem>
                                                         </MudGrid>
                                                     </CellTemplate>
@@ -144,7 +144,7 @@
                                                     </MudItem>
                                                     <MudItem xs="6" Class="d-flex align-center justify-end">
                                                         
-                                                <MudText Typo="Typo.caption" Style="font-weight:bold" @bind-Value="subtotal">@subtotal.ToString("F")</MudText>
+                                                <MudText Typo="Typo.caption" Style="font-weight:bold" @bind-Value="subtotal">@subtotal.ToString("0.00")</MudText>
                                                     </MudItem>
                                                 </MudGrid>
                                             </MudItem>
@@ -331,8 +331,6 @@
         Elements = _orderState.GetElements();
         Console.WriteLine(Elements);
 
-
-
         StateHasChanged();
     }
 
@@ -348,7 +346,8 @@
     private void RemoveItem(Menuitemlist x)
     {
         orderitems = orderitems.Where(u => u.ID != x.ID).ToList();
-        Elements = orderitems;
+        _orderState.ElementMthd(orderitems);
+        Elements = _orderState.GetElements();
         StateHasChanged();
     }
 

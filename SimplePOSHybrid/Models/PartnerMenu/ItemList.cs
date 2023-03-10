@@ -66,7 +66,7 @@
         public object[] itemAllergens { get; set; }
         public Productgroup[] productGroups { get; set; }
         public Productgroupsitem[] productGroupsItem { get; set; }
-        public double qty { get; set; } = 0.0;
+        public double qty { get; set; } = 1.0;
     }
 
     public class Productgroup
