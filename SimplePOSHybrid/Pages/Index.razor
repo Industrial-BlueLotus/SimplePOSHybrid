@@ -1,4 +1,4 @@
-﻿@page "/home"
+﻿@page "/"
 @layout MainLayout
 @using SimplePOSHybrid.Data
 @using SimplePOSHybrid.Models.PartnerMenu
@@ -82,7 +82,9 @@
                                     <Columns>
                                         <Column T="Menuitemlist" StickyLeft="true" Class="removeicon">
                                             <CellTemplate>
-                                                <MudIconButton OnClick="@(() => RemoveItem(@context.Item))" Color="@Color.Default" Icon="@Icons.Material.Filled.Delete" />
+                                                <MudIconButton OnClick="@(() => ClickConfirmDelete(@context.Item))" Color="@Color.Default" Icon="@Icons.Material.Filled.Delete" />
+
+                                                @*<MudIconButton OnClick="@(() => RemoveItem(@context.Item))" Color="@Color.Default" Icon="@Icons.Material.Filled.Delete" />*@
                                             </CellTemplate>
                                         </Column>
                                         <Column T="Menuitemlist" Field="ItemName" Title="Name" />
@@ -184,7 +186,7 @@
                         <MudItem xs="12" Class="pr-2 pl-2 pt-0  pb-1">
                             <MudGrid Class="pr-2 pl-2 pt-0 pb-0">
                                 <MudItem xs="3" Class="d-flex align-center justify-end py-4">
-                                    <MudButton Variant="Variant.Filled" @onclick="@(() => ClickPrevSale())" DisableElevation="true" Style="background-color:#053B71;color:white" Class="pa-4" Size="Size.Large">Prev</MudButton>
+                                    <MudButton Variant="Variant.Filled" @onclick="@(() => ClickPrevSale())" DisableElevation="true" Style="background-color:#053B71;color:white" Class="pa-4" Size="Size.Large">Void</MudButton>
                                 </MudItem>
                                 <MudItem xs="4" Class="d-flex align-center justify-start py-4">
                                     <MudButton Variant="Variant.Filled" DisableElevation="true" Style="background-color:#053B71;color:white;width:80%" Class="pa-4" Size="Size.Large">Hold Sale</MudButton>
@@ -256,6 +258,16 @@
         tabscatitm = DashboardView.DisplayItem(test, cate);
         StateHasChanged();
 
+    }
+
+    private void ClickConfirmDelete(Menuitemlist x)
+    {
+        var parameters = new DialogParameters();
+        parameters.Add("TitleText", "ALERT!");
+        parameters.Add("ContentText", "Do you need to remove the item");
+        parameters.Add("ButtonText1", "Yes");
+        parameters.Add("ButtonText2", "No");
+        DialogService.Show<ConfirmDelete>("Choose Confirm Delete", parameters);
     }
 
     private void ClickReceipt()
