@@ -1,4 +1,4 @@
-﻿@page "/"
+﻿@page "/home"
 @layout MainLayout
 @using SimplePOSHybrid.Data
 @using SimplePOSHybrid.Models.PartnerMenu
@@ -260,14 +260,22 @@
 
     }
 
-    private void ClickConfirmDelete(Menuitemlist x)
+    private async void ClickConfirmDelete(Menuitemlist x)
     {
         var parameters = new DialogParameters();
+        parameters.Add("Elementpara", x);
         parameters.Add("TitleText", "ALERT!");
         parameters.Add("ContentText", "Do you need to remove the item");
         parameters.Add("ButtonText1", "Yes");
         parameters.Add("ButtonText2", "No");
-        DialogService.Show<ConfirmDelete>("Choose Confirm Delete", parameters);
+        var dialog = DialogService.Show<ConfirmDelete>("Choose Confirm Delete", parameters);
+        using var task = dialog.Result;
+        var result = await task;
+        if (!result.Cancelled)
+        {
+            RemoveItem(x);
+        }
+        StateHasChanged();
     }
 
     private void ClickReceipt()

@@ -25,7 +25,7 @@
             <MudItem xs="12" Class="d-flex align-center justify-center py-4 ">
                 <MudGrid>
                     <MudItem xs="6" Class="d-flex align-center justify-center py-4">
-                         <MudButton Style=" background-color:#053B71;color:white;font-size:small" Variant="Variant.Filled" @onclick="(() => {Submit(); })">@ButtonText1</MudButton>
+                        <MudButton Style=" background-color:#053B71;color:white;font-size:small" Variant="Variant.Filled" @onclick="(() => {Submit(); RemoveItem(Elementpara) ;})">@ButtonText1</MudButton>
                    
                         @*<MudButton Style=" background-color:#053B71;color:white;font-size:small" Variant="Variant.Filled" OnClick="Submit">@ButtonText1</MudButton>*@
                     </MudItem>
@@ -41,6 +41,8 @@
 
 @code {
     [CascadingParameter] MudDialogInstance MudDialog { get; set; }
+
+    [Parameter] public Menuitemlist Elementpara { get; set; }
 
     [Parameter] public string TitleText { get; set; }
 
@@ -58,10 +60,7 @@
 
     private void RemoveItem(Menuitemlist x)
     {
-        orderitems = orderitems.Where(u => u.ID != x.ID).ToList();
-        _orderState.ElementMthd(orderitems);
-        Elements = _orderState.GetElements();
-        StateHasChanged();
+      MudDialog.Close(DialogResult.Ok(true));
     }
 
 
