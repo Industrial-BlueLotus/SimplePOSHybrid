@@ -1,4 +1,4 @@
-﻿@page "/home"
+﻿@page "/"
 @layout MainLayout
 @using SimplePOSHybrid.Data
 @using SimplePOSHybrid.Models.PartnerMenu
@@ -116,15 +116,14 @@
                                         </Column>
                                         <Column T="Menuitemlist" Title="Total" CellStyle="text-align: right">
                                             <CellTemplate>
-                                                @{
+                                                @*@{
 
                                                     var total = (context.Item.OptionalSalesPrice * context.Item.qty) * (1 - (DiscountValue / 100.00));
                                                     double truncatedtotal = Math.Round(total, 2);
 
-                                                }
+                                                }*@
                                                 <MudText Typo="Typo.body2">
-
-                                                    @truncatedtotal.ToString("0.00")
+                                                    @context.Item.TruncatedTotal.ToString("0.00")
                                                 </MudText>
                                             </CellTemplate>
                                         </Column>
@@ -142,7 +141,7 @@
                                             </MudItem>
                                             <MudItem xs="6" Class="d-flex align-center justify-end">
 
-                                                <MudText Typo="Typo.caption" Style="font-weight:bold" @bind-Value="subtotal">Rs.@subtotal.ToString("0.00")</MudText>
+                                                <MudText Typo="Typo.caption" Style="font-weight:bold" @bind-Value="SubTotal">Rs.@SubTotal.ToString("0.00")</MudText>
                                             </MudItem>
                                         </MudGrid>
                                     </MudItem>
@@ -218,7 +217,13 @@
 
     public double FinalDiscount { get; set; } = 0.00;
 
-    public double subtotal { get; set; } = 0.00;
+    public double _subtotal { get; set; } = 0.00;
+
+    public double SubTotal
+    {
+    get { return _subtotal; }
+        set { _subtotal = Elements.Sum(e => e.TruncatedTotal); }
+    }
 
     public List<string> tabscat = new List<string> { };
 
@@ -337,20 +342,20 @@
 
     void RecalculateTotal()
     {
-        subtotal = Elements.Sum(item => item.OptionalSalesPrice);
-        StateHasChanged();
+        //subtotal = Elements.Sum(item => item.OptionalSalesPrice);
+        //StateHasChanged();
 
-        double totalre = 0.00;
-        foreach(var it in Elements)
-        {
-            totalre += (it.OptionalSalesPrice * it.qty) * (1 - (DiscountValue / 100.00));
-            subtotal = Math.Round(totalre, 2);
-        }
+        //double totalre = 0.00;
+        //foreach(var it in Elements)
+        //{
+        //    totalre += (it.OptionalSalesPrice * it.qty) * (1 - (DiscountValue / 100.00));
+        //    subtotal = Math.Round(totalre, 2);
+        //}
 
 
-        FinalDiscount = subtotal * (FinalDiscountPer/100.00);
+        FinalDiscount = SubTotal * (FinalDiscountPer / 100.00);
         FinalDiscount = Math.Round(FinalDiscount, 2);
-        NetTotal = subtotal * (1-FinalDiscountPer/100.00);
+        NetTotal = SubTotal * (1 - FinalDiscountPer / 100.00);
         NetTotal = Math.Round(NetTotal, 2);
 
 
