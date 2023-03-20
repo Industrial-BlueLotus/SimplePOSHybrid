@@ -67,9 +67,6 @@
         public Productgroup[] productGroups { get; set; }
         public Productgroupsitem[] productGroupsItem { get; set; }
         public double qty { get; set; } = 1.0;
-        public int DiscountValue { get; set; }
-        private double Total => (OptionalSalesPrice * qty) * (1 - (DiscountValue / 100.00));
-        public double TruncatedTotal => Math.Round(Total, 2);
     }
 
     public class Productgroup
