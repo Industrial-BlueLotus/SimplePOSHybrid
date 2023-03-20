@@ -1,0 +1,6 @@
+
+keytool -genkey -v -keystore myapp.keystore -alias key -keyalg RSA -keysize 2048 -validity 10000
+
+notepad builderandroid.bat
+
+dotnet publish -f:net7.0-android33.0 -c:Release /p:AndroidSigningKeyPass=Siva@123 /p:AndroidSigningStorePass=Siva@123

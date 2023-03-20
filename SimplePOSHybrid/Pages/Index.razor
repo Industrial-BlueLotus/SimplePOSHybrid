@@ -1,4 +1,4 @@
-﻿@page "/home"
+﻿@page "/"
 @layout MainLayout
 @using SimplePOSHybrid.Data
 @using SimplePOSHybrid.Models.PartnerMenu
@@ -34,11 +34,11 @@
                                         <MudItem xs="3" Class="pa-1">
                                             @if (@item.ItemImageUrl != null)
                                             {
-                                                <CustomImage Src=@item.ItemImageUrl ShortName=@item.ItemShortName OptionalSalesPrice=@item.OptionalSalesPrice OnClick="@(() => this.Click(item))" />
+                                                <CustomImage Src=@item.ItemImageUrl ShortName=@item.ItemShortName OptionalSalesPrice=@item.OptionalSalesPrice OnClick="@(() => Click(item))" />
                                             }
                                             else
                                             {
-                                                <CustomerImageWh Src="./Img/white_box.png" ShortName=@item.ItemShortName OptionalSalesPrice=@item.OptionalSalesPrice OnClick="@(() => this.Click(item))" />
+                                                <CustomerImageWh Src="./Img/white_box.png" ShortName=@item.ItemShortName OptionalSalesPrice=@item.OptionalSalesPrice OnClick="@(() => Click(item))" />
 
                                             }
 
@@ -74,10 +74,13 @@
                                 @{
                                     for (int i = 0; i < orderitems.Count(); i++)
                                     {
+                                        Console.WriteLine(i);
                                         orderitems[i].ID = i;
+
                                     }
                                 }
-                                <MudDataGrid Items="@Elements" Hover="true" Striped="true" Dense="true">
+                                @*<MudDataGrid Items="@Elements.ToList().Where(x=>x.isActive==1)" Hover="true" Striped="true" Dense="true">*@
+                                <MudDataGrid Items="@orderitems" Hover="true" Striped="true" Dense="true">
 
                                     <Columns>
                                         <Column T="Menuitemlist" StickyLeft="true" Class="removeicon">
@@ -111,7 +114,7 @@
                                         </Column>
                                         <Column T="Menuitemlist" Title="%" CellStyle="text-align: right">
                                             <CellTemplate>
-                                                <MudText @bind-Value="DiscountValue" Typo="Typo.body2">@DiscountValue</MudText>
+                                                <MudText @bind-Value="DiscountValue" Typo="Typo.body2">@context.Item.ID</MudText>
                                             </CellTemplate>
                                         </Column>
                                         <Column T="Menuitemlist" Title="Total" CellStyle="text-align: right">
