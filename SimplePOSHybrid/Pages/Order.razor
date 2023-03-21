@@ -45,7 +45,7 @@
                                 <Columns>
                                     <Column T="Menuitemlist" StickyLeft="true" Class="removeicon">
                                         <CellTemplate>
-                                            <MudIconButton OnClick="@(() => RemoveItem(@context.Item))" Color="@Color.Default" Icon="@Icons.Material.Filled.Delete" />
+                                            <MudIconButton OnClick="@(() => ClickConfirmDelete(@context.Item))" Color="@Color.Default" Icon="@Icons.Material.Filled.Delete" />
                                         </CellTemplate>
                                     </Column>
                                     <Column T="Menuitemlist" Field="ItemName" Title="Name" />
@@ -242,9 +242,9 @@
 
     private IEnumerable<Menuitemlist> test = new List<Menuitemlist>();
 
-    private IEnumerable<Menuitemlist> Elements = new List<Menuitemlist>();
+    private IEnumerable<Menuitemlist> Elements { get; set; }
 
-    private List<Menuitemlist> orderitems = new List<Menuitemlist> { };
+    private List<Menuitemlist> orderitems = new List<Menuitemlist>();
 
 
     private void OpenExtUsers()
@@ -258,15 +258,6 @@
 
         DialogService.Show<RegUser>("Add Customer", closeOnEscapeKey);
     }
-
-    void RemoveItem(Menuitemlist x)
-    {
-        orderitems = orderitems.Where(u => u.ID != x.ID).ToList();
-        _orderState.ElementMthd(orderitems);
-        Elements = _orderState.GetElements();
-        StateHasChanged();
-    }
-
     void Goback()
     {
         Navigation.NavigateTo("/home");
@@ -274,8 +265,6 @@
 
     protected override void OnInitialized()
     {
-
-
         Elements = _orderState.GetElements();
         RecalculateTotal();
         Console.WriteLine(Elements);
@@ -283,7 +272,30 @@
 
     }
 
-    DialogOptions maxWidth = new DialogOptions() { MaxWidth = MaxWidth.Small };
+    private async void ClickConfirmDelete(Menuitemlist x)
+    {
+        var parameters = new DialogParameters();
+        parameters.Add("Elementpara", x);
+        parameters.Add("TitleText", "ALERT!");
+        parameters.Add("ContentText", "Do you need to remove the item");
+        parameters.Add("ButtonText1", "Yes");
+        parameters.Add("ButtonText2", "No");
+        var dialog = DialogService.Show<ConfirmDelete>("Choose Confirm Delete", parameters);
+        using var task = dialog.Result;
+        var result = await task;
+        if (!result.Cancelled)
+        {
+            RemoveItem(x);
+        }
+        StateHasChanged();
+        check();
+    }
+
+    void check()
+    {
+        Console.WriteLine(Elements);
+    }
+    //DialogOptions maxWidth = new DialogOptions() { MaxWidth = MaxWidth.Small };
 
     private void Cash()
     {
@@ -336,6 +348,15 @@
         NetTotal = Math.Round(NetTotal, 2);
 
 
+    }
+
+    private void RemoveItem(Menuitemlist x)
+    {
+        Elements = _orderState.GetElements();
+        orderitems = Elements.Where(u => u.ID != x.ID).ToList();
+        _orderState.ElementMthd(orderitems);
+        Elements = _orderState.GetElements();
+        StateHasChanged();
     }
     
 }
