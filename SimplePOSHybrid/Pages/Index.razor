@@ -364,6 +364,7 @@
         orderitems = orderitems.Where(u => u.ID != x.ID).ToList();
         _orderState.ElementMthd(orderitems);
         Elements = _orderState.GetElements();
+        RecalculateTotal();
         StateHasChanged();
     }
 
