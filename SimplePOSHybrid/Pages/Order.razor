@@ -56,8 +56,8 @@
                                                 <MudItem xs="3" Class="d-flex align-center justify-center ">
                                                     <MudIconButton Icon="@Icons.Material.Filled.AddCircle" Variant="Variant.Filled" Size="Size.Small" @onclick="(() => {context.Item.qty = context.Item.qty + 1;RecalculateTotal();})" />
                                                 </MudItem>
-                                                <MudItem xs="6" Class="d-flex align-center justify-center pa-0">
-                                                    <MudText Typo="Typo.subtitle1">@context.Item.qty</MudText>
+                                                <MudItem xs="6" Class="d-flex align-center justify-center pa-2">
+                                                    <MudNumericField @bind-Value="@context.Item.qty" Margin="Margin.Dense" Style="text-align:center" HideSpinButtons="true" />
                                                 </MudItem>
                                                 <MudItem xs="3" Class="d-flex align-center justify-center pa-0">
                                                     <MudIconButton Icon="@Icons.Material.Filled.RemoveCircle" Variant="Variant.Filled" Size="Size.Small" @onclick="(() => {context.Item.qty = context.Item.qty - 1;RecalculateTotal();})" />
