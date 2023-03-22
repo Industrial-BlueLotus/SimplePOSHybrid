@@ -125,9 +125,24 @@ namespace SimplePOSHybrid.Data
         {
             List<string> catlst = new();
 
-            catlst = te.ResponseData.MenuItemList.GroupBy(x => x.CategoryCode).Select(g => g.Key).ToList();
+            try
+            {
+                catlst = te.ResponseData.MenuItemList.GroupBy(x => x.CategoryCode).Select(g => g.Key).ToList();
 
-            return catlst;
+                return catlst;
+            }
+            catch (Exception e)
+            {
+                Alert1();
+                return new List<string>();
+            }
+
+
+        }
+
+        public static async void Alert1()
+        {
+            await App.Current.MainPage.DisplayAlert("Oops", "Check Your Connection!", "Cancel");
         }
 
     }
