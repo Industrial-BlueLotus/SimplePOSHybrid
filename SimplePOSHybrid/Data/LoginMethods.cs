@@ -1,12 +1,9 @@
 ﻿using RestSharp;
 using SimplePOSHybrid.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-using static MudBlazor.CategoryTypes;
+using SimplePOSHybrid.Data;
+
+
 
 namespace SimplePOSHybrid.Data
 {
@@ -35,6 +32,8 @@ namespace SimplePOSHybrid.Data
                 {
                     responseContent = response.Content.ToString();
                     Console.WriteLine(responseContent);
+                    LoginStateService loginStateService = new();
+                    loginStateService.LoginStateMethod(response);
 
 
 

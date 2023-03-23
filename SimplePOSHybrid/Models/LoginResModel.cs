@@ -14,11 +14,18 @@ namespace SimplePOSHybrid.Models
         public object[] Messages { get; set; }
         public Responsedata ResponseData { get; set; }
         public bool incomplete_results { get; set; }
+
+        public LoginResModel()
+        {
+            ResponseData = new Responsedata();
+        }
     }
 
     public class Responsedata
     {
         public User User { get; set; }
+
+
     }
 
     public class User
