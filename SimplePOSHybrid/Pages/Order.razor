@@ -40,7 +40,7 @@
                                         orderitems[i].ID = i;
                                     }
                                 }
-                            <MudDataGrid Items="@Elements" Hover="true" Striped="true" Dense="true">
+                            <MudDataGrid Items="@OrderItemsState.ToList().Where(x=>x.isActive==1)" Hover="true" Striped="true" Dense="true">
 
                                 <Columns>
                                     <Column T="Menuitemlist" StickyLeft="true" Class="removeicon">
@@ -242,7 +242,7 @@
 
     private IEnumerable<Menuitemlist> test = new List<Menuitemlist>();
 
-    private IEnumerable<Menuitemlist> Elements { get; set; }
+    private List<Menuitemlist> OrderItemsState { get; set; }
 
     private List<Menuitemlist> orderitems = new List<Menuitemlist>();
 
@@ -265,9 +265,10 @@
 
     protected override void OnInitialized()
     {
-        Elements = _orderState.GetElements();
+        //Elements = _orderState.GetElements();
+        OrderItemsState = _orderState.GetOrderitems();
         RecalculateTotal();
-        Console.WriteLine(Elements);
+        //Console.WriteLine(Elements);
         StateHasChanged();
 
     }
@@ -293,7 +294,7 @@
 
     void check()
     {
-        Console.WriteLine(Elements);
+        Console.WriteLine(OrderItemsState);
     }
     //DialogOptions maxWidth = new DialogOptions() { MaxWidth = MaxWidth.Small };
 
@@ -331,11 +332,11 @@
 
     void RecalculateTotal()
     {
-        subtotal = Elements.Sum(item => item.OptionalSalesPrice);
+        subtotal = OrderItemsState.Sum(item => item.OptionalSalesPrice);
         StateHasChanged();
 
         double totalre = 0.00;
-        foreach (var it in Elements)
+        foreach (var it in OrderItemsState)
         {
             totalre += (it.OptionalSalesPrice * it.qty) * (1 - (DiscountValue / 100.00));
             subtotal = Math.Round(totalre, 2);
@@ -352,10 +353,8 @@
 
     private void RemoveItem(Menuitemlist x)
     {
-        Elements = _orderState.GetElements();
-        orderitems = Elements.Where(u => u.ID != x.ID).ToList();
-        _orderState.ElementMthd(orderitems);
-        Elements = _orderState.GetElements();
+        OrderItemsState = _orderState.GetOrderitems();
+        x.isActive = 0;
         RecalculateTotal();
         StateHasChanged();
     }
