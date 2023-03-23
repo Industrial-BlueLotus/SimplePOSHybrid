@@ -336,14 +336,14 @@
         if ( OrderItemsState.Any(i =>i.ItemName == item.ItemName) )
         {
             item.qty += 1;
-           
+
         }
         else
         {
             orderitems.Add(item);
-            
+
         }
-        
+
         _orderState.OrderMthd(orderitems);
         OrderItemsState = _orderState.GetOrderitems();
         //Elements = _orderState.GetElements();
@@ -354,11 +354,13 @@
 
     void RecalculateTotal()
     {
-        subtotal = OrderItemsState.Sum(item => item.OptionalSalesPrice);
+        List<Menuitemlist> newState = OrderItemsState.Where(item => item.isActive == 1).ToList();
+
+        subtotal = newState.Sum(item => item.OptionalSalesPrice);
         StateHasChanged();
 
         double totalre = 0.00;
-        foreach (var it in OrderItemsState)
+        foreach (var it in newState)
         {
             totalre += (it.OptionalSalesPrice * it.qty) * (1 - (DiscountValue / 100.00));
             subtotal = Math.Round(totalre, 2);
