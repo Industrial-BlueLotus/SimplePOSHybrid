@@ -332,7 +332,18 @@
 
     private void Click(Menuitemlist item)
     {
-        orderitems.Add(item);
+        OrderItemsState = _orderState.GetOrderitems();
+        if ( OrderItemsState.Any(i =>i.ItemName == item.ItemName) )
+        {
+            item.qty += 1;
+           
+        }
+        else
+        {
+            orderitems.Add(item);
+            
+        }
+        
         _orderState.OrderMthd(orderitems);
         OrderItemsState = _orderState.GetOrderitems();
         //Elements = _orderState.GetElements();
@@ -343,11 +354,11 @@
 
     void RecalculateTotal()
     {
-        subtotal = Elements.Sum(item => item.OptionalSalesPrice);
+        subtotal = OrderItemsState.Sum(item => item.OptionalSalesPrice);
         StateHasChanged();
 
         double totalre = 0.00;
-        foreach(var it in Elements)
+        foreach (var it in OrderItemsState)
         {
             totalre += (it.OptionalSalesPrice * it.qty) * (1 - (DiscountValue / 100.00));
             subtotal = Math.Round(totalre, 2);
