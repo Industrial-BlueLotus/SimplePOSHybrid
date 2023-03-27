@@ -1,4 +1,4 @@
-﻿@page "/User"
+﻿@page "/"
 @layout MainLayout
 @using SimplePOSHybrid.Data
 @using SimplePOSHybrid.Models.PartnerMenu
@@ -11,17 +11,26 @@
 <MudLayout>
     <MudAppBar Style="background-color:#053B71;color:white" Fixed="false" Dense="false" DisableGutters="false" Class="pa-0">
         <MudGrid>
-            <MudItem xs="2">
-                <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" />        
+            <MudItem xs="1" Class="d-flex align-center justify-left " Style="background-color:yellow">
+                <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start"/>        
             </MudItem>
-            <MudItem xs="4">
+            <MudItem xs="5" Class="d-flex align-center justify-left " Style="background-color:green">
                 <MudText Class="ml-4" Style="font-weight:800;font-size:large">BLX Super Mart</MudText>
             </MudItem>
-            <MudItem xs="3">
+            <MudItem xs="4" Class="d-flex align-bottom justify-left " Style="background-color:red">
 
             </MudItem>
-            <MudItem xs="3">
-                <MudIconButton Icon="@Icons.Material.Filled.Logout" Style="color:white" Href="/" />
+            <MudItem xs="2" Class="d-flex align-bottom " >
+                <MudGrid>
+                    <MudItem xs="8" Class="d-flex align-bottom justify-content-end " Style="background-color:purple">
+                        <MudText>User Name</MudText>
+                    </MudItem>
+                    <MudItem xs="4" Style="background-color:aqua">
+                        <MudIconButton Icon="@Icons.Material.Filled.Logout" Style="color:white" Href="/" />
+                    </MudItem>
+                   
+                </MudGrid>
+                
             </MudItem>
 
         </MudGrid>
