@@ -25,6 +25,12 @@ namespace SimplePOSHybrid.Models
     {
         public User User { get; set; }
 
+        public Responsedata()
+        {
+            User = new User();
+
+        }
+
 
     }
 
@@ -67,6 +73,12 @@ namespace SimplePOSHybrid.Models
         public object IsActiveStr { get; set; }
         public object OwningCompany { get; set; }
         public bool IsRecordLocked { get; set; }
+
+        public User()
+        {
+            UserCompanies = Array.Empty<Usercompany>();
+            UserLocations = Array.Empty<Userlocation>();
+        }
     }
 
     public class Usercompany

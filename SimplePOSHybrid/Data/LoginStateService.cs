@@ -18,7 +18,7 @@ namespace SimplePOSHybrid.Data
             LoginResModel array = JsonConvert.DeserializeObject<LoginResModel>(responseContent);
 
             ResModel.ResponseData.User.UserId = array.ResponseData.User.UserId;
-            //ResModel.ResponseData.User.UserCompanies.
+            ResModel.ResponseData.User.UserCompanies = array.ResponseData.User.UserCompanies;
             return ResModel;
         }
 
