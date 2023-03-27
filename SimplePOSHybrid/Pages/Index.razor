@@ -1,7 +1,8 @@
-﻿@page "/"
+﻿@page "/home"
 @layout MainLayout
 @using SimplePOSHybrid.Data
 @using SimplePOSHybrid.Models.PartnerMenu
+@using SimplePOSHybrid.Models
 @using SimplePOSHybrid.Components
 @inject IDialogService DialogService
 @inject BrowserService Service
@@ -11,21 +12,21 @@
 <MudLayout>
     <MudAppBar Style="background-color:#053B71;color:white" Fixed="false" Dense="false" DisableGutters="false" Class="pa-0">
         <MudGrid>
-            <MudItem xs="1" Class="d-flex align-center justify-left " Style="background-color:yellow">
+            <MudItem xs="1" Class="d-flex align-center justify-left">
                 <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start"/>        
             </MudItem>
-            <MudItem xs="5" Class="d-flex align-center justify-left " Style="background-color:green">
-                <MudText Class="ml-4" Style="font-weight:800;font-size:large">BLX Super Mart</MudText>
+            <MudItem xs="5" Class="d-flex align-center justify-left pa-0">
+                <MudText Class="ml-4" Style="font-weight:800;font-size:large">@UserCompany</MudText>
             </MudItem>
-            <MudItem xs="4" Class="d-flex align-bottom justify-left " Style="background-color:red">
+            <MudItem xs="4" Class="d-flex align-bottom justify-left">
 
             </MudItem>
             <MudItem xs="2" Class="d-flex align-bottom " >
                 <MudGrid>
-                    <MudItem xs="8" Class="d-flex align-bottom justify-content-end " Style="background-color:purple">
-                        <MudText>User Name</MudText>
+                    <MudItem xs="8" Style="align-items:center;justify-content:end;display:flex;">
+                        <MudText>@UserName</MudText>
                     </MudItem>
-                    <MudItem xs="4" Style="background-color:aqua">
+                    <MudItem xs="4" >
                         <MudIconButton Icon="@Icons.Material.Filled.Logout" Style="color:white" Href="/" />
                     </MudItem>
                    
@@ -261,9 +262,18 @@
 
     public ItemModel test;
 
+    public string UserName { get; set; } = "Username";
+
+    public string UserCompany { get; set; } = "Company";
 
     public async void Load()
     {
+        
+        
+        UserName = _loginState.GetUserName();
+        Console.WriteLine(UserName);
+        //UserCompany = loginResModel.ResponseData.User.UserCompanies[0].CompanyName;
+
         DashboardView dashboard = new DashboardView();
         test = await dashboard.LoadResponse();
 

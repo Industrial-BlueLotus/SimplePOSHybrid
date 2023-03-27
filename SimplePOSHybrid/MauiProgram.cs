@@ -28,7 +28,7 @@ public static class MauiProgram
         builder.Services.AddSingleton<OrderStateService>();
         builder.Services.AddSingleton<LoginStateService>();
         builder.Services.AddScoped<BrowserService>();
-
+        builder.Services.AddScoped<LoginMethods>();
 
 #if DEBUG
         builder.Services.AddBlazorWebViewDeveloperTools();

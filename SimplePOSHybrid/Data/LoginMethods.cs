@@ -11,6 +11,11 @@ namespace SimplePOSHybrid.Data
     {
         readonly GlobalUsings link = new();
 
+        private readonly LoginStateService _loginStateService;
+        public LoginMethods(LoginStateService loginStateService) {
+        _loginStateService = loginStateService;
+        }
+
         public async Task<string> Authenticate(LoginObj logobj)
         {
             var client = new RestClient();
@@ -32,8 +37,8 @@ namespace SimplePOSHybrid.Data
                 {
                     responseContent = response.Content.ToString();
                     Console.WriteLine(responseContent);
-                    LoginStateService loginStateService = new();
-                    loginStateService.LoginStateMethod(response);
+                    //LoginStateService loginStateService = new();
+                    _loginStateService.LoginStateMethod(response);
 
 
 

@@ -1,5 +1,5 @@
 ﻿@layout MainLayout
-@page "/home"
+@page "/"
 @using SimplePOSHybrid.Data
 @using SimplePOSHybrid.Models
 @inject LoginMethods ILoginService
@@ -94,7 +94,7 @@
         {
             if (loginModel.UserName != string.Empty && loginModel.Password != string.Empty)
             {
-                var response1 = await ILoginService.Authenticate(loginModel);
+                var response1 = await _loginMethods.Authenticate(loginModel);
 
                 if (!string.IsNullOrWhiteSpace(response1))
                 {
