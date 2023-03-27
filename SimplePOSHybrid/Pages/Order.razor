@@ -102,7 +102,7 @@
                                             <MudText Typo="Typo.caption" Style="font-weight:bold">Sub Total:</MudText>
                                         </MudItem>
                                         <MudItem xs="6" Class="d-flex align-center justify-end">
-                                            <MudText Typo="Typo.caption" Style="font-weight:bold" @bind-Value="subtotal">Rs.@subtotal.ToString("0.00")</MudText>
+                                            <MudText Typo="Typo.caption" Style="font-weight:bold" @bind-Value="subtotal">@subtotal.ToString("0.00")</MudText>
                                         </MudItem>
                                     </MudGrid>
                                 </MudItem>
@@ -112,7 +112,7 @@
                                             <MudText Typo="Typo.caption" Style="font-weight:bold">Discount:</MudText>
                                         </MudItem>
                                         <MudItem xs="6" Class="d-flex align-center justify-end">
-                                            <MudText Typo="Typo.caption" Style="font-weight:bold">Rs.@FinalDiscount.ToString("0.00")</MudText>
+                                            <MudText Typo="Typo.caption" Style="font-weight:bold">@FinalDiscount.ToString("0.00")</MudText>
                                         </MudItem>
                                     </MudGrid>
                                 </MudItem>
@@ -122,7 +122,7 @@
                                             <MudText Typo="Typo.caption" Style="font-weight:bold">Net Total:</MudText>
                                         </MudItem>
                                         <MudItem xs="6" Class="d-flex align-center justify-end">
-                                            <MudText Typo="Typo.caption" Style="font-weight:bold">Rs.@NetTotal.ToString("0.00")</MudText>
+                                            <MudText Typo="Typo.caption" Style="font-weight:bold">@NetTotal.ToString("0.00")</MudText>
                                         </MudItem>
                                     </MudGrid>
                                 </MudItem>
@@ -157,7 +157,7 @@
                             </MudGrid> 
                         </MudItem>
                         <MudItem xs="12" >
-                            <MudText Typo="Typo.h4" Class="d-flex align-center justify-center py-4">50.00</MudText>
+                        <MudText Typo="Typo.h4" Class="d-flex align-center justify-center py-4">@NetTotal.ToString("0.00")</MudText>
                             <MudText Typo="Typo.h6" Class="d-flex align-center justify-center py-4">Total Amount Due</MudText>
                         </MudItem>
                         <MudItem xs="12">

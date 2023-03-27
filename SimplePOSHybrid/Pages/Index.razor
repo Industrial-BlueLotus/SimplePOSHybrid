@@ -170,7 +170,7 @@
                                             </MudItem>
                                             <MudItem xs="6" Class="d-flex align-center justify-end">
 
-                                                <MudText Typo="Typo.caption" Style="font-weight:bold" @bind-Value="subtotal">Rs.@subtotal.ToString("0.00")</MudText>
+                                                <MudText Typo="Typo.caption" Style="font-weight:bold" @bind-Value="subtotal">@subtotal.ToString("0.00")</MudText>
                                             </MudItem>
                                         </MudGrid>
                                     </MudItem>
@@ -180,7 +180,7 @@
                                                 <MudText Typo="Typo.caption" Style="font-weight:bold">Discount:</MudText>
                                             </MudItem>
                                             <MudItem xs="6" Class="d-flex align-center justify-end">
-                                                <MudText Typo="Typo.caption" Style="font-weight:bold" @bind-Value="FinalDiscount">Rs.@FinalDiscount.ToString("0.00")</MudText>
+                                                <MudText Typo="Typo.caption" Style="font-weight:bold" @bind-Value="FinalDiscount">@FinalDiscount.ToString("0.00")</MudText>
                                             </MudItem>
                                         </MudGrid>
                                     </MudItem>
@@ -191,7 +191,7 @@
 
                                             </MudItem>
                                             <MudItem xs="6" Class="d-flex align-center justify-end">
-                                                <MudText Typo="Typo.caption" Style="font-weight:bold" @bind-Value="NetTotal">Rs.@NetTotal.ToString("0.00")</MudText>
+                                                <MudText Typo="Typo.caption" Style="font-weight:bold" @bind-Value="NetTotal">@NetTotal.ToString("0.00")</MudText>
                                             </MudItem>
                                         </MudGrid>
                                     </MudItem>
@@ -268,11 +268,14 @@
 
     public async void Load()
     {
-        
-        
+
+
         UserName = _loginState.GetUserName();
         Console.WriteLine(UserName);
-        //UserCompany = loginResModel.ResponseData.User.UserCompanies[0].CompanyName;
+
+        var Company = _loginState.GetUserCompany();
+        UserCompany = Company.CompanyName;
+        Console.WriteLine(UserCompany);
 
         DashboardView dashboard = new DashboardView();
         test = await dashboard.LoadResponse();

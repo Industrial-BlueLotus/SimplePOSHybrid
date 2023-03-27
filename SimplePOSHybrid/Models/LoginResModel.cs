@@ -76,8 +76,8 @@ namespace SimplePOSHybrid.Models
 
         public User()
         {
-            UserCompanies = Array.Empty<Usercompany>();
-            UserLocations = Array.Empty<Userlocation>();
+            UserCompanies = new Usercompany[0];
+            UserLocations = new Userlocation[0];
         }
     }
 
