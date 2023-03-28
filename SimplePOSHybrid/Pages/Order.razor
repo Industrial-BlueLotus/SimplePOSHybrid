@@ -8,10 +8,34 @@
 
 <MudLayout>
     <MudAppBar Style="background-color:#053B71;color:white" Fixed="false" Dense="false" DisableGutters="false" Class="pa-0">
-        <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" />
+        <MudGrid>
+            <MudItem xs="1" Class="d-flex align-center justify-left">
+                <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" />
+            </MudItem>
+            <MudItem xs="5" Class="d-flex align-center justify-left pa-0">
+                <MudText Class="ml-4" Style="font-weight:800;font-size:large">@UserCompany</MudText>
+            </MudItem>
+            <MudItem xs="4" Class="d-flex align-bottom justify-left">
+
+            </MudItem>
+            <MudItem xs="2" Class="d-flex align-bottom ">
+                <MudGrid>
+                    <MudItem xs="8" Style="align-items:center;justify-content:end;display:flex;">
+                        <MudText>@UserName</MudText>
+                    </MudItem>
+                    <MudItem xs="4">
+                        <MudIconButton Icon="@Icons.Material.Filled.Logout" Style="color:white" Href="/" />
+                    </MudItem>
+
+                </MudGrid>
+
+            </MudItem>
+
+        </MudGrid>
+        @*<MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" />
         <MudText Class="ml-4" Style="font-weight:800;font-size:large">BLX Super Mart</MudText>
         <MudSpacer />
-        <MudIconButton Icon="@Icons.Material.Filled.Logout" Style="color:white" Href="/" />
+        <MudIconButton Icon="@Icons.Material.Filled.Logout" Style="color:white" Href="/" />*@
     </MudAppBar>
     <MudMainContent Class="pa-0 pl-3 pr-3">
         
@@ -246,6 +270,10 @@
 
     private List<Menuitemlist> orderitems = new List<Menuitemlist>();
 
+    public string UserName { get; set; } = "Username";
+
+    public string UserCompany { get; set; } = "Company";
+
 
     private void OpenExtUsers()
     {
@@ -265,6 +293,12 @@
 
     protected override void OnInitialized()
     {
+        UserName = _loginState.GetUserName();
+        Console.WriteLine(UserName);
+
+        var Company = _loginState.GetUserCompany();
+        UserCompany = Company.CompanyName;
+        Console.WriteLine(UserCompany);
         //Elements = _orderState.GetElements();
         OrderItemsState = _orderState.GetOrderitems();
         RecalculateTotal();

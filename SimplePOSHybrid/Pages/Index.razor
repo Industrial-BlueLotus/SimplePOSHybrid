@@ -1,4 +1,4 @@
-﻿@page "/"
+﻿@page "/home"
 @layout MainLayout
 @using SimplePOSHybrid.Data
 @using SimplePOSHybrid.Models.PartnerMenu
@@ -270,12 +270,12 @@
     {
 
 
-        //UserName = _loginState.GetUserName();
-        //Console.WriteLine(UserName);
+        UserName = _loginState.GetUserName();
+        Console.WriteLine(UserName);
 
-        //var Company = _loginState.GetUserCompany();
-        //UserCompany = Company.CompanyName;
-        //Console.WriteLine(UserCompany);
+        var Company = _loginState.GetUserCompany();
+        UserCompany = Company.CompanyName;
+        Console.WriteLine(UserCompany);
 
         DashboardView dashboard = new DashboardView();
         test = await dashboard.LoadResponse();
