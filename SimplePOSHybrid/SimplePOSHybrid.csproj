@@ -98,7 +98,7 @@
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
-		<PackageReference Include="MudBlazor" Version="6.2.0" />
+		<PackageReference Include="MudBlazor" Version="6.1.9" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 		<PackageReference Include="RestSharp" Version="109.0.1" />
 	</ItemGroup>
