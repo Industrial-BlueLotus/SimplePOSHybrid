@@ -12,8 +12,10 @@ namespace SimplePOSHybrid.Data
         readonly GlobalUsings link = new();
 
         private readonly LoginStateService _loginStateService;
-        public LoginMethods(LoginStateService loginStateService) {
-        _loginStateService = loginStateService;
+        public LoginMethods(LoginStateService loginStateService)
+        {
+
+            _loginStateService = loginStateService;
         }
 
         public async Task<string> Authenticate(LoginObj logobj)

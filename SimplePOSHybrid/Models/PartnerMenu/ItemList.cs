@@ -8,11 +8,22 @@
         public object[] Messages { get; set; }
         public Responsedata ResponseData { get; set; }
         public bool incomplete_results { get; set; }
+
+        public ItemModel()
+        {
+            ResponseData = new Responsedata();
+        }
     }
 
     public class Responsedata
     {
         public Menuitemlist[] MenuItemList { get; set; }
+
+        public Responsedata()
+        {
+            Menuitemlist[] MenuItemList = new Menuitemlist[0];
+        }
+
     }
 
     public class Menuitemlist
@@ -68,6 +79,12 @@
         public Productgroupsitem[] productGroupsItem { get; set; }
         public double qty { get; set; } = 1.0;
         public int isActive { get; set; } = 1;
+
+        public Menuitemlist()
+        {
+            productGroups = new Productgroup[0];
+            productGroupsItem = new Productgroupsitem[0];
+        }
     }
 
     public class Productgroup
@@ -136,6 +153,11 @@
         public object IsActiveStr { get; set; }
         public object OwningCompany { get; set; }
         public bool IsRecordLocked { get; set; }
+
+        public Productgroupsitem()
+        {
+            NestedGroups = new Nestedgroup[0];
+        }
     }
 
     public class Nestedgroup

@@ -23,6 +23,13 @@ namespace SimplePOSHybrid.Data
 
         public DashboardView() { }
 
+        private readonly ItemsStateService _itemsStateService;
+        public DashboardView(ItemsStateService itemsStateService)
+        {
+
+            _itemsStateService = itemsStateService;
+        }
+
 
         public RestRequest Res()
         {
@@ -74,11 +81,11 @@ namespace SimplePOSHybrid.Data
 
         }
         //Configuration
-        public async Task<ItemModel> LoadResponse()
+        public async Task<string> LoadResponse()
         {
 
             var client = new RestClient();
-
+            string responseContent = string.Empty;
 
             try
             {
@@ -87,63 +94,64 @@ namespace SimplePOSHybrid.Data
 
                 if (response.StatusCode == HttpStatusCode.OK)
                 {
-                    var responseContent = response.Content.ToString();
+                    responseContent = response.Content.ToString();
 
                     Console.WriteLine(responseContent);
 
-                    ItemModel array = JsonConvert.DeserializeObject<ItemModel>(responseContent);
-                    return array;
 
+                    _itemsStateService.ItemsStateMethod(response);
+
+                    return responseContent;
                 }
 
                 else
                 {
                     Console.WriteLine(response.StatusCode);
-                    return new ItemModel();
+                    return responseContent;
                 }
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.ToString());
-                return new ItemModel();
+                return responseContent;
 
             }
 
         }
 
-        //display items
-        public static List<Menuitemlist> DisplayItem(ItemModel te, string category)
-        {
-            string catename = category;
-            List<Menuitemlist> lst = new();
-            lst = te.ResponseData.MenuItemList.Where(x => x.CategoryCode == catename).ToList();
-            return lst;
-        }
+        ////display items
+        //public static List<Menuitemlist> DisplayItem(ItemModel te, string category)
+        //{
+        //    string catename = category;
+        //    List<Menuitemlist> lst = new();
+        //    lst = te.ResponseData.MenuItemList.Where(x => x.CategoryCode == catename).ToList();
+        //    return lst;
+        //}
 
-        //Filtering the categories
-        public static List<string> DisplayCat(ItemModel te)
-        {
-            List<string> catlst = new();
+        ////Filtering the categories
+        //public static List<string> DisplayCat(ItemModel te)
+        //{
+        //    List<string> catlst = new();
 
-            try
-            {
-                catlst = te.ResponseData.MenuItemList.GroupBy(x => x.CategoryCode).Select(g => g.Key).ToList();
+        //    try
+        //    {
+        //        catlst = te.ResponseData.MenuItemList.GroupBy(x => x.CategoryCode).Select(g => g.Key).ToList();
 
-                return catlst;
-            }
-            catch (Exception e)
-            {
-                Alert1();
-                return new List<string>();
-            }
+        //        return catlst;
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Alert1();
+        //        return new List<string>();
+        //    }
 
 
-        }
+        //}
 
-        public static async void Alert1()
-        {
-            await App.Current.MainPage.DisplayAlert("Oops", "Check Your Connection!", "Cancel");
-        }
+        //public static async void Alert1()
+        //{
+        //    await App.Current.MainPage.DisplayAlert("Oops", "Check Your Connection!", "Cancel");
+        //}
 
     }
 }
