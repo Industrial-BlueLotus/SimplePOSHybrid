@@ -278,14 +278,10 @@
         Console.WriteLine(UserCompany);
 
         DashboardView dashboard = new DashboardView();
-        //test = await dashboard.LoadResponse();
+        test = await dashboard.LoadResponse();
 
-        //List<string> Satabscat = _itemsState.DisplayCat(test);
-        //List<Menuitemlist> Satabscatitm = _itemsState.DisplayItem(test, cate);
-
-        tabscat = _itemsState.GetCat();
-        tabscatitm = _itemsState.GetItem();
-
+        tabscat = DashboardView.DisplayCat(test);
+        tabscatitm = DashboardView.DisplayItem(test, cate);
         Console.WriteLine(tabscatitm);
         StateHasChanged();
 
@@ -301,9 +297,7 @@
     public void LoadItems(string cate)
     {
 
-        //tabscatitm = _itemsState.DisplayItem(test, cate);
-        List<Menuitemlist> tabsit = _itemsState.DisplayItem(test, cate);
-        tabscatitm = _itemsState.GetItem();
+        tabscatitm = DashboardView.DisplayItem(test, cate);
         StateHasChanged();
 
     }
