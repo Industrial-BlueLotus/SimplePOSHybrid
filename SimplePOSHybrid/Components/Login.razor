@@ -2,6 +2,7 @@
 @page "/"
 @using SimplePOSHybrid.Data
 @using SimplePOSHybrid.Models
+@using SimplePOSHybrid.Models.Login
 @inject LoginMethods ILoginService
 @inject NavigationManager Navigation
 @using Newtonsoft.Json;
@@ -98,24 +99,26 @@
 
                 if (!string.IsNullOrWhiteSpace(response1))
                 {
-                    LoginResModel arraylog = JsonConvert.DeserializeObject<LoginResModel>(response1);
+                    NewLoginResModel arraylog = JsonConvert.DeserializeObject<NewLoginResModel>(response1);
 
-                    if (arraylog.ResponseType == 1)
+                    //LoginResModel arraylog = JsonConvert.DeserializeObject<LoginResModel>(response1);
+
+                    if (arraylog.isSuccess == true)
                     {
                         Navigation.NavigateTo("home");
                     }
-                    else if (arraylog.ResponseType == 2)
-                    {
-                        await App.Current.MainPage.DisplayAlert("Alert", "Invalid User", "Cancel");
-                    }
+                    //else 
+                    //{
+                    //    await App.Current.MainPage.DisplayAlert("Alert", "Invalid User", "Cancel");
+                    //}
 
 
                 }
-                else
-                {
-                    Console.WriteLine(response1);
-                    await App.Current.MainPage.DisplayAlert("Oops", "Invalid username or Password", "Cancel");
-                }
+                //else
+                //{
+                //    Console.WriteLine(response1);
+                //    await App.Current.MainPage.DisplayAlert("Oops", "Invalid username or Password", "Cancel");
+                //}
 
             }
         }

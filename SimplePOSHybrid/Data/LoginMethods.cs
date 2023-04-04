@@ -83,7 +83,7 @@ namespace SimplePOSHybrid.Data
                     responseContent = response.Content.ToString();
                     Console.WriteLine(responseContent);
                     //LoginStateService loginStateService = new();
-                    _loginStateService.LoginStateMethodAsync(response);
+                    await _loginStateService.LoginStateMethodAsync(response);
 
 
 

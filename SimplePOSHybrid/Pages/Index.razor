@@ -274,7 +274,7 @@
         Console.WriteLine(UserName);
 
         UserCompany = _loginState.GetUserCompany();
-        rConsole.WriteLine(UserCompany);
+        Console.WriteLine(UserCompany);
         //var Company = _loginState.GetUserCompany();
         //UserCompany = Company.CompanyName;
         //Console.WriteLine(UserCompany);
@@ -282,9 +282,9 @@
         DashboardView dashboard = new DashboardView();
         test = await dashboard.LoadResponse();
 
-        tabscat = DashboardView.DisplayCat(test);
-        tabscatitm = DashboardView.DisplayItem(test, cate);
-        Console.WriteLine(tabscatitm);
+        //tabscat = DashboardView.DisplayCat(test);
+        //tabscatitm = DashboardView.DisplayItem(test, cate);
+        //Console.WriteLine(tabscatitm);
         StateHasChanged();
 
     }
