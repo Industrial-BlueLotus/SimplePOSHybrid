@@ -6,10 +6,6 @@ namespace SimplePOSHybrid.Data
 {
     public class LoginStateService
     {
-        //private string UserName { get; set; }
-
-        //private string CompanyName;
-
         private LoginResModel ResModel = new();
 
         public LoginResModel LoginStateMethod(RestResponse response)
