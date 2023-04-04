@@ -273,9 +273,11 @@
         UserName = _loginState.GetUserName();
         Console.WriteLine(UserName);
 
-        var Company = _loginState.GetUserCompany();
-        UserCompany = Company.CompanyName;
-        Console.WriteLine(UserCompany);
+        UserCompany = _loginState.GetUserCompany();
+        rConsole.WriteLine(UserCompany);
+        //var Company = _loginState.GetUserCompany();
+        //UserCompany = Company.CompanyName;
+        //Console.WriteLine(UserCompany);
 
         DashboardView dashboard = new DashboardView();
         test = await dashboard.LoadResponse();
