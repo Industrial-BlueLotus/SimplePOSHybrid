@@ -65,6 +65,7 @@ namespace SimplePOSHybrid.Data
             NewLoginResModel array = JsonConvert.DeserializeObject<NewLoginResModel>(responseContent);
 
             ResModel.username = array.username;
+            ResModel.token = array.token;
             await getUserCompanies(array.token);
 
             return ResModel;
@@ -81,6 +82,11 @@ namespace SimplePOSHybrid.Data
         public string GetUserCompany()
         {
             return usrcompmdl.companyName;
+        }
+
+        public string GetToken()
+        {
+            return ResModel.token;
         }
     }
 

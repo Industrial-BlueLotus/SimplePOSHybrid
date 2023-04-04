@@ -3,6 +3,7 @@
 @using SimplePOSHybrid.Data
 @using SimplePOSHybrid.Models.PartnerMenu
 @using SimplePOSHybrid.Models
+@using SimplePOSHybrid.Models.GetCategories
 @using SimplePOSHybrid.Components
 @inject IDialogService DialogService
 @inject BrowserService Service
@@ -248,7 +249,7 @@
 
     public double subtotal { get; set; } = 0.00;
 
-    public List<string> tabscat = new List<string> { };
+    public List<object> tabscat = new List<object> { };
 
     public List<Menuitemlist> tabscatitm = new List<Menuitemlist> { };
 
@@ -260,7 +261,7 @@
 
     public string cate = "chicken 23";
 
-    public ItemModel test;
+    public CatgryModel test;
 
     public string UserName { get; set; } = "Username";
 
@@ -281,8 +282,8 @@
 
         DashboardView dashboard = new DashboardView();
         test = await dashboard.LoadResponse();
-
-        //tabscat = DashboardView.DisplayCat(test);
+        Console.WriteLine(test);
+        tabscat = DashboardView.DisplayCat(test);
         //tabscatitm = DashboardView.DisplayItem(test, cate);
         //Console.WriteLine(tabscatitm);
         StateHasChanged();
@@ -299,7 +300,7 @@
     public void LoadItems(string cate)
     {
 
-        tabscatitm = DashboardView.DisplayItem(test, cate);
+        //tabscatitm = DashboardView.DisplayItem(test, cate);
         StateHasChanged();
 
     }
