@@ -4,6 +4,7 @@
 @using SimplePOSHybrid.Models.PartnerMenu
 @using SimplePOSHybrid.Models
 @using SimplePOSHybrid.Models.GetCategories
+@using SimplePOSHybrid.Models.GetItems
 @using SimplePOSHybrid.Components
 @inject IDialogService DialogService
 @inject BrowserService Service
@@ -58,13 +59,15 @@
                                     @foreach (var item in tabscatitm)
                                     {
                                         <MudItem xs="3" Class="pa-1">
-                                            @if (@item.ItemImageUrl != null)
+                                            @if (@item.itemImageUrl != null)
                                             {
-                                                <CustomImage Src=@item.ItemImageUrl ShortName=@item.ItemShortName OptionalSalesPrice=@item.OptionalSalesPrice OnClick="@(() => Click(item))" />
+                                                <CustomImage Src=@item.itemImage ShortName=@item.itemShortName OptionalSalesPrice=@item.optionalSalesPrice  />
+                                                @*<CustomImage Src=@item.itemImageUrl ShortName=@item.itemShortName OptionalSalesPrice=@item.optionalSalesPrice OnClick="@(() => Click(item))" />*@
                                             }
                                             else
                                             {
-                                                <CustomerImageWh Src="./Img/white_box.png" ShortName=@item.ItemShortName OptionalSalesPrice=@item.OptionalSalesPrice OnClick="@(() => Click(item))" />
+                                                <CustomerImageWh Src="./Img/white_box.png" ShortName=@item.itemShortName OptionalSalesPrice=@item.optionalSalesPrice  />
+                                                @*<CustomerImageWh Src="./Img/white_box.png" ShortName=@item.itemShortName OptionalSalesPrice=@item.optionalSalesPrice OnClick="@(() => Click(item))" />*@
 
                                             }
 
@@ -249,9 +252,9 @@
 
     public double subtotal { get; set; } = 0.00;
 
-    public List<object> tabscat = new List<object> { };
+    public List<string> tabscat = new List<string> { };
 
-    public List<Menuitemlist> tabscatitm = new List<Menuitemlist> { };
+    public List<Models.GetItems.Value> tabscatitm = new List<Models.GetItems.Value> { };
 
     private List<Menuitemlist> orderitems = new List<Menuitemlist> { };
 
@@ -262,6 +265,8 @@
     public string cate = "chicken 23";
 
     public CatgryModel test;
+
+    public GetPartnerItemList testitm;
 
     public string UserName { get; set; } = "Username";
 
@@ -280,12 +285,13 @@
         //UserCompany = Company.CompanyName;
         //Console.WriteLine(UserCompany);
 
-        DashboardView dashboard = new DashboardView();
-        test = await dashboard.LoadResponse();
+        test = await _dashboard.LoadResponseCat();
         Console.WriteLine(test);
         tabscat = DashboardView.DisplayCat(test);
-        //tabscatitm = DashboardView.DisplayItem(test, cate);
-        //Console.WriteLine(tabscatitm);
+
+        testitm = await _dashboard.LoadResponseItm();
+        tabscatitm = _dashboard.DisplayItem(testitm, cate);
+        Console.WriteLine(tabscatitm);
         StateHasChanged();
 
     }
