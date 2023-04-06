@@ -61,7 +61,7 @@
                                         <MudItem xs="3" Class="pa-1">
                                             @if (@item.itemImageUrl != null)
                                             {
-                                                <CustomImage Src=@item.itemImage ShortName=@item.itemShortName OptionalSalesPrice=@item.optionalSalesPrice  />
+                                                <CustomImage Src=@item.ItemImageUrl ShortName=@item.itemShortName OptionalSalesPrice=@item.optionalSalesPrice  />
                                                 @*<CustomImage Src=@item.itemImageUrl ShortName=@item.itemShortName OptionalSalesPrice=@item.optionalSalesPrice OnClick="@(() => Click(item))" />*@
                                             }
                                             else
@@ -262,7 +262,7 @@
 
     private IEnumerable<Menuitemlist> Elements = new List<Menuitemlist>();
 
-    public string cate = "chicken 23";
+    public string cate = "chicken";
 
     public CatgryModel test;
 
@@ -290,7 +290,7 @@
         tabscat = DashboardView.DisplayCat(test);
 
         testitm = await _dashboard.LoadResponseItm();
-        tabscatitm = _dashboard.DisplayItem(testitm, cate);
+        tabscatitm = DashboardView.DisplayItem(testitm, cate);
         Console.WriteLine(tabscatitm);
         StateHasChanged();
 
@@ -303,10 +303,10 @@
 
     }
 
-    public void LoadItems(string cate)
+    public async void LoadItems(string cate)
     {
-
-        //tabscatitm = DashboardView.DisplayItem(test, cate);
+        //testitm = await _dashboard.LoadResponseItm();
+        tabscatitm = DashboardView.DisplayItem(testitm, cate);
         StateHasChanged();
 
     }

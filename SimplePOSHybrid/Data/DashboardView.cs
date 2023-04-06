@@ -9,6 +9,9 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Net;
 using System.Linq;
+using System.Drawing;
+using System.IO;
+using MudBlazor.Charts;
 
 namespace SimplePOSHybrid.Data
 {
@@ -19,7 +22,7 @@ namespace SimplePOSHybrid.Data
 
         //LoginStateService lss = new LoginStateService();
 
-        private LoginStateService _loginStateService;
+        private readonly LoginStateService _loginStateService;
 
         public DashboardView(LoginStateService loginStateService)
         {
@@ -229,14 +232,23 @@ namespace SimplePOSHybrid.Data
         }
 
         //display items
-        public List<Models.GetItems.Value> DisplayItem(GetPartnerItemList te, string category)
+        public static List<Models.GetItems.Value> DisplayItem(GetPartnerItemList te, string category)
         {
-            //string catename = category;
-            List<Models.GetItems.Value> lst = new();
-           
-            lst = te.value.Where(x => x.categoryCode == category).ToList();
-            //lst = te.ResponseData.MenuItemList.Where(x => x.CategoryCode == catename).ToList();
-            return lst;
+            try
+            {
+                string catename = category;
+                List<Models.GetItems.Value> lst = new();
+
+                lst = te.value.Where(x => x.categoryCode == catename).ToList();
+                //lst = te.ResponseData.MenuItemList.Where(x => x.CategoryCode == catename).ToList();
+                return lst;
+            }
+            catch (Exception e)
+            {
+                Alert1();
+                return new List<Models.GetItems.Value>();
+            }
+
         }
 
         //Filtering the categories
@@ -265,6 +277,21 @@ namespace SimplePOSHybrid.Data
         {
             await App.Current.MainPage.DisplayAlert("Oops", "Check Your Connection!", "Cancel");
         }
+
+
+        //public string GenerateImage(string ItemImage)
+        //{
+        //    //    using var ms = new MemoryStream(ItemImage);
+
+        //    //    // create an image object from the memory stream
+        //    //    using var img = Image.FromStream(ms);
+
+        //    //    // now you can use the "img" object as needed, for example:
+        //    //    img.Save("myimage.png", ImageFormat.Png);
+
+        //    value.imageDataURL = string.Format("data:image/svg+xml;base64,{0}", ItemImage);
+        //    return imageDataURL;
+        //}
 
     }
 }
