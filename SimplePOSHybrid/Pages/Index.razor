@@ -61,12 +61,12 @@
                                         <MudItem xs="3" Class="pa-1">
                                             @if (@item.itemImageUrl != null)
                                             {
-                                                <CustomImage Src=@item.ItemImageUrl ShortName=@item.itemShortName OptionalSalesPrice=@item.optionalSalesPrice  />
+                                                <CustomImage Src=@item.ItemImageUrl ShortName=@item.itemShortName OptionalSalesPrice=@item.optionalSalesPrice OnClick="@(() => Click(item))"/>
                                                 @*<CustomImage Src=@item.itemImageUrl ShortName=@item.itemShortName OptionalSalesPrice=@item.optionalSalesPrice OnClick="@(() => Click(item))" />*@
                                             }
                                             else
                                             {
-                                                <CustomerImageWh Src="./Img/white_box.png" ShortName=@item.itemShortName OptionalSalesPrice=@item.optionalSalesPrice  />
+                                                <CustomerImageWh Src="./Img/white_box.png" ShortName=@item.itemShortName OptionalSalesPrice=@item.optionalSalesPrice OnClick="@(() => Click(item))" />
                                                 @*<CustomerImageWh Src="./Img/white_box.png" ShortName=@item.itemShortName OptionalSalesPrice=@item.optionalSalesPrice OnClick="@(() => Click(item))" />*@
 
                                             }
