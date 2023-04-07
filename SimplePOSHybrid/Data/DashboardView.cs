@@ -232,12 +232,12 @@ namespace SimplePOSHybrid.Data
         }
 
         //display items
-        public static List<Models.GetItems.Value> DisplayItem(GetPartnerItemList te, string category)
+        public static List<ItmValue> DisplayItem(GetPartnerItemList te, string category)
         {
             try
             {
                 string catename = category;
-                List<Models.GetItems.Value> lst = new();
+                List<ItmValue> lst = new();
 
                 lst = te.value.Where(x => x.categoryCode == catename).ToList();
                 //lst = te.ResponseData.MenuItemList.Where(x => x.CategoryCode == catename).ToList();
@@ -246,7 +246,7 @@ namespace SimplePOSHybrid.Data
             catch (Exception e)
             {
                 Alert1();
-                return new List<Models.GetItems.Value>();
+                return new List<ItmValue>();
             }
 
         }

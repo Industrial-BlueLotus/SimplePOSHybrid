@@ -254,13 +254,13 @@
 
     public List<string> tabscat = new List<string> { };
 
-    public List<Models.GetItems.Value> tabscatitm = new List<Models.GetItems.Value> { };
+    public List<ItmValue> tabscatitm = new List<ItmValue> { };
 
-    private List<Menuitemlist> orderitems = new List<Menuitemlist> { };
+    private List<ItmValue> orderitems = new List<ItmValue> { };
 
-    private List<Menuitemlist> OrderItemsState = new List<Menuitemlist> { };
+    private List<ItmValue> OrderItemsState = new List<ItmValue> { };
 
-    private IEnumerable<Menuitemlist> Elements = new List<Menuitemlist>();
+    private IEnumerable<ItmValue> Elements = new List<ItmValue>();
 
     public string cate = "chicken";
 
@@ -376,10 +376,10 @@
         DialogService.Show<RegUser>("Add Customer", closeOnEscapeKey);
     }
 
-    private void Click(Menuitemlist item)
+    private void Click(ItmValue item)
     {
         OrderItemsState = _orderState.GetOrderitems();
-        if ( OrderItemsState.Any(i =>i.ItemName == item.ItemName) )
+        if ( OrderItemsState.Any(i =>i.itemName == item.itemName) )
         {
             item.qty += 1;
 
@@ -400,15 +400,15 @@
 
     void RecalculateTotal()
     {
-        List<Menuitemlist> newState = OrderItemsState.Where(item => item.isActive == 1).ToList();
+        List<ItmValue> newState = OrderItemsState.Where(item => item.isActive == 1).ToList();
 
-        subtotal = newState.Sum(item => item.OptionalSalesPrice);
+        subtotal = newState.Sum(item => item.optionalSalesPrice);
         StateHasChanged();
 
         double totalre = 0.00;
         foreach (var it in newState)
         {
-            totalre += (it.OptionalSalesPrice * it.qty) * (1 - (DiscountValue / 100.00));
+            totalre += (it.optionalSalesPrice * it.qty) * (1 - (DiscountValue / 100.00));
             subtotal = Math.Round(totalre, 2);
         }
 

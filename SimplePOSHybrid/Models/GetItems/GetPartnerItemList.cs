@@ -8,7 +8,7 @@ namespace SimplePOSHybrid.Models.GetItems
 {
     public class GetPartnerItemList
     {
-        public Value[] value { get; set; }
+        public ItmValue[] value { get; set; }
         public object[] messages { get; set; }
         public object executionException { get; set; }
         public DateTime executionStarted { get; set; }
@@ -17,12 +17,13 @@ namespace SimplePOSHybrid.Models.GetItems
 
         public GetPartnerItemList()
         {
-            value = new Value[0];
+            value = new ItmValue[0];
         }
     }
 
-    public class Value
+    public class ItmValue
     {
+        public int ID { set; get; } = 0;
         public static string itemImage { get; set; }
         public string ItemImageUrl { get; set; } = string.Format("data:image/svg+xml;base64,{0}", itemImage);
         public object itemImageUrl { get; set; }
@@ -47,6 +48,8 @@ namespace SimplePOSHybrid.Models.GetItems
         public string itemComboTitle { get; set; }
         public int sortingOrder { get; set; }
         public string imageArr { get; set; }
+        public double qty { get; set; } = 1.0;
+        public int isActive { get; set; } = 1;
     }
 
 }

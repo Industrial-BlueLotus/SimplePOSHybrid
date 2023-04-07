@@ -2,6 +2,7 @@
 @layout MainLayout
 @using SimplePOSHybrid.Data
 @using SimplePOSHybrid.Models.PartnerMenu
+@using SimplePOSHybrid.Models.GetItems
 @using SimplePOSHybrid.Components
 @inject IDialogService DialogService
 @inject NavigationManager Navigation
@@ -264,11 +265,11 @@
 
     public double subtotal { get; set; } = 0.00;
 
-    private IEnumerable<Menuitemlist> test = new List<Menuitemlist>();
+    private IEnumerable<ItmValue> test = new List<ItmValue>();
 
-    private List<Menuitemlist> OrderItemsState { get; set; }
+    private List<ItmValue> OrderItemsState { get; set; }
 
-    private List<Menuitemlist> orderitems = new List<Menuitemlist>();
+    private List<ItmValue> orderitems = new List<ItmValue>();
 
     public string UserName { get; set; } = "Username";
 
@@ -367,15 +368,15 @@
     void RecalculateTotal()
     {
         
-        List<Menuitemlist> newState = OrderItemsState.Where(item => item.isActive == 1).ToList();
+        List<ItmValue> newState = OrderItemsState.Where(item => item.isActive == 1).ToList();
 
-        subtotal = newState.Sum(item => item.OptionalSalesPrice);
+        subtotal = newState.Sum(item => item.optionalSalesPrice);
         StateHasChanged();
 
         double totalre = 0.00;
         foreach (var it in newState)
         {
-            totalre += (it.OptionalSalesPrice * it.qty) * (1 - (DiscountValue / 100.00));
+            totalre += (it.optionalSalesPrice * it.qty) * (1 - (DiscountValue / 100.00));
             subtotal = Math.Round(totalre, 2);
         }
 
