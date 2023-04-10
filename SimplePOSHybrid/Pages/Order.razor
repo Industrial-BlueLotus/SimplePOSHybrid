@@ -59,52 +59,46 @@
                         </MudItem>
                         <MudItem xs="12" Class="pt-2">
                         <div class="ma-0" style="height: calc( 100vh - 400px);overflow: auto">
-                            @{
-                                    for (int i = 0; i < orderitems.Count(); i++)
-                                    {
-                                        orderitems[i].ID = i;
-                                    }
-                                }
+                            
                             <MudDataGrid Items="@OrderItemsState.ToList().Where(x=>x.isActive==1)" Hover="true" Striped="true" Dense="true">
 
                                 <Columns>
-                                    <Column T="Menuitemlist" StickyLeft="true" Class="removeicon">
+                                    <Column T="ItmValue" StickyLeft="true" Class="removeicon">
                                         <CellTemplate>
                                             <MudIconButton OnClick="@(() => ClickConfirmDelete(@context.Item))" Color="@Color.Default" Icon="@Icons.Material.Filled.Delete" />
                                         </CellTemplate>
                                     </Column>
-                                    <Column T="Menuitemlist" Field="ItemName" Title="Name" />
-                                    <Column T="Menuitemlist" Field="qty" Title="Qty">
+                                    <Column T="ItmValue" Field="itemName" Title="Name" />
+                                    <Column T="ItmValue" Field="qty" Title="Qty">
                                         <CellTemplate>
-
                                             <MudGrid Style="padding-left:unset;padding-right:unset">
-                                                <MudItem xs="3" Class="d-flex align-center justify-center ">
-                                                    <MudIconButton Icon="@Icons.Material.Filled.AddCircle" Variant="Variant.Filled" Size="Size.Small" @onclick="(() => {context.Item.qty = context.Item.qty + 1;RecalculateTotal();})" />
+                                                 <MudItem xs="3" Class="d-flex align-center justify-center pa-0">
+                                                    <MudIconButton Icon="@Icons.Material.Filled.RemoveCircle" Variant="Variant.Filled" Size="Size.Small" @onclick="(() => {context.Item.qty = context.Item.qty - 1;RecalculateTotal();})" />
                                                 </MudItem>
                                                 <MudItem xs="6" Class="d-flex align-center justify-center pa-2">
                                                     <MudNumericField @bind-Value="@context.Item.qty" Margin="Margin.Dense" Style="text-align:center" HideSpinButtons="true" />
                                                 </MudItem>
-                                                <MudItem xs="3" Class="d-flex align-center justify-center pa-0">
-                                                    <MudIconButton Icon="@Icons.Material.Filled.RemoveCircle" Variant="Variant.Filled" Size="Size.Small" @onclick="(() => {context.Item.qty = context.Item.qty - 1;RecalculateTotal();})" />
+                                                <MudItem xs="3" Class="d-flex align-center justify-center ">
+                                                    <MudIconButton Icon="@Icons.Material.Filled.AddCircle" Variant="Variant.Filled" Size="Size.Small" @onclick="(() => {context.Item.qty = context.Item.qty + 1;RecalculateTotal();})" />
                                                 </MudItem>
                                             </MudGrid>
                                         </CellTemplate>
                                     </Column>
-                                    <Column T="Menuitemlist" Field="OptionalSalesPrice" Title="Price" CellStyle="text-align: right">
+                                    <Column T="ItmValue" Field="optionalSalesPrice" Title="Price" CellStyle="text-align: right">
                                         <CellTemplate>
-                                            <MudText Typo="Typo.subtitle1">@context.Item.OptionalSalesPrice.ToString("0.00")</MudText>
+                                            <MudText Typo="Typo.subtitle1">@context.Item.optionalSalesPrice.ToString("0.00")</MudText>
                                         </CellTemplate>
                                     </Column>
-                                    <Column T="Menuitemlist" Title="%" CellStyle="text-align: right">
+                                    <Column T="ItmValue" Title="%" CellStyle="text-align: right">
                                         <CellTemplate>
                                             <MudText @bind-Value="DiscountValue" Typo="Typo.body2">@DiscountValue</MudText>
                                         </CellTemplate>
                                     </Column>
-                                    <Column T="Menuitemlist" Title="Total" CellStyle="text-align: right">
+                                    <Column T="ItmValue" Title="Total" CellStyle="text-align: right">
                                         <CellTemplate>
                                             @{
 
-                                                var total = (context.Item.OptionalSalesPrice * context.Item.qty) * (1 - (DiscountValue / 100.00));
+                                                var total = (context.Item.optionalSalesPrice * context.Item.qty) * (1 - (DiscountValue / 100.00));
                                                 double truncatedtotal = Math.Round(total, 2);
 
                                             }
@@ -308,7 +302,7 @@
 
     }
 
-    private async void ClickConfirmDelete(Menuitemlist x)
+    private async void ClickConfirmDelete(ItmValue x)
     {
         var parameters = new DialogParameters();
         parameters.Add("Elementpara", x);
@@ -389,7 +383,7 @@
 
     }
 
-    private void RemoveItem(Menuitemlist x)
+    private void RemoveItem(ItmValue x)
     {
         OrderItemsState = _orderState.GetOrderitems();
         x.isActive = 0;

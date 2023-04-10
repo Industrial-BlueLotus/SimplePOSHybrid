@@ -1,8 +1,9 @@
-﻿@using SimplePOSHybrid.Models.PartnerMenu
+﻿@using SimplePOSHybrid.Models.GetItems;
+@using SimplePOSHybrid.Models.PartnerMenu
 
 <MudDialog Style="background-color:#f2f2f2;border-radius:15px">
     <TitleContent>
-        <MudItem xs="12" Class="d-flex align-center justify-center pt-4">
+        <MudItem xs="12" Class="d-flex align-center justify-center pa-4">
             <MudGrid>
                 <MudItem xs="3" Class="d-flex align-center justify-center pt-4">
                 </MudItem>
@@ -16,21 +17,19 @@
         </MudItem>
     </TitleContent>
     <DialogContent>
-        <MudItem xs="12" Class="d-flex align-center justify-center py-0">
+        <MudItem xs="12" Class="d-flex align-center justify-center pa-4">
             <MudText Typo="Typo.subtitle1" Style="font-weight:bold">@ContentText</MudText>
         </MudItem>
     </DialogContent>
     <DialogActions>
         <MudGrid>
-            <MudItem xs="12" Class="d-flex align-center justify-center py-4 ">
+            <MudItem xs="12" Class="d-flex align-center justify-center pa-4">
                 <MudGrid>
-                    <MudItem xs="6" Class="d-flex align-center justify-center py-4">
-                        <MudButton Style=" background-color:red;color:white;font-size:medium;width: 80%;height: calc(7vh);" Variant="Variant.Filled" @onclick="(() => {Submit(); RemoveItem(Elementpara) ;})">@ButtonText1</MudButton>
-                   
-                        @*<MudButton Style=" background-color:#053B71;color:white;font-size:small" Variant="Variant.Filled" OnClick="Submit">@ButtonText1</MudButton>*@
+                    <MudItem xs="6" Class="d-flex align-center justify-center py-2">
+                        <MudButton Style=" background-color:red;color:white;font-size:small;width: calc(10vh);height: calc(7vh);" Variant="Variant.Filled" @onclick="(() => {Submit(); RemoveItem(Elementpara) ;})">@ButtonText1</MudButton>
                     </MudItem>
-                    <MudItem xs="6" Class="d-flex align-center justify-center py-4">
-                        <MudButton Style="border-block-color:lightgrey;color:darkgrey;font-size:medium;width: 80%;height:calc(7vh)" Variant="Variant.Outlined" OnClick="Cancel">@ButtonText2</MudButton>
+                    <MudItem xs="6" Class="d-flex align-center justify-center py-2">
+                        <MudButton Style="border-block-color:lightgrey;color:darkgrey;font-size:small;width: calc(10vh);height:calc(7vh)" Variant="Variant.Outlined" OnClick="Cancel">@ButtonText2</MudButton>
                     </MudItem>
                 </MudGrid>
             </MudItem>
@@ -42,7 +41,7 @@
 @code {
     [CascadingParameter] MudDialogInstance MudDialog { get; set; }
 
-    [Parameter] public Menuitemlist Elementpara { get; set; }
+    [Parameter] public ItmValue Elementpara { get; set; }
 
     [Parameter] public string TitleText { get; set; }
 
@@ -53,12 +52,12 @@
     [Parameter] public string ButtonText2 { get; set; }
 
     private string DiscType { get; set; }
+      
+    private List<ItmValue> orderitems = new List<ItmValue> { };
 
-    private List<Menuitemlist> orderitems = new List<Menuitemlist> { };
+    private IEnumerable<ItmValue> Elements = new List<ItmValue>();
 
-    private IEnumerable<Menuitemlist> Elements = new List<Menuitemlist>();
-
-    private void RemoveItem(Menuitemlist x)
+    private void RemoveItem(ItmValue x)
     {
       MudDialog.Close(DialogResult.Ok(true));
     }

@@ -23,6 +23,7 @@ namespace SimplePOSHybrid.Models.GetCategories
 
     public class Value
     {
+        public int ID { set; get; } = 0;
         public int categoryId { get; set; }
         public object company { get; set; }
         public object categoryCode { get; set; }
