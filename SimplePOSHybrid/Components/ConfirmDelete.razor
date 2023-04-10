@@ -1,9 +1,9 @@
 ﻿@using SimplePOSHybrid.Models.GetItems;
 @using SimplePOSHybrid.Models.PartnerMenu
 
-<MudDialog Style="background-color:#f2f2f2;border-radius:15px">
-    <TitleContent>
-        <MudItem xs="12" Class="d-flex align-center justify-center pa-4">
+<MudDialog Style="background-color:#f2f2f2;border-radius:15px;overflow:unset">
+    <TitleContent >
+        <MudItem xs="12" Class="d-flex align-center justify-center pr-2 pl-2 pt-2 pb-0" >
             <MudGrid>
                 <MudItem xs="3" Class="d-flex align-center justify-center pt-4">
                 </MudItem>
@@ -25,11 +25,11 @@
         <MudGrid>
             <MudItem xs="12" Class="d-flex align-center justify-center pa-4">
                 <MudGrid>
-                    <MudItem xs="6" Class="d-flex align-center justify-center py-2">
-                        <MudButton Style=" background-color:red;color:white;font-size:small;width: calc(10vh);height: calc(7vh);" Variant="Variant.Filled" @onclick="(() => {Submit(); RemoveItem(Elementpara) ;})">@ButtonText1</MudButton>
+                    <MudItem xs="6" Class="d-flex align-center justify-center pa-2">
+                        <MudButton Style=" background-color:red;color:white;font-size:medium;width: calc(10vh);height: calc(7vh);" Variant="Variant.Filled" @onclick="(() => {Submit(); RemoveItem(Elementpara) ;})">@ButtonText1</MudButton>
                     </MudItem>
-                    <MudItem xs="6" Class="d-flex align-center justify-center py-2">
-                        <MudButton Style="border-block-color:lightgrey;color:darkgrey;font-size:small;width: calc(10vh);height:calc(7vh)" Variant="Variant.Outlined" OnClick="Cancel">@ButtonText2</MudButton>
+                    <MudItem xs="6" Class="d-flex align-center justify-center pa-2">
+                        <MudButton Style="border-block-color:lightgrey;color:darkgrey;font-size:medium;width: calc(10vh);height:calc(7vh)" Variant="Variant.Outlined" OnClick="Cancel">@ButtonText2</MudButton>
                     </MudItem>
                 </MudGrid>
             </MudItem>
