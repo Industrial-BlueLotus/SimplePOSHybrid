@@ -23,7 +23,7 @@ namespace SimplePOSHybrid.Models.GetItems
 
     public class ItmValue
     {
-        public int ID { set; get; } = 0;
+        public int ID { set; get; } = 1;
         public static string itemImage { get; set; }
         public string ItemImageUrl { get; set; } = string.Format("data:image/svg+xml;base64,{0}", itemImage);
         public object itemImageUrl { get; set; }
