@@ -161,14 +161,20 @@
                     <MudGrid>
                         <MudItem xs="12" Class="d-flex align-center justify-center py-4">
                             <MudGrid>
-                                <MudItem xs="4"></MudItem>
+                                <MudItem xs="2"></MudItem>
                                 <MudItem xs="4">
-                                    <MudSelect @bind-Value="stringValue" Dense="true" Margin="Margin.Dense" T="string" Label="Payment Type" Variant="Variant.Filled">
+                                <MudButton Variant="Variant.Filled" @onclick="@(() => CashBtnClick())" DisableElevation="true" Style="background-color:steelblue;color:white;width:100%" Class="pa-4" Size="Size.Large">Cash Payment</MudButton>
+
+                                @*<MudSelect @bind-Value="stringValue" Dense="true" Margin="Margin.Dense" T="string" Label="Payment Type" Variant="Variant.Filled">
                                         <MudSelectItem Value="@("Cash")" />
                                         <MudSelectItem Value="@("Credit")" />
-                                    </MudSelect>
+                                    </MudSelect>*@
                                 </MudItem>
-                                <MudItem xs="4"></MudItem>
+                                <MudItem xs="4">
+                                <MudButton Variant="Variant.Filled" @onclick="@(() => CreditBtnClick())" DisableElevation="true" Style="background-color:steelblue;color:white;width:100%" Class="pa-4" Size="Size.Large">Credit Payment</MudButton>
+
+                            </MudItem>
+                                <MudItem xs="2"></MudItem>
                             </MudGrid> 
                         </MudItem>
                         <MudItem xs="12" >
@@ -176,7 +182,7 @@
                             <MudText Typo="Typo.h6" Class="d-flex align-center justify-center py-4">Total Amount Due</MudText>
                         </MudItem>
                         <MudItem xs="12">
-                            @if (stringValue == "Cash")
+                            @if (stringValue == "cash")
                             {
                                 <MudGrid >
                                     <MudItem xs="5" Class="d-flex align-center justify-center py-4">
@@ -237,9 +243,9 @@
 
     public string Amount { get; set; }
 
-    public string balance { get; set; } 
+    public string balance { get; set; }
 
-    private string stringValue { get; set; }
+    private string stringValue { get; set; } = "cash";
 
     private string customerSelection { get; set; }
 
@@ -309,7 +315,7 @@
         var dialog = DialogService.Show<ConfirmDelete>("Choose Confirm Delete", parameters);
         using var task = dialog.Result;
         var result = await task;
-        if (!result.Cancelled)
+        if (!result.Canceled)
         {
             RemoveItem(x);
         }
@@ -357,7 +363,7 @@
 
     void RecalculateTotal()
     {
-        
+
         List<ItmValue> newState = OrderItemsState.Where(item => item.isActive == 1).ToList();
 
         subtotal = newState.Sum(item => item.optionalSalesPrice);
@@ -386,5 +392,9 @@
         RecalculateTotal();
         StateHasChanged();
     }
-    
+
+    private void CashBtnClick() => stringValue = "cash";
+
+    private void CreditBtnClick() => stringValue = "credit";
+
 }

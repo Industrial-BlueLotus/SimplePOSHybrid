@@ -370,11 +370,14 @@
         OrderItemsState = _orderState.GetOrderitems();
         if ( OrderItemsState.Any(i =>i.itemName == item.itemName) )
         {
+            item.isActive = 1;
             item.qty += 1;
+
 
         }
         else
         {
+            item.isActive = 1;
             orderitems.Add(item);
 
         }
@@ -413,6 +416,7 @@
     private void RemoveItem(ItmValue x)
     {
         x.isActive = 0;
+        x.qty = 0;
         //orderitems = orderitems.Where(u => u.ID != x.ID).ToList();
         //_orderState.ElementMthd(orderitems);
         //Elements = _orderState.GetElements();

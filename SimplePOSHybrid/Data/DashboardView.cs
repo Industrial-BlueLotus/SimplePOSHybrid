@@ -245,6 +245,7 @@ namespace SimplePOSHybrid.Data
             }
             catch (Exception e)
             {
+                Console.WriteLine(e);
                 Alert1();
                 return new List<ItmValue>();
             }
@@ -266,6 +267,7 @@ namespace SimplePOSHybrid.Data
             }
             catch (Exception e)
             {
+                Console.WriteLine(e);
                 Alert1();
                 return new List<string>();
             }
