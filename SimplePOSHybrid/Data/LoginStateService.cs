@@ -2,7 +2,6 @@
 using SimplePOSHybrid.Models.UserCompanies;
 using RestSharp;
 using Newtonsoft.Json;
-using static MudBlazor.CategoryTypes;
 using System.Net;
 
 namespace SimplePOSHybrid.Data

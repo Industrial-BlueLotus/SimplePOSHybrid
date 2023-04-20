@@ -38,7 +38,7 @@
 
         </MudGrid>
     </MudAppBar>
-    <MudMainContent Class="pt-0 pb-0 pl-3 pr-3" Style="height:100%">
+    <MudMainContent Class="pt-0 pb-0 pl-3 pr-3"  Style="height:100%">
 
         <MudGrid Class="pt-3" Style="height:100%">
 
@@ -259,17 +259,12 @@
 
     public async void Load()
     {
-
-
         UserName = _loginState.GetUserName();
         Console.WriteLine(UserName);
 
         UserCompany = _loginState.GetUserCompany();
         Console.WriteLine(UserCompany);
-        //var Company = _loginState.GetUserCompany();
-        //UserCompany = Company.CompanyName;
-        //Console.WriteLine(UserCompany);
-
+       
         test = await _dashboard.LoadResponseCat();
         Console.WriteLine(test);
         tabscat = DashboardView.DisplayCat(test);
