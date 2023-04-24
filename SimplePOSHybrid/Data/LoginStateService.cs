@@ -3,6 +3,7 @@ using SimplePOSHybrid.Models.UserCompanies;
 using RestSharp;
 using Newtonsoft.Json;
 using System.Net;
+using SimplePOSHybrid.Models.GetCustomer;
 
 namespace SimplePOSHybrid.Data
 {
@@ -11,6 +12,8 @@ namespace SimplePOSHybrid.Data
         private NewLoginResModel ResModel = new();
 
         private UserCompaniesModel usrcompmdl = new();
+
+        private CustomerView customer = new();
 
         GlobalUsings link = new();
 
@@ -58,6 +61,8 @@ namespace SimplePOSHybrid.Data
 
         }
 
+
+
         public async Task<NewLoginResModel> LoginStateMethodAsync(RestResponse response)
         {
             string responseContent = response.Content.ToString();
@@ -66,6 +71,7 @@ namespace SimplePOSHybrid.Data
             ResModel.username = array.username;
             ResModel.token = array.token;
             await getUserCompanies(array.token);
+            await customer.getCustomers(array.token);
 
             return ResModel;
         }
