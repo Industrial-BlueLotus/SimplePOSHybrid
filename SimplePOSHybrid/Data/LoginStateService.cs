@@ -71,7 +71,7 @@ namespace SimplePOSHybrid.Data
             ResModel.username = array.username;
             ResModel.token = array.token;
             await getUserCompanies(array.token);
-            await customer.getCustomers(array.token);
+            await customer.CustomersRequest(array.token);
 
             return ResModel;
         }

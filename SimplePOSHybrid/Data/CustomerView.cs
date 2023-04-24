@@ -9,7 +9,10 @@ namespace SimplePOSHybrid.Data
     public class CustomerView
     {
         GlobalUsings link = new();
-        public async Task<GetCustomerModel> getCustomers(string apitoken)
+
+        private List<string> customerState = new();
+
+        public async Task<GetCustomerModel> CustomersRequest(string apitoken)
         {
             var client = new RestClient();
 
@@ -41,7 +44,9 @@ namespace SimplePOSHybrid.Data
                     Console.WriteLine(responseContent);
 
                     GetCustomerModel customerArray = JsonConvert.DeserializeObject<GetCustomerModel>(responseContent);
+
                     return customerArray;
+
 
                 }
                 return new GetCustomerModel();
@@ -57,6 +62,31 @@ namespace SimplePOSHybrid.Data
 
             }
 
+        }
+
+        //Filtering the customers
+        public List<string> DisplayCutomer(GetCustomerModel cust)
+        {
+            List<string> customerlst = new();
+
+            try
+            {
+                customerlst = cust.value.GroupBy(x => x.customerName).Select(g => g.Key).ToList();
+                customerState = customerlst;
+                return customerlst;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return new List<string>();
+            }
+
+
+        }
+
+        public List<string> GetCustomer()
+        {
+            return customerState;
         }
     }
 }

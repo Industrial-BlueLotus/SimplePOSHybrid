@@ -4,6 +4,7 @@
 @using SimplePOSHybrid.Models.PartnerMenu
 @using SimplePOSHybrid.Models
 @using SimplePOSHybrid.Models.GetCategories
+@using SimplePOSHybrid.Models.GetCustomer
 @using SimplePOSHybrid.Models.GetItems
 @using SimplePOSHybrid.Components
 @inject IDialogService DialogService
@@ -239,6 +240,8 @@
 
     public List<string> tabscat = new List<string> { };
 
+    public List<string> customers = new List<string> { };
+
     public List<ItmValue> tabscatitm = new List<ItmValue> { };
 
     private List<ItmValue> orderitems = new List<ItmValue> { };
@@ -250,6 +253,8 @@
     public string cate = "chicken";
 
     public CatgryModel test;
+
+    public GetCustomerModel custmrmdl;
 
     public GetPartnerItemList testitm;
 
@@ -268,6 +273,9 @@
         test = await _dashboard.LoadResponseCat();
         Console.WriteLine(test);
         tabscat = DashboardView.DisplayCat(test);
+
+        //custmrmdl = await _customer.getCustomers();
+        customers = _customer.GetCustomer();
 
         testitm = await _dashboard.LoadResponseItm();
         tabscatitm = DashboardView.DisplayItem(testitm, cate);
