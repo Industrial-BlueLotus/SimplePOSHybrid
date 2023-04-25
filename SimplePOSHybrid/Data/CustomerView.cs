@@ -11,9 +11,9 @@ namespace SimplePOSHybrid.Data
         GlobalUsings link = new();
 
         //private List<string> customerState = new();
-        private readonly GetCustomerModel cus = new();
+        private readonly CustomerModel cus = new();
 
-        public async Task<GetCustomerModel> CustomersRequest(string apitoken)
+        public async Task<CustomerModel> CustomersRequest(string apitoken)
         {
             var client = new RestClient();
 
@@ -44,20 +44,20 @@ namespace SimplePOSHybrid.Data
                     responseContent = response.Content.ToString();
                     Console.WriteLine(responseContent);
 
-                    GetCustomerModel customerArray = JsonConvert.DeserializeObject<GetCustomerModel>(responseContent);
+                    CustomerModel customerArray = JsonConvert.DeserializeObject<CustomerModel>(responseContent);
                     Filtercstmr(customerArray);
                     return customerArray;
 
 
                 }
-                return new GetCustomerModel();
+                return new CustomerModel();
 
             }
             catch (Exception ex)
             {
 
                 Console.WriteLine(ex);
-                return new GetCustomerModel();
+                return new CustomerModel();
 
                 //await _navigation.PushAsync(new AlertPop());
 
@@ -66,7 +66,7 @@ namespace SimplePOSHybrid.Data
         }
 
         //Filtering the customers
-        public List<string> Filtercstmr(GetCustomerModel cust)
+        public List<string> Filtercstmr(CustomerModel cust)
         {
             List<string> customerlst = new();
 

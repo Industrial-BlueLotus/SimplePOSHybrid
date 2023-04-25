@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SimplePOSHybrid.Models.GetCustomer
 {
-    public class GetCustomerModel
+    public class CustomerModel
     {
         public Value[] value { get; set; }
         public object[] messages { get; set; }
@@ -14,7 +14,7 @@ namespace SimplePOSHybrid.Models.GetCustomer
         public DateTime executionStarted { get; set; }
         public DateTime executionEnded { get; set; }
         public string responseId { get; set; }
-        public GetCustomerModel()
+        public CustomerModel()
         {
             value = new Value[0];
         }
