@@ -22,6 +22,7 @@ namespace SimplePOSHybrid.Models.GetCustomer
 
     public class Value
     {
+        public List<string> CustomerState { get; set; }
         public int posCustomerId { get; set; }
         public object company { get; set; }
         public string customerName { get; set; }

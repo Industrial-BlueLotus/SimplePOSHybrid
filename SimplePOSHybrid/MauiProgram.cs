@@ -4,6 +4,7 @@ using SimplePOSHybrid.Data;
 using SimplePOSHybrid.Models.PartnerMenu;
 using SimplePOSHybrid.Models;
 using SimplePOSHybrid.Pages;
+using SimplePOSHybrid.Models.GetCustomer;
 
 namespace SimplePOSHybrid;
 
@@ -23,6 +24,7 @@ public static class MauiProgram
         builder.Services.AddMudServices();
         builder.Services.AddSingleton<LoginMethods>();
         builder.Services.AddSingleton<ItemModel>();
+        //builder.Services.AddSingleton<GetCustomerModel>();
         builder.Services.AddSingleton<LoginResModel>();
         builder.Services.AddSingleton<DashboardView>();
         builder.Services.AddSingleton<CustomerView>();

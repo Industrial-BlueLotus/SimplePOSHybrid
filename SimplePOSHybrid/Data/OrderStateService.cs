@@ -7,8 +7,6 @@ namespace SimplePOSHybrid.Data
     {
         private IEnumerable<ItmValue> Elements = new List<ItmValue>();
 
-        private List<ItmValue> orderitems = new();
-
         private List<ItmValue> orderitems1 = new();
 
         public OrderStateService() { }

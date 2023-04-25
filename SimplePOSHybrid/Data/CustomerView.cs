@@ -10,7 +10,8 @@ namespace SimplePOSHybrid.Data
     {
         GlobalUsings link = new();
 
-        private List<string> customerState = new();
+        //private List<string> customerState = new();
+        private readonly GetCustomerModel cus = new();
 
         public async Task<GetCustomerModel> CustomersRequest(string apitoken)
         {
@@ -44,7 +45,7 @@ namespace SimplePOSHybrid.Data
                     Console.WriteLine(responseContent);
 
                     GetCustomerModel customerArray = JsonConvert.DeserializeObject<GetCustomerModel>(responseContent);
-
+                    Filtercstmr(customerArray);
                     return customerArray;
 
 
@@ -65,14 +66,13 @@ namespace SimplePOSHybrid.Data
         }
 
         //Filtering the customers
-        public List<string> DisplayCutomer(GetCustomerModel cust)
+        public List<string> Filtercstmr(GetCustomerModel cust)
         {
             List<string> customerlst = new();
 
             try
             {
                 customerlst = cust.value.GroupBy(x => x.customerName).Select(g => g.Key).ToList();
-                customerState = customerlst;
                 return customerlst;
             }
             catch (Exception e)
@@ -84,9 +84,6 @@ namespace SimplePOSHybrid.Data
 
         }
 
-        public List<string> GetCustomer()
-        {
-            return customerState;
-        }
+
     }
 }
