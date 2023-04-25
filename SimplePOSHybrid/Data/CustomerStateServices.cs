@@ -55,7 +55,7 @@ namespace SimplePOSHybrid.Data
                 CustomerModel customerArray = JsonConvert.DeserializeObject<CustomerModel>(responseContent);
                 strings = Filtercstmr(customerArray);
 
-                CustomerModel1.value[0].CustomerState = strings;
+                CustomerModel1.CustomerState = strings;
                 return CustomerModel1;
             }
             catch (Exception ex)
@@ -68,7 +68,7 @@ namespace SimplePOSHybrid.Data
 
         public List<string> GetCustomer()
         {
-            return CustomerModel1.value[0].CustomerState;
+            return CustomerModel1.CustomerState;
         }
     }
 }

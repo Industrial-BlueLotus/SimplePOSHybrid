@@ -14,15 +14,17 @@ namespace SimplePOSHybrid.Models.GetCustomer
         public DateTime executionStarted { get; set; }
         public DateTime executionEnded { get; set; }
         public string responseId { get; set; }
+        public List<string> CustomerState { get; set; }
         public CustomerModel()
         {
             value = new CstmValue[0];
+            //CustomerState = new List<string>();
         }
     }
 
     public class CstmValue
     {
-        public List<string> CustomerState { get; set; }
+
         public int posCustomerId { get; set; }
         public object company { get; set; }
         public string customerName { get; set; }
@@ -61,11 +63,10 @@ namespace SimplePOSHybrid.Models.GetCustomer
         public int requestingObjectKey { get; set; }
         public object owningCompany { get; set; }
 
-        public CstmValue()
-        {
-            addtionalData = new Addtionaldata();
-            CustomerState = new List<string>();
-        }
+        //public CstmValue()
+        // {
+        //     CustomerState = new List<string>();
+        // }
     }
 
     public class Addtionaldata
