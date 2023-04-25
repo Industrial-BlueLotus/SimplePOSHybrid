@@ -240,7 +240,7 @@
 
     public List<string> tabscat = new List<string> { };
 
-    public List<string> customers = new List<string> { };
+    public List<string> customers { get; set; }
 
     public List<ItmValue> tabscatitm = new List<ItmValue> { };
 
@@ -274,8 +274,8 @@
         Console.WriteLine(test);
         tabscat = DashboardView.DisplayCat(test);
 
-        //customers = _customer.GetCustomer();
-
+        customers = _customerState.GetCustomer();
+        Console.WriteLine(customers);
         testitm = await _dashboard.LoadResponseItm();
         tabscatitm = DashboardView.DisplayItem(testitm, cate);
         Console.WriteLine(tabscatitm);

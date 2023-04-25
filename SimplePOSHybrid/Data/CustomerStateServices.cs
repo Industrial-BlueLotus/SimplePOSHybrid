@@ -11,7 +11,7 @@ namespace SimplePOSHybrid.Data
 {
     public class CustomerStateServices
     {
-        private CustomerModel CustomerModel1 = new CustomerModel();
+        private CustomerModel CustomerModel1 = new();
 
         public CustomerStateServices() { }
 
