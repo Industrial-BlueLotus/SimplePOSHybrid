@@ -11,9 +11,8 @@ namespace SimplePOSHybrid.Data
 {
     public class CustomerStateServices
     {
-        private CustomerModel CustomerModel1 = new();
+        public CustomerModel CustomerModel1 { get; set; } = new CustomerModel();
 
-        public CustomerStateServices() { }
 
         //Filtering the customers
         public static List<string> Filtercstmr(CustomerModel cust)
@@ -61,9 +60,10 @@ namespace SimplePOSHybrid.Data
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-                return null;
+                return CustomerModel1;
             }
         }
+
 
 
         public List<string> GetCustomer()

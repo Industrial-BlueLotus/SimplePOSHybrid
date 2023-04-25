@@ -29,7 +29,7 @@ public static class MauiProgram
         builder.Services.AddSingleton<CustomerView>();
         builder.Services.AddSingleton<OrderStateService>();
         builder.Services.AddSingleton<LoginStateService>();
-        builder.Services.AddSingleton<CustomerStateServices>();
+        builder.Services.AddScoped<CustomerStateServices>();
         builder.Services.AddScoped<BrowserService>();
         builder.Services.AddScoped<LoginMethods>();
 

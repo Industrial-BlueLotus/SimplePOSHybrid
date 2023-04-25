@@ -13,7 +13,7 @@ namespace SimplePOSHybrid.Data
 
         private UserCompaniesModel usrcompmdl = new();
 
-        private CustomerView customer = new();
+        public CustomerView customer = new();
 
         GlobalUsings link = new();
 

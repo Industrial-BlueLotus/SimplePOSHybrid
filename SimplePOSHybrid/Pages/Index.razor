@@ -269,12 +269,12 @@
 
         UserCompany = _loginState.GetUserCompany();
         Console.WriteLine(UserCompany);
-       
+
         test = await _dashboard.LoadResponseCat();
         Console.WriteLine(test);
         tabscat = DashboardView.DisplayCat(test);
 
-        customers = _customerState.GetCustomer();
+        customers = _loginState.customer._customerStateService.CustomerModel1.CustomerState;
         Console.WriteLine(customers);
         testitm = await _dashboard.LoadResponseItm();
         tabscatitm = DashboardView.DisplayItem(testitm, cate);

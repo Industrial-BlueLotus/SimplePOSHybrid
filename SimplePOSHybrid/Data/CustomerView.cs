@@ -10,10 +10,7 @@ namespace SimplePOSHybrid.Data
     {
         GlobalUsings link = new();
 
-        //private List<string> customerState = new();
-        private readonly CustomerModel cus = new();
-
-        private CustomerStateServices _customerStateService = new CustomerStateServices();
+        public CustomerStateServices _customerStateService = new CustomerStateServices();
         public CustomerView(CustomerStateServices customerStateService)
         {
             _customerStateService = customerStateService;
@@ -23,7 +20,7 @@ namespace SimplePOSHybrid.Data
         {
         }
 
-        public async Task<CustomerModel> CustomersRequest(string apitoken)
+        public async Task<string> CustomersRequest(string apitoken)
         {
             var client = new RestClient();
 
@@ -61,14 +58,14 @@ namespace SimplePOSHybrid.Data
 
 
                 }
-                return new CustomerModel();
+                return responseContent;
 
             }
             catch (Exception ex)
             {
 
                 Console.WriteLine(ex);
-                return new CustomerModel();
+                return responseContent;
 
                 //await _navigation.PushAsync(new AlertPop());
 
