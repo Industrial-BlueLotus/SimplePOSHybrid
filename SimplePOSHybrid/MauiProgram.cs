@@ -24,12 +24,12 @@ public static class MauiProgram
         builder.Services.AddMudServices();
         builder.Services.AddSingleton<LoginMethods>();
         builder.Services.AddSingleton<ItemModel>();
-        //builder.Services.AddSingleton<GetCustomerModel>();
         builder.Services.AddSingleton<LoginResModel>();
         builder.Services.AddSingleton<DashboardView>();
         builder.Services.AddSingleton<CustomerView>();
         builder.Services.AddSingleton<OrderStateService>();
         builder.Services.AddSingleton<LoginStateService>();
+        builder.Services.AddSingleton<CustomerStateServices>();
         builder.Services.AddScoped<BrowserService>();
         builder.Services.AddScoped<LoginMethods>();
 
