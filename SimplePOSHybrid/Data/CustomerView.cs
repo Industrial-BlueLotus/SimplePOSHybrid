@@ -74,8 +74,8 @@ namespace SimplePOSHybrid.Data
 
         }
 
-        //public async Task<string> CreateCustomer(CreateCstmrModel createCstmrModel, string apitoken)
-        public async Task<string> CreateCustomer(string apitoken)
+        public async Task<string> CreateCustomer(CreateCstmrModel createCstmrModel, string apitoken)
+        //public async Task<string> CreateCustomer(string apitoken)
         {
             string responseContent = string.Empty;
             try
@@ -84,21 +84,21 @@ namespace SimplePOSHybrid.Data
 
 
 
-                CreateCstmrModel createCstmrModel = new()
-                {
-                    name = "adam",
-                    address = "abc",
-                    city = "colombo",
-                    postalCode = "12345",
-                    isAct = 1,
-                    phone = "0711234657",
-                    loyaltyCardNo = "az25",
-                    email = "adam@gmail.com",
-                    doorNo = "1",
-                    adrId = "",
-                    ourCd = "CUS",
-                    companyKey = 51
-                };
+                //CreateCstmrModel createCstmrModel = new()
+                //{
+                //    name = "adam",
+                //    address = "abc",
+                //    city = "colombo",
+                //    postalCode = "12345",
+                //    isAct = 1,
+                //    phone = "0711234657",
+                //    loyaltyCardNo = "az25",
+                //    email = "adam@gmail.com",
+                //    doorNo = "1",
+                //    adrId = "",
+                //    ourCd = "CUS",
+                //    companyKey = 51
+                //};
 
                 var request = new RestRequest(link.apilinkpub + "api/Address/createCustomer").AddJsonBody(createCstmrModel);
                 request.Method = Method.Post;

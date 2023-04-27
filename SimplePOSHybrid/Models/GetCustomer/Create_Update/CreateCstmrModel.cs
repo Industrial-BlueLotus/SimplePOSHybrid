@@ -12,14 +12,14 @@ namespace SimplePOSHybrid.Models.GetCustomer.Create_Update
         public string address { get; set; }
         public string city { get; set; }
         public string postalCode { get; set; }
-        public int isAct { get; set; }
+        public int isAct { get; set; } = 1;
         public string phone { get; set; }
         public string loyaltyCardNo { get; set; }
         public string email { get; set; }
         public string doorNo { get; set; }
-        public string adrId { get; set; }
-        public string ourCd { get; set; }
-        public int companyKey { get; set; }
+        public string adrId { get; set; } = "";
+        public string ourCd { get; set; } = "CUS";
+        public int companyKey { get; set; } = 51;
     }
 
 }

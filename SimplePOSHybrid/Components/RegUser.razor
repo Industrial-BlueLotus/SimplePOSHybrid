@@ -40,27 +40,27 @@
 @code {
     [CascadingParameter] MudDialogInstance MudDialog { get; set; }
 
-    public CreateCstmrModel CreateCstmrModel;
+    public CreateCstmrModel CreateCstmrModel = new();
 
-    void Submit()
+    public async Task Submit()
     {
-        //try
-        //{
-        //    if (CreateCstmrModel.name != string.Empty && CreateCstmrModel.address != string.Empty 
-        //        && CreateCstmrModel.city != string.Empty && CreateCstmrModel.postalCode != string.Empty 
-        //        && CreateCstmrModel.phone != string.Empty && CreateCstmrModel.loyaltyCardNo != string.Empty 
-        //        && CreateCstmrModel.email != string.Empty && CreateCstmrModel.doorNo != string.Empty )
-        //    {
-        //        var response1 = await _customer.CreateCustomer(CreateCstmrModel, _loginState.GetToken());
-        //        Console.WriteLine(response1);
-        //    }
+        try
+        {
+            if (CreateCstmrModel.name != string.Empty && CreateCstmrModel.address != string.Empty 
+                && CreateCstmrModel.city != string.Empty && CreateCstmrModel.postalCode != string.Empty 
+                && CreateCstmrModel.phone != string.Empty && CreateCstmrModel.loyaltyCardNo != string.Empty 
+                && CreateCstmrModel.email != string.Empty && CreateCstmrModel.doorNo != string.Empty )
+            {
+                var response1 = await _customer.CreateCustomer(CreateCstmrModel, _loginState.GetToken());
+                Console.WriteLine(response1);
+            }
 
-        //}
-        //catch(Exception ex)
-        //{
-        //    Console.WriteLine(ex.Message);
-        //}
-        _customer.CreateCustomer(_loginState.GetToken());
+        }
+        catch(Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        //_customer.CreateCustomer(_loginState.GetToken());
         MudDialog.Close(DialogResult.Ok(true));
     }
     void Cancel() => MudDialog.Cancel();
