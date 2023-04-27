@@ -1,10 +1,14 @@
 ﻿<MudDialog >
     <DialogContent>
         <div class="d-flex flex-column py-1">
-            <MudButton OnClick="ChangeTitle">Change Title</MudButton>
-            <MudButton OnClick="ToggleCloseButton">Toggle Close Button</MudButton>
+            @foreach (var cust in _loginState.customer._customerStateService.CustomerModel1.CustomerState)
+            {
+                <MudButton OnClick="ChangeTitle">@cust</MudButton>
+            }
+            
+            @*<MudButton OnClick="ToggleCloseButton">Toggle Close Button</MudButton>
             <MudButton OnClick="ToggleFullWidth">Toggle Full Width</MudButton>
-            <MudButton OnClick="ToggleHeader">Toggle Header</MudButton>
+            <MudButton OnClick="ToggleHeader">Toggle Header</MudButton>*@
         </div>
     </DialogContent>
     <DialogActions>

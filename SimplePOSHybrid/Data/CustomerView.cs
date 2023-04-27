@@ -31,7 +31,7 @@ namespace SimplePOSHybrid.Data
                 GetCustomerReqModel getCustomerReqModel = new GetCustomerReqModel
                 {
                     companyId = 51,
-                    searchQuery = "siva"
+                    searchQuery = ""
                 };
 
 

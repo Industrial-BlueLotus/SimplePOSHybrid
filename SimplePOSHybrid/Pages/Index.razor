@@ -270,6 +270,7 @@
         UserCompany = _loginState.GetUserCompany();
         Console.WriteLine(UserCompany);
 
+        //food category method
         test = await _dashboard.LoadResponseCat();
         Console.WriteLine(test);
         tabscat = DashboardView.DisplayCat(test);
