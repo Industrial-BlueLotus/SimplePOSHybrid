@@ -1,6 +1,7 @@
 ﻿@page "/home"
 @layout MainLayout
 @using SimplePOSHybrid.Data
+@using SimplePOSHybrid.Models.GetCustomer.Create_Update;
 @using SimplePOSHybrid.Models.PartnerMenu
 @using SimplePOSHybrid.Models
 @using SimplePOSHybrid.Models.GetCategories
@@ -295,6 +296,7 @@
     {
         //testitm = await _dashboard.LoadResponseItm();
         tabscatitm = DashboardView.DisplayItem(testitm, cate);
+        Console.WriteLine(tabscatitm);
         StateHasChanged();
 
     }
