@@ -74,6 +74,7 @@ namespace SimplePOSHybrid.Data
 
         }
 
+        //public async Task<string> CreateCustomer(CreateCstmrModel createCstmrModel, string apitoken)
         public async Task<string> CreateCustomer(string apitoken)
         {
             string responseContent = string.Empty;
@@ -114,14 +115,8 @@ namespace SimplePOSHybrid.Data
                     responseContent = response.Content.ToString();
                     Console.WriteLine(responseContent);
 
-
-                    //return customerArray;
-
-
                 }
                 return responseContent;
-
-
             }
             catch (Exception ex)
             {

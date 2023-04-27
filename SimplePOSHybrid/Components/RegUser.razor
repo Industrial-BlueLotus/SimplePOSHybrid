@@ -1,29 +1,32 @@
-﻿<MudDialog Style="background-color:#f2f2f2;border-radius:15px;overflow:unset">
+﻿@using SimplePOSHybrid.Models.GetCustomer.Create_Update;
+@using SimplePOSHybrid.Data;
+
+<MudDialog Style="background-color:#f2f2f2;border-radius:15px;overflow:unset">
     <DialogContent>
         <MudGrid>
             <MudItem xs="6">
-                <MudTextField T="string" @bind-Value="CreateCstmrModel.loyaltyCardNo" Label="No"></MudTextField>
+                <MudTextField T="string" @bind-Value="CreateCstmrModel.loyaltyCardNo" Label="No" ></MudTextField>
             </MudItem>
             <MudItem xs="6">
-                <MudTextField T="string" Label="Customer Name"></MudTextField>
+                <MudTextField T="string" @bind-Value="CreateCstmrModel.name" Label="Customer Name"></MudTextField>
             </MudItem>
             <MudItem xs="6">
-                <MudTextField T="string" Label="Contact Number"></MudTextField>
+                <MudTextField T="string" @bind-Value="CreateCstmrModel.phone" Label="Contact Number"></MudTextField>
             </MudItem>
             <MudItem xs="6">
-                <MudTextField T="string" Label="Email Address"></MudTextField>
+                <MudTextField T="string" @bind-Value="CreateCstmrModel.email" Label="Email Address"></MudTextField>
             </MudItem>
             <MudItem xs="6">
-                <MudTextField T="string" Label="Door No"></MudTextField>
+                <MudTextField T="string" @bind-Value="CreateCstmrModel.doorNo" Label="Door No"></MudTextField>
             </MudItem>
             <MudItem xs="6">
-                <MudTextField T="string" Label="Address Line1"></MudTextField>
+                <MudTextField T="string" @bind-Value="CreateCstmrModel.address" Label="Address Line1"></MudTextField>
             </MudItem>
             <MudItem xs="6">
-                <MudTextField T="string" Label="City"></MudTextField>
+                <MudTextField T="string" @bind-Value="CreateCstmrModel.city" Label="City"></MudTextField>
             </MudItem>
             <MudItem xs="6">
-                <MudTextField T="string" Label="Postal Code"></MudTextField>
+                <MudTextField T="string" @bind-Value="CreateCstmrModel.postalCode" Label="Postal Code"></MudTextField>
             </MudItem>
         </MudGrid>
         
@@ -37,8 +40,26 @@
 @code {
     [CascadingParameter] MudDialogInstance MudDialog { get; set; }
 
+    public CreateCstmrModel CreateCstmrModel;
+
     void Submit()
     {
+        //try
+        //{
+        //    if (CreateCstmrModel.name != string.Empty && CreateCstmrModel.address != string.Empty 
+        //        && CreateCstmrModel.city != string.Empty && CreateCstmrModel.postalCode != string.Empty 
+        //        && CreateCstmrModel.phone != string.Empty && CreateCstmrModel.loyaltyCardNo != string.Empty 
+        //        && CreateCstmrModel.email != string.Empty && CreateCstmrModel.doorNo != string.Empty )
+        //    {
+        //        var response1 = await _customer.CreateCustomer(CreateCstmrModel, _loginState.GetToken());
+        //        Console.WriteLine(response1);
+        //    }
+
+        //}
+        //catch(Exception ex)
+        //{
+        //    Console.WriteLine(ex.Message);
+        //}
         _customer.CreateCustomer(_loginState.GetToken());
         MudDialog.Close(DialogResult.Ok(true));
     }
