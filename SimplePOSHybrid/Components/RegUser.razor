@@ -37,6 +37,10 @@
 @code {
     [CascadingParameter] MudDialogInstance MudDialog { get; set; }
 
-    void Submit() => MudDialog.Close(DialogResult.Ok(true));
+    void Submit()
+    {
+        _customer.CreateCustomer(_loginState.GetToken());
+        MudDialog.Close(DialogResult.Ok(true));
+    }
     void Cancel() => MudDialog.Cancel();
 }
