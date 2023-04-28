@@ -7,28 +7,28 @@
     <DialogContent>
         <MudGrid>
             <MudItem xs="6">
-                <MudTextField T="string" @bind-Value="CreateCstmrModel.loyaltyCardNo" Label="No" ></MudTextField>
+                <MudTextField T="string" Required="true" @bind-Value="CreateCstmrModel.loyaltyCardNo" Label="No" ></MudTextField>
             </MudItem>
             <MudItem xs="6">
-                <MudTextField T="string" @bind-Value="CreateCstmrModel.name" Label="Customer Name"></MudTextField>
+                <MudTextField T="string" Required="true" @bind-Value="CreateCstmrModel.name" Label="Customer Name"></MudTextField>
             </MudItem>
             <MudItem xs="6">
-                <MudTextField T="string" @bind-Value="CreateCstmrModel.phone" Label="Contact Number"></MudTextField>
+                <MudTextField T="string" Required="true" @bind-Value="CreateCstmrModel.phone" Label="Contact Number"></MudTextField>
             </MudItem>
             <MudItem xs="6">
-                <MudTextField T="string" @bind-Value="CreateCstmrModel.email" Label="Email Address"></MudTextField>
+                <MudTextField T="string" Required="true" @bind-Value="CreateCstmrModel.email" Label="Email Address"></MudTextField>
             </MudItem>
             <MudItem xs="6">
-                <MudTextField T="string" @bind-Value="CreateCstmrModel.doorNo" Label="Door No"></MudTextField>
+                <MudTextField T="string" Required="true" @bind-Value="CreateCstmrModel.doorNo" Label="Door No"></MudTextField>
             </MudItem>
             <MudItem xs="6">
-                <MudTextField T="string" @bind-Value="CreateCstmrModel.address" Label="Address Line1"></MudTextField>
+                <MudTextField T="string" Required="true" @bind-Value="CreateCstmrModel.address" Label="Address Line1"></MudTextField>
             </MudItem>
             <MudItem xs="6">
-                <MudTextField T="string" @bind-Value="CreateCstmrModel.city" Label="City"></MudTextField>
+                <MudTextField T="string" Required="true" @bind-Value="CreateCstmrModel.city" Label="City"></MudTextField>
             </MudItem>
             <MudItem xs="6">
-                <MudTextField T="string" @bind-Value="CreateCstmrModel.postalCode" Label="Postal Code"></MudTextField>
+                <MudTextField T="string" Required="true" @bind-Value="CreateCstmrModel.postalCode" Label="Postal Code"></MudTextField>
             </MudItem>
         </MudGrid>
         
@@ -48,14 +48,21 @@
     {
         try
         {
-            if (CreateCstmrModel.name != string.Empty && CreateCstmrModel.address != string.Empty 
-                && CreateCstmrModel.city != string.Empty && CreateCstmrModel.postalCode != string.Empty 
-                && CreateCstmrModel.phone != string.Empty && CreateCstmrModel.loyaltyCardNo != string.Empty 
-                && CreateCstmrModel.email != string.Empty && CreateCstmrModel.doorNo != string.Empty )
+            if ((CreateCstmrModel.name != null || CreateCstmrModel.name != "") && (CreateCstmrModel.address != null || CreateCstmrModel.address != "")
+                && (CreateCstmrModel.city != null || CreateCstmrModel.city != "") && (CreateCstmrModel.postalCode != null || CreateCstmrModel.postalCode != "")
+                && (CreateCstmrModel.phone != null || CreateCstmrModel.phone != "") && (CreateCstmrModel.loyaltyCardNo != null || CreateCstmrModel.loyaltyCardNo != "")
+                && (CreateCstmrModel.email != null || CreateCstmrModel.email != "") && (CreateCstmrModel.doorNo != null || CreateCstmrModel.doorNo != ""))
             {
                 RestResponse response1 = await _customer.CreateCustomer(CreateCstmrModel, _loginState.GetToken());
                 Console.WriteLine(response1);
-                CstmrAdd(response1);
+                if(response1.IsSuccessful != false)
+                {
+                    CstmrAdd(response1);
+                }
+                else
+                {
+                    CstmrAddfailed();
+                }
 
 
             }
@@ -76,6 +83,17 @@
         var parameters = new DialogParameters();
         parameters.Add("TitleText", "Success!");
         parameters.Add("ContentText", "Customer Added Successfully.");
+        parameters.Add("ButtonText", "Close");
+
+        DialogService.Show<CstmrAddCnfrm>("Choose PrevSale", parameters);
+
+    }
+
+    private void CstmrAddfailed()
+    {
+        var parameters = new DialogParameters();
+        parameters.Add("TitleText", "UnSuccessfull!");
+        parameters.Add("ContentText", "Try again.");
         parameters.Add("ButtonText", "Close");
 
         DialogService.Show<CstmrAddCnfrm>("Choose PrevSale", parameters);
