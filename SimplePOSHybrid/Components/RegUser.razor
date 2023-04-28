@@ -1,5 +1,7 @@
 ﻿@using SimplePOSHybrid.Models.GetCustomer.Create_Update;
 @using SimplePOSHybrid.Data;
+@using RestSharp;
+@inject IDialogService DialogService
 
 <MudDialog Style="background-color:#f2f2f2;border-radius:15px;overflow:unset">
     <DialogContent>
@@ -51,8 +53,11 @@
                 && CreateCstmrModel.phone != string.Empty && CreateCstmrModel.loyaltyCardNo != string.Empty 
                 && CreateCstmrModel.email != string.Empty && CreateCstmrModel.doorNo != string.Empty )
             {
-                var response1 = await _customer.CreateCustomer(CreateCstmrModel, _loginState.GetToken());
+                RestResponse response1 = await _customer.CreateCustomer(CreateCstmrModel, _loginState.GetToken());
                 Console.WriteLine(response1);
+                CstmrAdd(response1);
+
+
             }
 
         }
@@ -64,4 +69,16 @@
         MudDialog.Close(DialogResult.Ok(true));
     }
     void Cancel() => MudDialog.Cancel();
+
+
+    private void CstmrAdd(RestResponse response)
+    {
+        var parameters = new DialogParameters();
+        parameters.Add("TitleText", "Success!");
+        parameters.Add("ContentText", "Customer Added Successfully.");
+        parameters.Add("ButtonText", "Close");
+
+        DialogService.Show<CstmrAddCnfrm>("Choose PrevSale", parameters);
+
+    }
 }

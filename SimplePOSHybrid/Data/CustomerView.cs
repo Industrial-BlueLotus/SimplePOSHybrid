@@ -74,15 +74,13 @@ namespace SimplePOSHybrid.Data
 
         }
 
-        public async Task<string> CreateCustomer(CreateCstmrModel createCstmrModel, string apitoken)
+        public async Task<RestResponse> CreateCustomer(CreateCstmrModel createCstmrModel, string apitoken)
         //public async Task<string> CreateCustomer(string apitoken)
         {
             string responseContent = string.Empty;
             try
             {
                 var client = new RestClient();
-
-
 
                 //CreateCstmrModel createCstmrModel = new()
                 //{
@@ -116,12 +114,12 @@ namespace SimplePOSHybrid.Data
                     Console.WriteLine(responseContent);
 
                 }
-                return responseContent;
+                return response;
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
-                return responseContent;
+                return new();
 
             }
 

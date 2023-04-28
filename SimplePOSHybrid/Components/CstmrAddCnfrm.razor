@@ -1,0 +1,46 @@
+﻿
+
+<MudDialog Style="background-color:#f2f2f2;border-radius:15px;overflow:unset">
+    <TitleContent>
+        <MudItem xs="12" Class="d-flex align-center justify-center pt-8">
+            <MudGrid>
+                <MudItem xs="3" Class="d-flex align-center justify-center pt-8">
+                </MudItem>
+                <MudItem xs="6" Class="d-flex align-center justify-center pt-8">
+                    <MudText Typo="Typo.subtitle1" Style="font-weight:bold">@TitleText</MudText>
+                </MudItem>
+                <MudItem xs="3" Class="d-flex align-center justify-center pt-8">
+                </MudItem>
+            </MudGrid>
+
+        </MudItem>
+    </TitleContent>
+    <DialogContent>
+        <MudItem xs="12" Class="d-flex align-center justify-center pb-4 pl-4 pr-4">
+            <MudText Typo="Typo.subtitle1" Style="font-weight:bold">@ContentText</MudText>
+        </MudItem>
+    </DialogContent>
+    <DialogActions>
+        <MudGrid>
+            <MudItem xs="12" Class="d-flex align-center justify-center pb-8 pt-4 pr-4 pl-4 ">
+                <MudButton Style="font-weight:bold; background-color:#053B71;color:white" Variant="Variant.Filled" OnClick="Submit">@ButtonText</MudButton>
+            </MudItem>
+        </MudGrid>
+
+    </DialogActions>
+</MudDialog>
+
+@code {
+    [CascadingParameter] MudDialogInstance MudDialog { get; set; }
+
+    [Parameter] public string TitleText { get; set; }
+
+    [Parameter] public string ContentText { get; set; }
+
+    [Parameter] public string link { get; set; }
+
+    [Parameter] public string ButtonText { get; set; }
+
+    void Submit() => MudDialog.Close(DialogResult.Ok(true));
+    void Cancel() => MudDialog.Cancel();
+}
